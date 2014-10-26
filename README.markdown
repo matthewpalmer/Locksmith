@@ -38,3 +38,17 @@ To create custom keychain requests, you first have to instantiate a `LocksmithRe
 
     let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
     Locksmith.performRequest(deleteRequest)
+
+### `LocksmithRequest`
+*More to come.*
+
+#### Required
+    var service: String
+    var key: String
+    var userAccount: String
+    var type: RequestType  // Defaults to .Read
+
+#### Optional
+    var group: String?  // Used for keychain sharing
+    var data: NSDictionary?  // Used only for write requests
+    var matchLimit: MatchLimit  // Defaults to .One
