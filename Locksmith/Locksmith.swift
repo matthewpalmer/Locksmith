@@ -11,42 +11,6 @@ import UIKit
 public let LocksmithErrorDomain = "com.locksmith.error"
 
 class Locksmith: NSObject {
-  // MARK: Error Lookup
-  enum ErrorMessage: String {
-    case Allocate = "Failed to allocate memory."
-    case AuthFailed = "Authorization/Authentication failed."
-    case Decode = "Unable to decode the provided data."
-    case Duplicate = "The item already exists."
-    case InteractionNotAllowed = "Interaction with the Security Server is not allowed."
-    case NoError = "No error."
-    case NotAvailable = "No trust results are available."
-    case NotFound = "The item cannot be found."
-    case Param = "One or more parameters passed to the function were not valid."
-    case Unimplemented = "Function or operation not implemented."
-  }
-  
-  enum LocksmithErrorCode: Int {
-    case RequestNotSet = 1
-    case TypeNotFound = 2
-  }
-  
-  enum LocksmithErrorMessage: String {
-    case RequestNotSet = "keychainRequest was not set."
-    case TypeNotFound = "The type of request given was undefined."
-  }
-  
-  class func keychainError(forCode statusCode: Int) -> NSError? {
-    var error: NSError?
-    
-    if statusCode != Int(errSecSuccess) {
-      let message = errorMessage(statusCode)
-      println("Keychain request failed. Code: \(statusCode). Message: \(message)")
-      error = NSError(domain: LocksmithErrorDomain, code: statusCode, userInfo: ["message": message])
-    }
-    
-    return error
-  }
-  
   // MARK: Perform request
   class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
     let type = request.type
@@ -86,6 +50,42 @@ class Locksmith: NSObject {
     }
   }
   
+  // MARK: Error Lookup
+  enum ErrorMessage: String {
+    case Allocate = "Failed to allocate memory."
+    case AuthFailed = "Authorization/Authentication failed."
+    case Decode = "Unable to decode the provided data."
+    case Duplicate = "The item already exists."
+    case InteractionNotAllowed = "Interaction with the Security Server is not allowed."
+    case NoError = "No error."
+    case NotAvailable = "No trust results are available."
+    case NotFound = "The item cannot be found."
+    case Param = "One or more parameters passed to the function were not valid."
+    case Unimplemented = "Function or operation not implemented."
+  }
+  
+  enum LocksmithErrorCode: Int {
+    case RequestNotSet = 1
+    case TypeNotFound = 2
+  }
+  
+  enum LocksmithErrorMessage: String {
+    case RequestNotSet = "keychainRequest was not set."
+    case TypeNotFound = "The type of request given was undefined."
+  }
+  
+  class func keychainError(forCode statusCode: Int) -> NSError? {
+    var error: NSError?
+    
+    if statusCode != Int(errSecSuccess) {
+      let message = errorMessage(statusCode)
+      println("Keychain request failed. Code: \(statusCode). Message: \(message)")
+      error = NSError(domain: LocksmithErrorDomain, code: statusCode, userInfo: ["message": message])
+    }
+    
+    return error
+  }
+  
   // MARK: Private methods
   
   private class func internalErrorMessage(forCode statusCode: Int) -> NSString {
@@ -116,7 +116,6 @@ class Locksmith: NSObject {
         parsedRequest = parseReadRequest(request, inDictionary: parsedRequest)
     }
     
-    println("parsed request \(parsedRequest)")
     return parsedRequest
   }
   
@@ -185,6 +184,25 @@ class Locksmith: NSObject {
   }
 }
 
+// MARK: Convenient Class Methods
+extension Locksmith {
+  class func saveData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, data: data)
+    return Locksmith.performRequest(saveRequest)
+  }
+  
+  class func loadData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    let readRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key)
+    return Locksmith.performRequest(readRequest)
+  }
+  
+  class func deleteData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
+    return Locksmith.performRequest(deleteRequest)
+  }
+}
+
+// MARK: Dictionary Extensions
 extension NSMutableDictionary {
   func setOptional(optional: AnyObject?, forKey key: NSCopying) {
     if let object: AnyObject = optional {

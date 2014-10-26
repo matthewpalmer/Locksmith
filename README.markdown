@@ -6,17 +6,35 @@
 
 Grab two files from the project: Locksmith.swift and LocksmithRequest.swift.
 
-## Saving
+## Quick Start
+
+**Save Data**
+
+    Locksmith.saveData(["some key": "some value"], forKey: key, inService: service, forUserAccount: userAccount)
+
+**Load Data**
+
+    let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
+
+**Delete Data**
+
+    Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
+
+
+## Custom Requests
+To create custom keychain requests, you first have to instantiate a `LocksmithRequest`. This request can be customised as much as required. Then call`Locksmith.performRequest` on that request.
+
+### Saving
 
     let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, data: ["some key": "some value"])
     Locksmith.performRequest(saveRequest)
 
-## Reading
+### Reading
 
     let readRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key)
     let (dictionary, error) = Locksmith.performRequest(readRequest)
 
-## Deleting
+### Deleting
 
     let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
     Locksmith.performRequest(deleteRequest)

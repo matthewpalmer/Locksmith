@@ -14,13 +14,11 @@ class ViewController: UIViewController {
   let key = "myKey"
   
   @IBAction func save(sender: AnyObject) {
-    let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, data: ["some key": "some value"])
-    Locksmith.performRequest(saveRequest)
+    Locksmith.saveData(["some key": "some value"], forKey: key, inService: service, forUserAccount: userAccount)
   }
   
   @IBAction func loadData(sender: AnyObject) {
-    let readRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key)
-    let (dictionary, error) = Locksmith.performRequest(readRequest)
+    let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
     
     if let dictionary = dictionary {
       println("Dictionary: \(dictionary)")
@@ -32,8 +30,7 @@ class ViewController: UIViewController {
   }
   
   @IBAction func deleteData(sender: AnyObject) {
-    let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
-    Locksmith.performRequest(deleteRequest)
+    Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
   }
   
   override func viewDidLoad() {

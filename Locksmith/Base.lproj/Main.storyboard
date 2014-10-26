@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK4-b0-x78">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK4-b0-x78">
                                 <rect key="frame" x="278" y="122" width="34" height="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -25,7 +25,7 @@
                                     <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x0D-Hg-awu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-Tp-Vu9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-Tp-Vu9">
                                 <rect key="frame" x="277" y="285" width="35" height="30"/>
                                 <state key="normal" title="Load">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,7 +34,7 @@
                                     <action selector="loadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="atD-QV-TTn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-X6-FVb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-X6-FVb">
                                 <rect key="frame" x="272" y="456" width="44" height="30"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,8 +47,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tpV-X6-FVb" firstAttribute="centerX" secondItem="5KA-Tp-Vu9" secondAttribute="centerX" id="02U-GD-KNI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tpV-X6-FVb" secondAttribute="bottom" constant="114" id="0by-WH-3i4"/>
+                            <constraint firstItem="SK4-b0-x78" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="102" id="BWt-zt-RaP"/>
                             <constraint firstAttribute="centerX" secondItem="5KA-Tp-Vu9" secondAttribute="centerX" constant="5.5" id="e72-Mg-dNM"/>
                             <constraint firstItem="5KA-Tp-Vu9" firstAttribute="centerX" secondItem="SK4-b0-x78" secondAttribute="centerX" id="vz6-E2-ed9"/>
+                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="top" secondItem="SK4-b0-x78" secondAttribute="bottom" constant="133" id="xBP-DF-dFN"/>
                         </constraints>
                     </view>
                 </viewController>
