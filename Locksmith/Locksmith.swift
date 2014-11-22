@@ -14,13 +14,15 @@ class Locksmith: NSObject {
   // MARK: Perform request
   class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
     let type = request.type
-    var result: Unmanaged<AnyObject>?
+    var result: Unmanaged<AnyObject>? = nil
     var status: OSStatus?
+    
+    println("Performing request: \(request.debugDescription)")
     
     var parsedRequest: NSMutableDictionary = parseRequest(request)
     
     var requestReference = parsedRequest as CFDictionaryRef
-    
+
     switch type {
     case .Create:
       status = SecItemAdd(requestReference, &result)
@@ -36,20 +38,26 @@ class Locksmith: NSObject {
       var statusCode = Int(status)
       let error = Locksmith.keychainError(forCode: statusCode)
       var resultsDictionary: NSDictionary?
-
-      if let rawValue = result {
+      
+      if result != nil {
+        println("resultPointer \(result)")
+        
         if type == .Read {
-          if let data = rawValue.takeRetainedValue() as? NSData {
+          if let data = result?.takeUnretainedValue() as? NSData {
             // Convert the retrieved data to a dictionary
             resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
           }
         }
+      } else {
+        println("The result pointer was nil (this is OK for non-read requests")
       }
       
       return (resultsDictionary, error)
     } else {
       let code = LocksmithErrorCode.TypeNotFound.rawValue
       let message = internalErrorMessage(forCode: code)
+      
+      
       return (nil, NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message]))
     }
   }

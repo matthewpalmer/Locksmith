@@ -20,7 +20,7 @@ enum RequestType: Int {
   case Create, Read, Update, Delete
 }
 
-class LocksmithRequest: NSObject {
+class LocksmithRequest: NSObject, DebugPrintable {
   // Keychain Options
   // Required
   var service: String
@@ -33,6 +33,12 @@ class LocksmithRequest: NSObject {
   var group: String?
   var data: NSDictionary?
   var matchLimit: MatchLimit = .One  // Default to one
+  
+  // Debugging
+  override var debugDescription: String {
+
+    return "service: \(self.service), key: \(self.key), type: \(self.type.rawValue), userAccount: \(self.userAccount)"
+  }
   
   required init(service: String, userAccount: String, key: String) {
     self.service = service
