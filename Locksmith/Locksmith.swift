@@ -23,7 +23,7 @@ class Locksmith: NSObject {
     
     switch type {
     case .Create:
-      status = SecItemAdd(requestReference, nil)
+      status = SecItemAdd(requestReference, &result)
     case .Read:
       status = SecItemCopyMatching(requestReference, &result)
     case .Delete:
@@ -37,9 +37,13 @@ class Locksmith: NSObject {
       let error = Locksmith.keychainError(forCode: statusCode)
       var resultsDictionary: NSDictionary?
 
-      if let data: NSData = result?.takeRetainedValue() as? NSData {
-        // Convert the retrieved data to a dictionary
-        resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+      if let rawValue = result {
+        if type == .Read {
+          if let data = rawValue.takeRetainedValue() as? NSData {
+            // Convert the retrieved data to a dictionary
+            resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+          }
+        }
       }
       
       return (resultsDictionary, error)
