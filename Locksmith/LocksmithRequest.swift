@@ -7,7 +7,7 @@
 //
 
 enum SecurityClass: Int {
-  case GenericPassword
+  case GenericPassword, InternetPassword, Certificate, Key, Identity
 }
 
 import UIKit
