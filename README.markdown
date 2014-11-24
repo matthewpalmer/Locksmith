@@ -20,6 +20,12 @@ Locksmith.saveData(["some key": "some value"], forKey: key, inService: service, 
 let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
 ```
 
+**Update Data**
+
+```swift
+Locksmith.updateData(["some key": "another value"], forKey: key, inService: service, forUserAccount: userAccount)
+```
+
 **Delete Data**
 ```swift
 Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
