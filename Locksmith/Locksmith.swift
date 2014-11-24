@@ -42,7 +42,7 @@ class Locksmith: NSObject {
       if result != nil {
         println("resultPointer \(result)")
         
-        if type == .Read {
+        if type == .Read && status == errSecSuccess {
           if let data = result?.takeUnretainedValue() as? NSData {
             // Convert the retrieved data to a dictionary
             resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
