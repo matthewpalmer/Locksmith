@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK4-b0-x78">
-                                <rect key="frame" x="278" y="122" width="34" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK4-b0-x78">
+                                <rect key="frame" x="283" y="98" width="34" height="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -25,23 +25,8 @@
                                     <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x0D-Hg-awu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-X6-FVb">
-                                <rect key="frame" x="272" y="456" width="44" height="30"/>
-                                <state key="normal" title="Delete">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gee-TK-WNb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-uJ-dG8">
-                                <rect key="frame" x="272" y="213" width="51" height="30"/>
-                                <state key="normal" title="Update">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-Tp-Vu9">
-                                <rect key="frame" x="278" y="341" width="35" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-Tp-Vu9">
+                                <rect key="frame" x="283" y="202" width="35" height="30"/>
                                 <state key="normal" title="Load">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -49,18 +34,35 @@
                                     <action selector="loadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="atD-QV-TTn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-uJ-dG8">
+                                <rect key="frame" x="275" y="150" width="51" height="30"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="update:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dWB-sq-oQP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-X6-FVb">
+                                <rect key="frame" x="278" y="254" width="44" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gee-TK-WNb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tpV-X6-FVb" firstAttribute="centerX" secondItem="5KA-Tp-Vu9" secondAttribute="centerX" id="02U-GD-KNI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tpV-X6-FVb" secondAttribute="bottom" constant="114" id="0by-WH-3i4"/>
-                            <constraint firstItem="SK4-b0-x78" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="102" id="BWt-zt-RaP"/>
-                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="centerX" secondItem="gwg-uJ-dG8" secondAttribute="centerX" constant="-2" id="IbX-M1-W0g"/>
-                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="top" secondItem="gwg-uJ-dG8" secondAttribute="bottom" constant="98" id="Yrl-i7-DvH"/>
-                            <constraint firstItem="SK4-b0-x78" firstAttribute="centerX" secondItem="gwg-uJ-dG8" secondAttribute="centerX" constant="-2.5" id="bqc-O3-i05"/>
-                            <constraint firstAttribute="centerX" secondItem="5KA-Tp-Vu9" secondAttribute="centerX" constant="5.5" id="e72-Mg-dNM"/>
-                            <constraint firstItem="gwg-uJ-dG8" firstAttribute="top" secondItem="SK4-b0-x78" secondAttribute="bottom" constant="61" id="pa1-N2-ahM"/>
-                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="top" secondItem="SK4-b0-x78" secondAttribute="bottom" constant="133" id="xBP-DF-dFN"/>
+                            <constraint firstItem="tpV-X6-FVb" firstAttribute="top" secondItem="5KA-Tp-Vu9" secondAttribute="bottom" constant="22" id="3qD-fa-LXx"/>
+                            <constraint firstItem="gwg-uJ-dG8" firstAttribute="top" secondItem="SK4-b0-x78" secondAttribute="bottom" constant="22" id="IZm-Sn-eJP"/>
+                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="top" secondItem="gwg-uJ-dG8" secondAttribute="bottom" constant="22" id="Qqg-BG-zp2"/>
+                            <constraint firstAttribute="centerY" secondItem="SK4-b0-x78" secondAttribute="centerY" constant="187" id="Ref-uw-o2A"/>
+                            <constraint firstItem="SK4-b0-x78" firstAttribute="centerX" secondItem="gwg-uJ-dG8" secondAttribute="centerX" constant="-0.5" id="TJJ-p7-8f7"/>
+                            <constraint firstItem="gwg-uJ-dG8" firstAttribute="centerX" secondItem="tpV-X6-FVb" secondAttribute="centerX" constant="0.5" id="cMH-qn-qVu"/>
+                            <constraint firstAttribute="centerX" secondItem="SK4-b0-x78" secondAttribute="centerX" id="jgz-mW-BGM"/>
+                            <constraint firstItem="5KA-Tp-Vu9" firstAttribute="centerX" secondItem="gwg-uJ-dG8" secondAttribute="centerX" id="rco-0g-m08"/>
                         </constraints>
                     </view>
                 </viewController>
