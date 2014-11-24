@@ -14,7 +14,7 @@ class ViewController: UIViewController {
   let key = "myKey"
   
   @IBAction func save(sender: AnyObject) {
-    Locksmith.saveData(["some key": "some value"], forKey: key, inService: service, forUserAccount: userAccount)
+    Locksmith.saveData(["some key": "\(NSDate())"], forKey: key, inService: service, forUserAccount: userAccount)
   }
   
   @IBAction func loadData(sender: AnyObject) {
