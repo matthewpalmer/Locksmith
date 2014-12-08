@@ -205,9 +205,10 @@ class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    class func saveData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    class func saveData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Create, data: data)
-        return Locksmith.performRequest(saveRequest)
+        let (dictionary, error) = Locksmith.performRequest(saveRequest)
+        return error
     }
     
     class func loadData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
@@ -215,14 +216,16 @@ extension Locksmith {
         return Locksmith.performRequest(readRequest)
     }
     
-    class func deleteData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    class func deleteData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
-        return Locksmith.performRequest(deleteRequest)
+        let (dictionary, error) = Locksmith.performRequest(deleteRequest)
+        return error
     }
     
-    class func updateData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    class func updateData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let updateRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Update, data: data)
-        return Locksmith.performRequest(updateRequest)
+        let (dictionary, error) = Locksmith.performRequest(updateRequest)
+        return error
     }
 }
 

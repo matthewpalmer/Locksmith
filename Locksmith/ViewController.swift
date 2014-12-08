@@ -14,11 +14,19 @@ class ViewController: UIViewController {
     let key = "myKey"
     
     @IBAction func save(sender: AnyObject) {
-        Locksmith.saveData(["some key": "\(NSDate())"], forKey: key, inService: service, forUserAccount: userAccount)
+        let error = Locksmith.saveData(["some key": "\(NSDate())"], forKey: key, inService: service, forUserAccount: userAccount)
+        
+        if error != nil {
+            println("Error: \(error!)")
+        }
     }
     
     @IBAction func update(sender: AnyObject) {
-        Locksmith.updateData(["some key": "\(NSDate())"], forKey: key, inService: service, forUserAccount: userAccount)
+        let error = Locksmith.updateData(["some key": "\(NSDate())"], forKey: key, inService: service, forUserAccount: userAccount)
+        
+        if error != nil {
+            println("Error: \(error!)")
+        }
     }
     
     @IBAction func loadData(sender: AnyObject) {
@@ -34,7 +42,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func deleteData(sender: AnyObject) {
-        Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
+        let error = Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
+        
+        if error != nil {
+            println("Error: \(error!)")
+        }
     }
     
     override func viewDidLoad() {
