@@ -6,6 +6,8 @@
 
 Grab two files from the project: Locksmith.swift and LocksmithRequest.swift.
 
+**Note: Due to a bug in Swift, the Optimization Level for release builds has to be set to -Onone. [Go here for more infromation on how to change it.](http://matthewpalmer.net/blog/2014/12/11/change-optimization-level-xcode-swift/)**
+
 ## Quick Start
 
 **Save Data**
