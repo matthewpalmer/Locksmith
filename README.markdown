@@ -15,7 +15,7 @@ Install the framework ([reference c/o](https://github.com/Alamofire/Alamofire))
 6. `import Locksmith`
 ```
 
-![Locksmith iOS Keychain Library in Swift][http://i.imgur.com/cwB8tAI.gif]
+![Locksmith iOS Keychain Library in Swift](http://i.imgur.com/cwB8tAI.gif)
 
 *Note: Due to a bug in Swift, the `Swift Compiler - Code Generation` Optimization Level for release builds has to be set to -Onone. [Go here for more infromation on how to change it.](http://matthewpalmer.net/blog/2014/12/11/change-optimization-level-xcode-swift/)*
 
