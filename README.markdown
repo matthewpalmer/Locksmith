@@ -4,7 +4,7 @@
 
 # Usage
 
-Install the framework ([reference c/o](https://github.com/Alamofire/Alamofire))
+Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Alamofire))
 
 ```
 1. `git submodule add https://github.com/matthewpalmer/Locksmith.git`
