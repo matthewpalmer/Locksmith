@@ -4,7 +4,7 @@
 
 # Usage
 
-Install the framework [reference](https://github.com/Alamofire/Alamofire#installation for reference).
+Install the framework ([reference](https://github.com/Alamofire/Alamofire#installation for reference)).
 
 **Note: Due to a bug in Swift, the `Swift Compiler - Code Generation` Optimization Level for release builds has to be set to -Onone. [Go here for more infromation on how to change it.](http://matthewpalmer.net/blog/2014/12/11/change-optimization-level-xcode-swift/)**
 
