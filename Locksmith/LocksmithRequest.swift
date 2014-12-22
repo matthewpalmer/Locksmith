@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 Colour Coding. All rights reserved.
 //
 
-enum SecurityClass: Int {
+import UIKit
+
+public enum SecurityClass: Int {
     case GenericPassword, InternetPassword, Certificate, Key, Identity
 }
 
-import UIKit
-
-enum MatchLimit: Int {
+public enum MatchLimit: Int {
     case One, Many
 }
 
-enum RequestType: Int {
+public enum RequestType: Int {
     case Create, Read, Update, Delete
 }
 
-class LocksmithRequest: NSObject, DebugPrintable {
+public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
     var service: String
@@ -35,12 +35,12 @@ class LocksmithRequest: NSObject, DebugPrintable {
     var matchLimit: MatchLimit = .One  // Default to one
     
     // Debugging
-    override var debugDescription: String {
+    override public var debugDescription: String {
         
         return "service: \(self.service), key: \(self.key), type: \(self.type.rawValue), userAccount: \(self.userAccount)"
     }
     
-    required init(service: String, userAccount: String, key: String) {
+    required public init(service: String, userAccount: String, key: String) {
         self.service = service
         self.userAccount = userAccount
         self.key = key
