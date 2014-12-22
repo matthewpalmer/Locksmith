@@ -2,8 +2,8 @@
 //  LocksmithTests.swift
 //  LocksmithTests
 //
-//  Created by Matthew Palmer on 26/10/2014.
-//  Copyright (c) 2014 Matthew Palmer. All rights reserved.
+//  Created by Michael Hahn on 12/22/14.
+//  Copyright (c) 2014 Mathew Palmer. All rights reserved.
 //
 
 import UIKit
