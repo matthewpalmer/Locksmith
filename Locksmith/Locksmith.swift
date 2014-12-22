@@ -10,7 +10,7 @@ import UIKit
 
 public let LocksmithErrorDomain = "com.locksmith.error"
 
-class Locksmith: NSObject {
+public class Locksmith: NSObject {
     // MARK: Perform request
     class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
         let type = request.type
@@ -205,24 +205,24 @@ class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    class func saveData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
+    public class func saveData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Create, data: data)
         let (dictionary, error) = Locksmith.performRequest(saveRequest)
         return error
     }
     
-    class func loadData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
+    public class func loadData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?) {
         let readRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key)
         return Locksmith.performRequest(readRequest)
     }
     
-    class func deleteData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
+    public class func deleteData(forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
         let (dictionary, error) = Locksmith.performRequest(deleteRequest)
         return error
     }
     
-    class func updateData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
+    public class func updateData(data: Dictionary<String, String>, forKey key: String, inService service: String, forUserAccount userAccount: String) -> NSError? {
         let updateRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Update, data: data)
         let (dictionary, error) = Locksmith.performRequest(updateRequest)
         return error
