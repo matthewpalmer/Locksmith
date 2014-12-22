@@ -6,16 +6,13 @@
 
 Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Alamofire))
 
-```
+
 1. `git submodule add https://github.com/matthewpalmer/Locksmith.git`
 2. Open the newly created folder, 'Locksmith', in Finder
 3. Drag Locksmith.xcodeproj to the file navigator (left sidebar) of your project
 4. Click on your app's target, then click on Build Phases
-5. Follow the gif below
-6. `import Locksmith`
-```
-
-![Locksmith iOS Keychain Library in Swift](http://i.imgur.com/cwB8tAI.gif)
+5. Follow the gif ![Locksmith iOS Keychain Library in Swift](http://i.imgur.com/cwB8tAI.gif)
+6. `import Locksmith` wherever you need it
 
 *Note: Due to a bug in Swift, the `Swift Compiler - Code Generation` Optimization Level for release builds has to be set to -Onone. [Go here for more infromation on how to change it.](http://matthewpalmer.net/blog/2014/12/11/change-optimization-level-xcode-swift/)*
 
