@@ -52,8 +52,6 @@ public class Locksmith: NSObject {
         } else {
             let code = LocksmithErrorCode.TypeNotFound.rawValue
             let message = internalErrorMessage(forCode: code)
-            
-            
             return (nil, NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message]))
         }
     }
@@ -84,11 +82,13 @@ public class Locksmith: NSObject {
     enum LocksmithErrorCode: Int {
         case RequestNotSet = 1
         case TypeNotFound = 2
+        case UnableToClear = 3
     }
     
     enum LocksmithErrorMessage: String {
         case RequestNotSet = "keychainRequest was not set."
         case TypeNotFound = "The type of request given was undefined."
+        case UnableToClear = "Unable to clear the keychain"
     }
     
     class func keychainError(forCode statusCode: Int) -> NSError? {
@@ -96,7 +96,7 @@ public class Locksmith: NSObject {
         
         if statusCode != Int(errSecSuccess) {
             let message = errorMessage(statusCode)
-            println("Keychain request failed. Code: \(statusCode). Message: \(message)")
+//            println("Keychain request failed. Code: \(statusCode). Message: \(message)")
             error = NSError(domain: LocksmithErrorDomain, code: statusCode, userInfo: ["message": message])
         }
         
@@ -109,6 +109,8 @@ public class Locksmith: NSObject {
         switch statusCode {
         case LocksmithErrorCode.RequestNotSet.rawValue:
             return LocksmithErrorMessage.RequestNotSet.rawValue
+        case LocksmithErrorCode.UnableToClear.rawValue:
+            return LocksmithErrorMessage.UnableToClear.rawValue
         default:
             return "Error message for code \(statusCode) not set"
         }
@@ -226,6 +228,53 @@ extension Locksmith {
         let updateRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Update, data: data)
         let (dictionary, error) = Locksmith.performRequest(updateRequest)
         return error
+    }
+    
+    public class func clearKeychain() -> NSError? {
+        // Delete all of the keychain data of the given class
+        func deleteDataForSecClass(secClass: CFTypeRef) -> NSError? {
+            var request = NSMutableDictionary()
+            request.setObject(secClass, forKey: String(kSecClass))
+            
+            var status: OSStatus? = SecItemDelete(request as CFDictionaryRef)
+            
+            if let status = status {
+                var statusCode = Int(status)
+                return Locksmith.keychainError(forCode: statusCode)
+            }
+            
+            return nil
+        }
+        
+        // For each of the sec class types, delete all of the saved items of that type
+        let classes = [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity]
+        
+        let errors: [NSError?] = classes.map({
+            return deleteDataForSecClass($0)
+        })
+        
+        // Remove those that were successful, or failed with an acceptable error code
+        let filtered = errors.filter({
+            if let error = $0 {
+                // There was an error
+                // If the error indicates that there was no item with that sec class, that's fine.
+                // Some of the sec classes will have nothing in them in most cases.
+                return error.code != Int(errSecItemNotFound) ? true : false
+            }
+            
+            // There was no error
+            return false
+        })
+        
+        // If the filtered array is empty, then everything went OK
+        if filtered.isEmpty {
+            return nil
+        }
+        
+        // At least one of the delete operations failed
+        let code = LocksmithErrorCode.UnableToClear.rawValue
+        let message = internalErrorMessage(forCode: code)
+        return NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message])
     }
 }
 
