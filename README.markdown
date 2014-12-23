@@ -21,24 +21,24 @@ Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Al
 **Save Data**
 
 ```swift
-Locksmith.saveData(["some key": "some value"], forKey: key, inService: service, forUserAccount: userAccount)
+Locksmith.saveData(["some key": "some value"], inService: service, forUserAccount: userAccount)
 ```
 
 **Load Data**
 
 ```swift
-let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
+let (dictionary, error) = Locksmith.loadData(inService: service, forUserAccount: userAccount)
 ```
 
 **Update Data**
 
 ```swift
-Locksmith.updateData(["some key": "another value"], forKey: key, inService: service, forUserAccount: userAccount)
+Locksmith.updateData(["some key": "another value"], inService: service, forUserAccount: userAccount)
 ```
 
 **Delete Data**
 ```swift
-Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
+Locksmith.deleteData(inService: service, forUserAccount: userAccount)
 ```
 
 ## Custom Requests
@@ -46,19 +46,19 @@ To create custom keychain requests, you first have to instantiate a `LocksmithRe
 
 ### Saving
 ```swift
-let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, data: ["some key": "some value"])
+let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, data: ["some key": "some value"])
 Locksmith.performRequest(saveRequest)
 ```
 
 ### Reading
 ```swift
-let readRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key)
+let readRequest = LocksmithRequest(service: service, userAccount: userAccount)
 let (dictionary, error) = Locksmith.performRequest(readRequest)
 ```
 
 ### Deleting
 ```swift
-let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, key: key, requestType: .Delete)
+let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, requestType: .Delete)
 Locksmith.performRequest(deleteRequest)
 ```
 
@@ -68,7 +68,6 @@ Locksmith.performRequest(deleteRequest)
 #### Required
 ```swift
 var service: String
-var key: String
 var userAccount: String
 var type: RequestType  // Defaults to .Read
 ```
