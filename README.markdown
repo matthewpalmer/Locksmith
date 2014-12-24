@@ -3,7 +3,7 @@
 > A sane way to work with the iOS Keychain in Swift.
 
 # Usage
-
+## Installation
 Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Alamofire))
 
 
