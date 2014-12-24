@@ -55,8 +55,6 @@ Locksmith.performRequest(saveRequest)
 ### Reading
 ```swift
 let readRequest = LocksmithRequest(service: service, userAccount: userAccount)
-// Customize the request
-readRequest.matchLimit = .Many
 let (dictionary, error) = Locksmith.performRequest(readRequest)
 ```
 
