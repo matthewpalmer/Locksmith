@@ -1,8 +1,7 @@
-# Locksmith
+## Locksmith
 
-> A sane way to work with the iOS Keychain in Swift.
+A sane way to work with the iOS Keychain in Swift.
 
-# Usage
 ## Installation
 Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Alamofire))
 
@@ -44,7 +43,7 @@ Locksmith.deleteData(inService: service, forUserAccount: userAccount)
 ## Custom Requests
 To create custom keychain requests, you first have to instantiate a `LocksmithRequest`. This request can be customised as much as required. Then call`Locksmith.performRequest` on that request.
 
-### Saving
+**Saving**
 ```swift
 let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, data: ["some key": "some value"])
 // Customize the request
@@ -52,31 +51,31 @@ saveRequest.synchronizable = true
 Locksmith.performRequest(saveRequest)
 ```
 
-### Reading
+**Reading**
 ```swift
 let readRequest = LocksmithRequest(service: service, userAccount: userAccount)
 let (dictionary, error) = Locksmith.performRequest(readRequest)
 ```
 
-### Deleting
+**Deleting**
 ```swift
 let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, requestType: .Delete)
 Locksmith.performRequest(deleteRequest)
 ```
 
-### LocksmithRequest
+## LocksmithRequest
 Use these attributes to customize your `LocksmithRequest` instance.
 
 If you need any more custom attributes, either create a pull request or open an issue.
 
-#### Required
+### Required
 ```swift
 var service: String
 var userAccount: String
 var type: RequestType             // Defaults to .Read
 ```
 
-#### Optional
+### Optional
 ```swift
 var group: String?                // Used for keychain sharing
 var data: NSDictionary?           // Used only for write requests
