@@ -64,7 +64,7 @@ let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount,
 Locksmith.performRequest(deleteRequest)
 ```
 
-### `LocksmithRequest`
+### LocksmithRequest
 Use these attributes to customize your `LocksmithRequest` instance.
 
 If you need any more custom attributes, either create a pull request or open an issue.
