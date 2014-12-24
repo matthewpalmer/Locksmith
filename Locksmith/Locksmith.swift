@@ -119,12 +119,16 @@ public class Locksmith: NSObject {
     private class func parseRequest(request: LocksmithRequest) -> NSMutableDictionary {
         var parsedRequest = NSMutableDictionary()
         
-        parsedRequest.setOptional(request.userAccount, forKey: String(kSecAttrAccount))
-        parsedRequest.setOptional(request.group, forKey: String(kSecAttrAccessGroup))
-        parsedRequest.setOptional(request.service, forKey: String(kSecAttrService))
+        var options = [String: AnyObject?]()
+        options[String(kSecAttrAccount)] = request.userAccount
+        options[String(kSecAttrAccessGroup)] = request.group
+        options[String(kSecAttrService)] = request.service
+        options[String(kSecAttrSynchronizable)] = request.synchronizable
+        options[String(kSecClass)] = securityCode(request.securityClass)
         
-        // parsedRequest.setOptional(Locksmith.securityCode(request.securityClass), forKey: String(kSecClass))
-        parsedRequest.setOptional(kSecClassGenericPassword, forKey: String(kSecClass))
+        for (key, option) in options {
+            parsedRequest.setOptional(option, forKey: key)
+        }
         
         switch request.type {
         case .Create:
@@ -199,6 +203,14 @@ public class Locksmith: NSObject {
         switch securityClass {
         case .GenericPassword:
             return kSecClassGenericPassword
+        case .Certificate:
+            return kSecClassCertificate
+        case .Identity:
+            return kSecClassIdentity
+        case .InternetPassword:
+            return kSecClassInternetPassword
+        case .Key:
+            return kSecClassKey
         default:
             return kSecClassGenericPassword
         }

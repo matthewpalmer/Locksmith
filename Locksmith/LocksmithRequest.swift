@@ -28,10 +28,11 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     var type: RequestType = .Read  // Default to non-destructive
     
     // Optional
-    // var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
+    var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
     var group: String?
     var data: NSDictionary?
-    var matchLimit: MatchLimit = .One  // Default to one
+    var matchLimit: MatchLimit = .One
+    var synchronizable = false
     
     // Debugging
     override public var debugDescription: String {
