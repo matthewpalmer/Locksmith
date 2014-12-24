@@ -47,12 +47,16 @@ To create custom keychain requests, you first have to instantiate a `LocksmithRe
 ### Saving
 ```swift
 let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, data: ["some key": "some value"])
+// Customize the request
+saveRequest.synchronizable = true
 Locksmith.performRequest(saveRequest)
 ```
 
 ### Reading
 ```swift
 let readRequest = LocksmithRequest(service: service, userAccount: userAccount)
+// Customize the request
+readRequest.matchLimit = .Many
 let (dictionary, error) = Locksmith.performRequest(readRequest)
 ```
 
@@ -63,7 +67,9 @@ Locksmith.performRequest(deleteRequest)
 ```
 
 ### `LocksmithRequest`
-*More to come.*
+Use these attributes to customize your `LocksmithRequest` instance.
+
+If you need any more custom attributes, either create a pull request or open an issue.
 
 #### Required
 ```swift
@@ -74,7 +80,9 @@ var type: RequestType  // Defaults to .Read
 
 #### Optional
 ```swift
-var group: String?  // Used for keychain sharing
-var data: NSDictionary?  // Used only for write requests
-var matchLimit: MatchLimit  // Defaults to .One
+var group: String?                // Used for keychain sharing
+var data: NSDictionary?           // Used only for write requests
+var matchLimit: MatchLimit        // Defaults to .One
+var securityClass: SecurityClass  // Defaults to .GenericPassword
+var synchronizable: Bool          // Defaults to false
 ```
