@@ -68,14 +68,14 @@ Use these attributes to customize your `LocksmithRequest` instance.
 
 If you need any more custom attributes, either create a pull request or open an issue.
 
-### Required
+**Required**
 ```swift
 var service: String
 var userAccount: String
 var type: RequestType             // Defaults to .Read
 ```
 
-### Optional
+**Optional**
 ```swift
 var group: String?                // Used for keychain sharing
 var data: NSDictionary?           // Used only for write requests
