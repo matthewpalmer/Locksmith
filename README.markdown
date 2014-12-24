@@ -73,7 +73,7 @@ If you need any more custom attributes, either create a pull request or open an 
 ```swift
 var service: String
 var userAccount: String
-var type: RequestType  // Defaults to .Read
+var type: RequestType             // Defaults to .Read
 ```
 
 #### Optional
