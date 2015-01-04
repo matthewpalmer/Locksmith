@@ -20,24 +20,24 @@ Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Al
 **Save Data**
 
 ```swift
-Locksmith.saveData(["some key": "some value"], inService: service, forUserAccount: userAccount)
+Locksmith.saveData(["some key": "some value"], inService: "myService", forUserAccount: "myUserAccount")
 ```
 
 **Load Data**
 
 ```swift
-let (dictionary, error) = Locksmith.loadData(inService: service, forUserAccount: userAccount)
+let (dictionary, error) = Locksmith.loadData(inService: "myService", forUserAccount: "myUserAccount")
 ```
 
 **Update Data**
 
 ```swift
-Locksmith.updateData(["some key": "another value"], inService: service, forUserAccount: userAccount)
+Locksmith.updateData(["some key": "another value"], inService: "myService", forUserAccount: "myUserAccount")
 ```
 
 **Delete Data**
 ```swift
-Locksmith.deleteData(inService: service, forUserAccount: userAccount)
+Locksmith.deleteData(inService: "myService", forUserAccount: "myUserAccount")
 ```
 
 ## Custom Requests
