@@ -14,7 +14,8 @@ public class Locksmith: NSObject {
     // MARK: Perform request
     class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
         let type = request.type
-        var result: Unmanaged<AnyObject>? = nil
+        //var result: Unmanaged<AnyObject>? = nil
+        var result: AnyObject?
         var status: OSStatus?
         
         var parsedRequest: NSMutableDictionary = parseRequest(request)
@@ -23,13 +24,13 @@ public class Locksmith: NSObject {
         
         switch type {
         case .Create:
-            status = SecItemAdd(requestReference, &result)
+            status = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
         case .Read:
-            status = SecItemCopyMatching(requestReference, &result)
+            status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
         case .Delete:
             status = SecItemDelete(requestReference)
         case .Update:
-            status = Locksmith.performUpdate(requestReference, result: &result)
+            status =  Locksmith.performUpdate(requestReference, result: &result)
         default:
             status = nil
         }
@@ -41,7 +42,8 @@ public class Locksmith: NSObject {
             
             if result != nil {
                 if type == .Read && status == errSecSuccess {
-                    if let data = result?.takeUnretainedValue() as? NSData {
+                    
+                    if let data = result as? NSData {
                         // Convert the retrieved data to a dictionary
                         resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
                     }
@@ -56,12 +58,13 @@ public class Locksmith: NSObject {
         }
     }
     
-    private class func performUpdate(request: CFDictionaryRef, result: UnsafeMutablePointer<Unmanaged<AnyObject>?>) -> OSStatus {
+    private class func performUpdate(request: CFDictionaryRef, inout result: AnyObject?) -> OSStatus {
         // We perform updates to the keychain by first deleting the matching object, then writing to it with the new value.
         SecItemDelete(request)
-        // Even if the delete request failed (e.g. if the item didn't exist before), still try to save the new item. 
+        // Even if the delete request failed (e.g. if the item didn't exist before), still try to save the new item.
         // If we get an error saving, we'll tell the user about it.
-        var status: OSStatus = SecItemAdd(request, result)
+        
+        var status: OSStatus = withUnsafeMutablePointer(&result) { SecItemAdd(request, UnsafeMutablePointer($0)) }
         return status
     }
     
