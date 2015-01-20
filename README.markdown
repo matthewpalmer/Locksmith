@@ -2,14 +2,8 @@
 
 A sane way to work with the iOS Keychain in Swift.
 
-## Important
-*Note: Due to a bug in Swift, the `Swift Compiler - Code Generation` Optimization Level for release builds has to be set to -Onone. [Go here for more infromation on how to change it.](http://matthewpalmer.net/blog/2014/12/11/change-optimization-level-xcode-swift/)*
-
-This means that Locksmith is likely __not suitable for production apps__ until this bug is fixed. For more information, see [issue 13](https://github.com/matthewpalmer/Locksmith/issues/13).
-
 ## Installation
 Install the framework ([reference c/o Alamofire](https://github.com/Alamofire/Alamofire))
-
 
 1. `git submodule add https://github.com/matthewpalmer/Locksmith.git`
 2. Open the newly created folder, 'Locksmith', in Finder
