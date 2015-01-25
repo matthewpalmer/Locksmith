@@ -86,7 +86,7 @@ var synchronizable: Bool          // Defaults to false
 
 ## Author
 
-matthewpalmer, matt@matthewpalmer.net
+[Matthew Palmer](http://matthewpalmer.net), matt@matthewpalmer.net
 
 ## License
 
