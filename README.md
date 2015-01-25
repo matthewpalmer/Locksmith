@@ -7,10 +7,6 @@ A sane way to work with the iOS Keychain in Swift.
 [![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Installation
 
 Locksmith is available through [CocoaPods](http://cocoapods.org). To install
