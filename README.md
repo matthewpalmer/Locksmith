@@ -20,14 +20,27 @@ it, simply add the following line to your Podfile:
 **Save Data**
 
 ```swift
-Locksmith.saveData(["some key": "some value"], inService: "myService", forUserAccount: "myUserAccount")
+Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")
 ```
 
 **Load Data**
 
 ```swift
+let (dictionary, error) = Locksmith.loadData(forUserAccount: "myUserAccount")
+```
+
+**Load Data, Specifying a Service**
+
+```swift
 let (dictionary, error) = Locksmith.loadData(inService: "myService", forUserAccount: "myUserAccount")
 ```
+
+**Save Data, Specifying a Service**
+
+```swift
+Locksmith.saveData(["some key": "some value"], inService: "myService", forUserAccount: "myUserAccount")
+```
+
 
 **Update Data**
 
