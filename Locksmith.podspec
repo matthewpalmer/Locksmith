@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Locksmith"
-  s.version          = "0.1.0"
+  s.version          = "1.1.0"
   s.summary          = "Locksmith is a sane way to work with the iOS Keychain in Swift."
   s.description      = <<-DESC
                        Locksmith is a sane way to work with the iOS Keychain in Swift.
