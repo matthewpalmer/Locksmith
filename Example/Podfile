@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Locksmith', :exclusive => true do
+  pod "Locksmith", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "Locksmith", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+end
