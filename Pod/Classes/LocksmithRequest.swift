@@ -23,7 +23,7 @@ public enum RequestType: Int {
 public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
-    var service: String
+    var service: String = NSBundle.mainBundle().infoDictionary![kCFBundleIdentifierKey] as String // Default to Bundle Identifier
     var userAccount: String
     var type: RequestType = .Read  // Default to non-destructive
     
@@ -39,18 +39,18 @@ public class LocksmithRequest: NSObject, DebugPrintable {
         return "service: \(self.service), type: \(self.type.rawValue), userAccount: \(self.userAccount)"
     }
     
-    required public init(service: String, userAccount: String) {
+    required public init(userAccount: String, service: String = LocksmithDefaultService) {
         self.service = service
         self.userAccount = userAccount
     }
     
-    convenience init(service: String, userAccount: String, requestType: RequestType) {
-        self.init(service: service, userAccount: userAccount)
+    convenience init(userAccount: String, requestType: RequestType, service: String = LocksmithDefaultService) {
+        self.init(userAccount: userAccount, service: service)
         self.type = requestType
     }
     
-    convenience init(service: String, userAccount: String, requestType: RequestType, data: NSDictionary) {
-        self.init(service: service, userAccount: userAccount, requestType: requestType)
+    convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+        self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }
 }
