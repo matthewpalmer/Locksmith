@@ -2,42 +2,73 @@
 
 A sane way to work with the iOS Keychain in Swift.
 
-<!--[![CI Status](http://img.shields.io/travis/matthewpalmer/Locksmith.svg?style=flat)](https://travis-ci.org/matthewpalmer/Locksmith)-->
+[![CI Status](http://img.shields.io/travis/matthewpalmer/Locksmith.svg?style=flat)](https://travis-ci.org/matthewpalmer/Locksmith)
 [![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 
 ## Installation
 
+### CocoaPods
+
 Locksmith is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "Locksmith"
+pod "Locksmith"
 
+### Manual
+
+Alternatively, you can simply drag the two files `Locksmith.swift` and `LocksmithRequest.swift` into your project.
 
 ## Quick Start
 
-**Save Data**
+In the following examples, you can choose not to provide a value for the `inService` parameter, and it will default to your Bundle Identifier.
+
+**Save data**
 
 ```swift
-Locksmith.saveData(["some key": "some value"], inService: "myService", forUserAccount: "myUserAccount")
+let error = Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")
 ```
 
-**Load Data**
+**Save data, specifying a service**
 
 ```swift
-let (dictionary, error) = Locksmith.loadData(inService: "myService", forUserAccount: "myUserAccount")
+let error = Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount", inService: "myService")
 ```
 
-**Update Data**
+**Load data**
 
 ```swift
-Locksmith.updateData(["some key": "another value"], inService: "myService", forUserAccount: "myUserAccount")
+let (dictionary, error) = Locksmith.loadDataForUserAccount("myUserAccount")
 ```
 
-**Delete Data**
+**Load data, specifying a service**
+
 ```swift
-Locksmith.deleteData(inService: "myService", forUserAccount: "myUserAccount")
+let (dictionary, error) = Locksmith.loadDataForUserAccount("myUserAccount", inService: "myService")
+```
+
+**Update data**
+
+```swift
+let error = Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount")
+```
+
+**Update data, specifying a service**
+
+```swift
+let error = Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount", inService: "myService")
+```
+
+**Delete data**
+```swift
+let error = Locksmith.deleteDataForUserAccount("myUserAccount")
+```
+
+**Delete data, specifying a service**
+
+```swift
+let error = Locksmith.deleteDataForUserAccount("myUserAccount", inService: "myService")
 ```
 
 ## Custom Requests
@@ -45,7 +76,8 @@ To create custom keychain requests, you first have to instantiate a `LocksmithRe
 
 **Saving**
 ```swift
-let saveRequest = LocksmithRequest(service: service, userAccount: userAccount, data: ["some key": "some value"])
+// As above, the `service` parameter will default to your Bundle Identifier if omitted.
+let saveRequest = LocksmithRequest(userAccount: userAccount, data: ["some key": "some value"], service: service)
 // Customize the request
 saveRequest.synchronizable = true
 Locksmith.performRequest(saveRequest)
@@ -53,13 +85,13 @@ Locksmith.performRequest(saveRequest)
 
 **Reading**
 ```swift
-let readRequest = LocksmithRequest(service: service, userAccount: userAccount)
+let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
 let (dictionary, error) = Locksmith.performRequest(readRequest)
 ```
 
 **Deleting**
 ```swift
-let deleteRequest = LocksmithRequest(service: service, userAccount: userAccount, requestType: .Delete)
+let deleteRequest = LocksmithRequest(userAccount: userAccount, requestType: .Delete, service: service)
 Locksmith.performRequest(deleteRequest)
 ```
 
