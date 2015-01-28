@@ -15,7 +15,7 @@
 // Locksmith
 #define COCOAPODS_POD_AVAILABLE_Locksmith
 #define COCOAPODS_VERSION_MAJOR_Locksmith 1
-#define COCOAPODS_VERSION_MINOR_Locksmith 1
+#define COCOAPODS_VERSION_MINOR_Locksmith 2
 #define COCOAPODS_VERSION_PATCH_Locksmith 0
 
 // Specta
