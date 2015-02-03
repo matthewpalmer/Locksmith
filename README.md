@@ -15,6 +15,8 @@ Locksmith is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
     pod "Locksmith"
+    
+__Note__: Swift pods are currently only available in beta, so you need to `gem install cocoapods --pre` to use Locksmith.
 
 ### Manual
 
