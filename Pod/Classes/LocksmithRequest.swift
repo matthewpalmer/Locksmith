@@ -23,28 +23,6 @@ public enum RequestType: Int {
 public enum Accessible: Int {
     case WhenUnlock, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly,
     WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
-    
-    /*
-var kSecAttrAccessibleWhenUnlocked: CFStringRef
-
-@availability(iOS, introduced=4.0)
-var kSecAttrAccessibleAfterFirstUnlock: CFStringRef
-
-@availability(iOS, introduced=4.0)
-var kSecAttrAccessibleAlways: CFStringRef
-
-@availability(iOS, introduced=8.0)
-var kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: CFStringRef
-
-@availability(iOS, introduced=4.0)
-var kSecAttrAccessibleWhenUnlockedThisDeviceOnly: CFStringRef
-
-@availability(iOS, introduced=4.0)
-var kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: CFStringRef
-
-@availability(iOS, introduced=4.0)
-var kSecAttrAccessibleAlwaysThisDeviceOnly: CFStringRef
-*/
 }
 
 public class LocksmithRequest: NSObject, DebugPrintable {
