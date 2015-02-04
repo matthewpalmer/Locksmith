@@ -20,6 +20,33 @@ public enum RequestType: Int {
     case Create, Read, Update, Delete
 }
 
+public enum Accessible: Int {
+    case WhenUnlock, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly,
+    WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    
+    /*
+var kSecAttrAccessibleWhenUnlocked: CFStringRef
+
+@availability(iOS, introduced=4.0)
+var kSecAttrAccessibleAfterFirstUnlock: CFStringRef
+
+@availability(iOS, introduced=4.0)
+var kSecAttrAccessibleAlways: CFStringRef
+
+@availability(iOS, introduced=8.0)
+var kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: CFStringRef
+
+@availability(iOS, introduced=4.0)
+var kSecAttrAccessibleWhenUnlockedThisDeviceOnly: CFStringRef
+
+@availability(iOS, introduced=4.0)
+var kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: CFStringRef
+
+@availability(iOS, introduced=4.0)
+var kSecAttrAccessibleAlwaysThisDeviceOnly: CFStringRef
+*/
+}
+
 public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
@@ -33,6 +60,7 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     var data: NSDictionary?
     var matchLimit: MatchLimit = .One
     var synchronizable = false
+    var accessible: Accessible?
     
     // Debugging
     override public var debugDescription: String {

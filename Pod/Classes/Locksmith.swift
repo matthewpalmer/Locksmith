@@ -130,6 +130,9 @@ public class Locksmith: NSObject {
         options[String(kSecAttrService)] = request.service
         options[String(kSecAttrSynchronizable)] = request.synchronizable
         options[String(kSecClass)] = securityCode(request.securityClass)
+        if let accessibleMode = request.accessible {
+            options[String(kSecAttrAccessible)] = accessible(accessibleMode)
+        }
         
         for (key, option) in options {
             parsedRequest.setOptional(option, forKey: key)
@@ -218,6 +221,25 @@ public class Locksmith: NSObject {
             return kSecClassKey
         default:
             return kSecClassGenericPassword
+        }
+    }
+    
+    private class func accessible(accessible: Accessible) -> CFStringRef {
+        switch accessible {
+        case .WhenUnlock:
+            return kSecAttrAccessibleWhenUnlocked
+        case .AfterFirstUnlock:
+            return kSecAttrAccessibleAfterFirstUnlock
+        case .Always:
+            return kSecAttrAccessibleAlways
+        case .WhenPasscodeSetThisDeviceOnly:
+            return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+        case .WhenUnlockedThisDeviceOnly:
+            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        case .AfterFirstUnlockThisDeviceOnly:
+            return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+        case .AlwaysThisDeviceOnly:
+            return kSecAttrAccessibleAlwaysThisDeviceOnly
         }
     }
 }
