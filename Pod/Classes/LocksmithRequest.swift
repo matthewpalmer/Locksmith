@@ -50,17 +50,17 @@ var kSecAttrAccessibleAlwaysThisDeviceOnly: CFStringRef
 public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
-    var service: String = NSBundle.mainBundle().infoDictionary![kCFBundleIdentifierKey] as String // Default to Bundle Identifier
-    var userAccount: String
-    var type: RequestType = .Read  // Default to non-destructive
+    public var service: String = NSBundle.mainBundle().infoDictionary![kCFBundleIdentifierKey] as String // Default to Bundle Identifier
+    public var userAccount: String
+    public var type: RequestType = .Read  // Default to non-destructive
     
     // Optional
-    var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
-    var group: String?
-    var data: NSDictionary?
-    var matchLimit: MatchLimit = .One
-    var synchronizable = false
-    var accessible: Accessible?
+    public var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
+    public var group: String?
+    public var data: NSDictionary?
+    public var matchLimit: MatchLimit = .One
+    public var synchronizable = false
+    public var accessible: Accessible?
     
     // Debugging
     override public var debugDescription: String {
@@ -72,12 +72,12 @@ public class LocksmithRequest: NSObject, DebugPrintable {
         self.userAccount = userAccount
     }
     
-    convenience init(userAccount: String, requestType: RequestType, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, service: service)
         self.type = requestType
     }
     
-    convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }

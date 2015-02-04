@@ -14,7 +14,7 @@ public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![kCFBu
 
 public class Locksmith: NSObject {
     // MARK: Perform request
-    class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
+    public class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
         let type = request.type
         //var result: Unmanaged<AnyObject>? = nil
         var result: AnyObject?
