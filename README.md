@@ -2,7 +2,7 @@
 
 A sane way to work with the iOS Keychain in Swift.
 
-[![CI Status](http://img.shields.io/travis/matthewpalmer/Locksmith.svg?style=flat)](https://travis-ci.org/matthewpalmer/Locksmith)
+<!--[![CI Status](http://img.shields.io/travis/matthewpalmer/Locksmith.svg?style=flat)](https://travis-ci.org/matthewpalmer/Locksmith)-->
 [![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
@@ -14,7 +14,9 @@ A sane way to work with the iOS Keychain in Swift.
 Locksmith is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-pod "Locksmith"
+    pod "Locksmith"
+    
+__Note__: Swift pods are currently only available in beta, so you need to `gem install cocoapods --pre` to use Locksmith.
 
 ### Manual
 
