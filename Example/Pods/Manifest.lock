@@ -1,6 +1,6 @@
 PODS:
   - Expecta (0.3.1)
-  - Locksmith (1.2.0)
+  - Locksmith (1.2.1)
   - Specta (0.2.1)
 
 DEPENDENCIES:
@@ -10,11 +10,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Locksmith:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  Locksmith: 392ae330eb455e824dab5b714b6719eb29ef5038
-  Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
+  Locksmith: 770f6c5c6e5c5c712d1f00e709c62b8a7240c716
+  Specta: 15a276a6343867b426d5ed135d5aa4d04123a573
 
-COCOAPODS: 0.36.0.beta.1
+COCOAPODS: 0.36.3
