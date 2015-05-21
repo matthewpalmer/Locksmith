@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFFB19D61A4870A300CCFFC3 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = BFFB19D51A4870A300CCFFC3 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */; };
+		9DF0A2C11B0E394F0049F83A /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */; };
+		9DF0A2C81B0E3D370049F83A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DF0A2C71B0E3D370049F83A /* Info.plist */; };
 		BFFB19DC1A4870A300CCFFC3 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */; };
 		BFFB19E31A4870A300CCFFC3 /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB19E21A4870A300CCFFC3 /* LocksmithTests.swift */; };
-		BFFB19EE1A4870E400CCFFC3 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB19EC1A4870E400CCFFC3 /* LocksmithRequest.swift */; };
-		BFFB19EF1A4870E400CCFFC3 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB19ED1A4870E400CCFFC3 /* Locksmith.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,14 +25,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locksmith.swift; path = Pod/Classes/Locksmith.swift; sourceTree = SOURCE_ROOT; };
+		9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithRequest.swift; path = Pod/Classes/LocksmithRequest.swift; sourceTree = SOURCE_ROOT; };
+		9DF0A2C71B0E3D370049F83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFFB19D41A4870A300CCFFC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFFB19D51A4870A300CCFFC3 /* Locksmith.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locksmith.h; sourceTree = "<group>"; };
 		BFFB19DB1A4870A300CCFFC3 /* LocksmithTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocksmithTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFFB19E11A4870A300CCFFC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFFB19E21A4870A300CCFFC3 /* LocksmithTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocksmithTests.swift; sourceTree = "<group>"; };
-		BFFB19EC1A4870E400CCFFC3 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
-		BFFB19ED1A4870E400CCFFC3 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +73,8 @@
 		BFFB19D21A4870A300CCFFC3 /* Locksmith */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB19EC1A4870E400CCFFC3 /* LocksmithRequest.swift */,
-				BFFB19ED1A4870E400CCFFC3 /* Locksmith.swift */,
-				BFFB19D51A4870A300CCFFC3 /* Locksmith.h */,
+				9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */,
+				9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */,
 				BFFB19D31A4870A300CCFFC3 /* Supporting Files */,
 			);
 			path = Locksmith;
@@ -86,7 +83,6 @@
 		BFFB19D31A4870A300CCFFC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB19D41A4870A300CCFFC3 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -103,7 +99,7 @@
 		BFFB19E01A4870A300CCFFC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB19E11A4870A300CCFFC3 /* Info.plist */,
+				9DF0A2C71B0E3D370049F83A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,7 +111,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFB19D61A4870A300CCFFC3 /* Locksmith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF0A2C81B0E3D370049F83A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +211,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFB19EF1A4870E400CCFFC3 /* Locksmith.swift in Sources */,
-				BFFB19EE1A4870E400CCFFC3 /* LocksmithRequest.swift in Sources */,
+				9DF0A2C11B0E394F0049F83A /* LocksmithRequest.swift in Sources */,
+				9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,11 +323,12 @@
 		BFFB19E71A4870A300CCFFC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Locksmith/Info.plist;
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -343,11 +340,12 @@
 		BFFB19E81A4870A300CCFFC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Locksmith/Info.plist;
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,7 +365,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = LocksmithTests/Info.plist;
+				INFOPLIST_FILE = LockSmithTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -380,7 +378,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = LocksmithTests/Info.plist;
+				INFOPLIST_FILE = LockSmithTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
