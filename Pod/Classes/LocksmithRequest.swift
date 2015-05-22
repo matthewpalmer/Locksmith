@@ -28,7 +28,7 @@ public enum Accessible: Int {
 public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
-    public var service: String = NSBundle.mainBundle().infoDictionary![kCFBundleIdentifierKey] as! String // Default to Bundle Identifier
+    public var service: String = LocksmithDefaultService
     public var userAccount: String
     public var type: RequestType = .Read  // Default to non-destructive
     
