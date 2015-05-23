@@ -4,9 +4,11 @@ A sane way to work with the iOS Keychain in Swift.
 
 <!--[![CI Status](http://img.shields.io/travis/matthewpalmer/Locksmith.svg?style=flat)](https://travis-ci.org/matthewpalmer/Locksmith)-->
 [![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 
+ 
 ## Installation
 
 ### CocoaPods
@@ -117,6 +119,9 @@ var securityClass: SecurityClass  // Defaults to .GenericPassword
 var synchronizable: Bool          // Defaults to false
 ```
 
+## Testing
+I can't work out why, but opening `Example/Locksmith.xcworkspace` and trying to run the tests from there won't work. (Pull requests greatly appreciated on this!) Instead, you can run the tests by opening `Locksmith.xcodeproj` in the root directory, and doing Product -> Test.
+ 
 ## Author
 
 [Matthew Palmer](http://matthewpalmer.net), matt@matthewpalmer.net
