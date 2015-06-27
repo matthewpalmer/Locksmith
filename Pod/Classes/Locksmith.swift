@@ -177,14 +177,14 @@ extension Locksmith {
         try Locksmith.performRequest(saveRequest)
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) throws -> NSDictionary {
+    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> NSDictionary? {
         let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
         
         do {
             let dictionary = try Locksmith.performRequest(readRequest)
             return dictionary
-        } catch let error {
-            throw error
+        } catch {
+            return nil
         }
     }
     
