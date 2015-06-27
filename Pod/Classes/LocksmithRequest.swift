@@ -8,23 +8,103 @@
 import UIKit
 import Security
 
-public enum SecurityClass: Int {
+// With thanks to http://iosdeveloperzone.com/2014/10/22/taming-foundation-constants-into-swift-enums/
+
+// MARK: Security Class
+public enum SecurityClass: RawRepresentable {
     case GenericPassword, InternetPassword, Certificate, Key, Identity
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecClassGenericPassword):
+            self = GenericPassword
+        case String(kSecClassInternetPassword):
+            self = InternetPassword
+        case String(kSecClassCertificate):
+            self = Certificate
+        case String(kSecClassKey):
+            self = Key
+        case String(kSecClassIdentity):
+            self = Identity
+        default:
+            print("SecurityClass: Invalid raw value provided. Defaulting to .GenericPassword")
+            self = GenericPassword
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .GenericPassword:
+            return String(kSecClassGenericPassword)
+        case .InternetPassword:
+            return String(kSecClassInternetPassword)
+        case .Certificate:
+            return String(kSecClassCertificate)
+        case .Key:
+            return String(kSecClassKey)
+        case .Identity:
+            return String(kSecClassIdentity)
+        }
+    }
 }
 
-public enum MatchLimit: Int {
+// MARK: Accessible
+public enum Accessible: RawRepresentable {
+    case WhenUnlocked, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecAttrAccessibleWhenUnlocked):
+            self = WhenUnlocked
+        case String(kSecAttrAccessibleAfterFirstUnlock):
+            self = AfterFirstUnlock
+        case String(kSecAttrAccessibleAlways):
+            self = Always
+        case String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly):
+            self = WhenPasscodeSetThisDeviceOnly
+        case String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly):
+            self = WhenUnlockedThisDeviceOnly
+        case String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly):
+            self = AfterFirstUnlockThisDeviceOnly
+        case String(kSecAttrAccessibleAlwaysThisDeviceOnly):
+            self = AlwaysThisDeviceOnly
+        default:
+            print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
+            self = WhenUnlocked
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .WhenUnlocked:
+            return String(kSecAttrAccessibleWhenUnlocked)
+        case .AfterFirstUnlock:
+            return String(kSecAttrAccessibleAfterFirstUnlock)
+        case .Always:
+            return String(kSecAttrAccessibleAlways)
+        case .WhenPasscodeSetThisDeviceOnly:
+            return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+        case .WhenUnlockedThisDeviceOnly:
+            return String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
+        case .AfterFirstUnlockThisDeviceOnly:
+            return String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)
+        case .AlwaysThisDeviceOnly:
+            return String(kSecAttrAccessibleAlwaysThisDeviceOnly)
+        }
+    }
+}
+
+// MARK: Match Limit
+public enum MatchLimit {
     case One, Many
 }
 
-public enum RequestType: Int {
+// MARK: Request Type
+public enum RequestType {
     case Create, Read, Update, Delete
 }
 
-public enum Accessible: Int {
-    case WhenUnlock, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly,
-    WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
-}
-
+// MARK: Locksmith Request
 public class LocksmithRequest: NSObject, CustomDebugStringConvertible {
     // Keychain Options
     // Required
@@ -42,7 +122,7 @@ public class LocksmithRequest: NSObject, CustomDebugStringConvertible {
     
     // Debugging
     override public var debugDescription: String {
-        return "service: \(self.service), type: \(self.type.rawValue), userAccount: \(self.userAccount)"
+        return "service: \(self.service), type: \(self.type), userAccount: \(self.userAccount)"
     }
     
     required public init(userAccount: String, service: String = LocksmithDefaultService) {
