@@ -30,48 +30,25 @@ In the following examples, you can choose not to provide a value for the `inServ
 **Save data**
 
 ```swift
-let error = Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")
-```
-
-**Save data, specifying a service**
-
-```swift
-let error = Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount", inService: "myService")
+try Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount", inService: "myService")
 ```
 
 **Load data**
 
 ```swift
-let (dictionary, error) = Locksmith.loadDataForUserAccount("myUserAccount")
-```
-
-**Load data, specifying a service**
-
-```swift
-let (dictionary, error) = Locksmith.loadDataForUserAccount("myUserAccount", inService: "myService")
+let dictionary = Locksmith.loadDataForUserAccount("myUserAccount", inService: "myService")
 ```
 
 **Update data**
 
 ```swift
-let error = Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount")
-```
-
-**Update data, specifying a service**
-
-```swift
-let error = Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount", inService: "myService")
+try Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount", inService: "myService")
 ```
 
 **Delete data**
-```swift
-let error = Locksmith.deleteDataForUserAccount("myUserAccount")
-```
-
-**Delete data, specifying a service**
 
 ```swift
-let error = Locksmith.deleteDataForUserAccount("myUserAccount", inService: "myService")
+try Locksmith.deleteDataForUserAccount("myUserAccount", inService: "myService")
 ```
 
 ## Custom Requests
@@ -83,19 +60,19 @@ To create custom keychain requests, you first have to instantiate a `LocksmithRe
 let saveRequest = LocksmithRequest(userAccount: userAccount, data: ["some key": "some value"], service: service)
 // Customize the request
 saveRequest.synchronizable = true
-Locksmith.performRequest(saveRequest)
+try Locksmith.performRequest(saveRequest)
 ```
 
 **Reading**
 ```swift
 let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
-let (dictionary, error) = Locksmith.performRequest(readRequest)
+let dictionary = try Locksmith.performRequest(readRequest)
 ```
 
 **Deleting**
 ```swift
 let deleteRequest = LocksmithRequest(userAccount: userAccount, requestType: .Delete, service: service)
-Locksmith.performRequest(deleteRequest)
+try Locksmith.performRequest(deleteRequest)
 ```
 
 ## LocksmithRequest

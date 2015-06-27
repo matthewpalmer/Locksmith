@@ -57,7 +57,7 @@ public enum LocksmithError: String, ErrorType {
 // MARK: Locksmith
 public class Locksmith: NSObject {
     // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) throws -> NSDictionary {
+    public class func performRequest(request: LocksmithRequest) throws -> NSDictionary? {
         let type = request.type
         var result: AnyObject?
         var status: OSStatus?
@@ -95,7 +95,7 @@ public class Locksmith: NSObject {
             }
         }
         
-        return resultsDictionary ?? NSDictionary()
+        return resultsDictionary
     }
     
     // MARK: Private methods
