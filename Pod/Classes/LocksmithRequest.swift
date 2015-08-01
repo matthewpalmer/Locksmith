@@ -60,8 +60,6 @@ public enum Accessible: RawRepresentable {
             self = AfterFirstUnlock
         case String(kSecAttrAccessibleAlways):
             self = Always
-        case String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly):
-            self = WhenPasscodeSetThisDeviceOnly
         case String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly):
             self = WhenUnlockedThisDeviceOnly
         case String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly):
@@ -69,8 +67,17 @@ public enum Accessible: RawRepresentable {
         case String(kSecAttrAccessibleAlwaysThisDeviceOnly):
             self = AlwaysThisDeviceOnly
         default:
-            print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
-            self = WhenUnlocked
+            if #available(iOS 8,*) {
+                if rawValue == String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly) {
+                    self = WhenPasscodeSetThisDeviceOnly
+                } else {
+                    print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
+                    self = WhenUnlocked
+                }
+            } else {
+                print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
+                self = WhenUnlocked
+            }
         }
     }
     
@@ -83,7 +90,11 @@ public enum Accessible: RawRepresentable {
         case .Always:
             return String(kSecAttrAccessibleAlways)
         case .WhenPasscodeSetThisDeviceOnly:
-            return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            if #available(iOS 8.0, *) {
+                return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            } else {
+                fatalError("This value has no raw representation in your iOS 7")
+            }
         case .WhenUnlockedThisDeviceOnly:
             return String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
         case .AfterFirstUnlockThisDeviceOnly:
