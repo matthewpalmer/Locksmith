@@ -50,7 +50,9 @@ public enum SecurityClass: RawRepresentable {
 
 // MARK: Accessible
 public enum Accessible: RawRepresentable {
-    case WhenUnlocked, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    case WhenUnlocked, AfterFirstUnlock, Always, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    @available (iOS 8,*)
+    case WhenPasscodeSetThisDeviceOnly
     
     public init?(rawValue: String) {
         switch rawValue {
@@ -93,7 +95,7 @@ public enum Accessible: RawRepresentable {
             if #available(iOS 8.0, *) {
                 return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
             } else {
-                fatalError("This value has no raw representation in your iOS 7")
+                fatalError("Accessible.WhenPasscodeSetThisDeviceOnly has no raw representation in iOS 7.")
             }
         case .WhenUnlockedThisDeviceOnly:
             return String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
