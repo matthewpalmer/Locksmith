@@ -5,6 +5,7 @@
 //  Copyright (c) 2014 Colour Coding. All rights reserved.
 //
 
+@testable import Locksmith
 import CoreFoundation
 import UIKit
 import Security
