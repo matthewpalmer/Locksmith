@@ -30,6 +30,8 @@ In the following examples, you can choose not to provide a value for the `inServ
 
 **Save data**
 
+- writes the data to the keychain if it does not exist already
+
 ```swift
 let error = Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")
 ```
@@ -53,6 +55,8 @@ let (dictionary, error) = Locksmith.loadDataForUserAccount("myUserAccount", inSe
 ```
 
 **Update data**
+
+- overwrites whatever is stored on the keychain under this user account (if nothing is stored, we save as normal)
 
 ```swift
 let error = Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount")
