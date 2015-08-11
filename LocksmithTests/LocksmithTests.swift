@@ -25,7 +25,7 @@ class LocksmithTests: XCTestCase {
     
     // public class func saveData(data: Dictionary<String, String>, inService service: String, forUserAccount userAccount: String) -> NSError?
     func testSaveData_Once() {
-        var error = Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount", inService: "myService")
+        let error = Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount", inService: "myService")
         XCTAssert(error == nil, "❌: saving data")
     }
     
