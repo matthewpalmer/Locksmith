@@ -169,7 +169,7 @@ public class Locksmith: NSObject {
         switch request.matchLimit {
         case .One:
             dictionary.setObject(kSecMatchLimitOne, forKey: String(kSecMatchLimit))
-        case .Many:
+        case .Many, .All:
             dictionary.setObject(kSecMatchLimitAll, forKey: String(kSecMatchLimit))
         }
         
@@ -314,6 +314,21 @@ extension Locksmith {
         let code = LocksmithErrorCode.UnableToClear.rawValue
         let message = internalErrorMessage(forCode: code)
         return NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message])
+    }
+    
+    public class func each(userAccount: String?, itemHandler : NSDictionary -> ()) {
+        for securityClass in SecurityClass.allClasses {
+            let request = LocksmithRequest(userAccount: userAccount)
+            request.type = .Read
+            request.securityClass = securityClass
+            request.matchLimit = .All
+            
+            let (result, error) = Locksmith.performRequest(request)
+            
+            if let result = result {
+                itemHandler(result)
+            }
+        }
     }
 }
 
