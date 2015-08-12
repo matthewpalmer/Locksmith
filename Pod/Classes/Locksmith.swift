@@ -316,7 +316,7 @@ extension Locksmith {
         return NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message])
     }
     
-    public class func each(userAccount: String, itemHandler : NSDictionary -> ()) {
+    public class func each(userAccount: String?, itemHandler : NSDictionary -> ()) {
         for securityClass in SecurityClass.allClasses {
             let request = LocksmithRequest(userAccount: userAccount)
             request.type = .Read

@@ -32,7 +32,7 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     // Keychain Options
     // Required
     public var service: String = LocksmithDefaultService
-    public var userAccount: String
+    public var userAccount: String?
     public var type: RequestType = .Read  // Default to non-destructive
     
     // Optional
@@ -45,20 +45,21 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     
     // Debugging
     override public var debugDescription: String {
-        return "service: \(self.service), type: \(self.type.rawValue), userAccount: \(self.userAccount)"
+        let accountString = self.userAccount ?? "<nil>"
+        return "service: \(self.service), type: \(self.type.rawValue), userAccount: \(accountString)"
     }
     
-    required public init(userAccount: String, service: String = LocksmithDefaultService) {
+    required public init(userAccount: String?, service: String = LocksmithDefaultService) {
         self.service = service
         self.userAccount = userAccount
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String?, requestType: RequestType, service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, service: service)
         self.type = requestType
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String?, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }
