@@ -315,6 +315,21 @@ extension Locksmith {
         let message = internalErrorMessage(forCode: code)
         return NSError(domain: LocksmithErrorDomain, code: code, userInfo: ["message": message])
     }
+    
+    public class func each(userAccount: String, itemHandler : NSDictionary -> ()) {
+        for securityClass in SecurityClass.allClasses {
+            let request = LocksmithRequest(userAccount: userAccount)
+            request.type = .Read
+            request.securityClass = securityClass
+            request.matchLimit = .Many
+            
+            let (result, error) = Locksmith.performRequest(request)
+            
+            if let result = result {
+                itemHandler(result)
+            }
+        }
+    }
 }
 
 // MARK: Dictionary Extensions

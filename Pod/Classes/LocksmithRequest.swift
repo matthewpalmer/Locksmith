@@ -10,6 +10,8 @@ import Security
 
 public enum SecurityClass: Int {
     case GenericPassword, InternetPassword, Certificate, Key, Identity
+    
+    static let allClasses = [GenericPassword, InternetPassword, Certificate, Key, Identity]
 }
 
 public enum MatchLimit: Int {
