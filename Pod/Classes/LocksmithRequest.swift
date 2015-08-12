@@ -15,7 +15,8 @@ public enum SecurityClass: Int {
 }
 
 public enum MatchLimit: Int {
-    case One, Many
+    case One, All
+    @availability(*, deprecated=1.1.2, message="Use .All instead.") case Many
 }
 
 public enum RequestType: Int {
