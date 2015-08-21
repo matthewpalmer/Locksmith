@@ -35,7 +35,7 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     // Optional
     public var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
     public var group: String?
-    public var data: NSDictionary?
+    public var data: [String:AnyObject]?
     public var matchLimit: MatchLimit = .One
     public var synchronizable = false
     public var accessible: Accessible?
@@ -55,7 +55,7 @@ public class LocksmithRequest: NSObject, DebugPrintable {
         self.type = requestType
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, data: [String:AnyObject], service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }
