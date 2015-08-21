@@ -14,7 +14,7 @@ public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![kCFBu
 
 public class Locksmith: NSObject {
     // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
+    public class func performRequest(request: LocksmithRequest) -> ([String:AnyObject]?, NSError?) {
         let type = request.type
         //var result: Unmanaged<AnyObject>? = nil
         var result: AnyObject?
@@ -40,14 +40,14 @@ public class Locksmith: NSObject {
         if let status = status {
             var statusCode = Int(status)
             let error = Locksmith.keychainError(forCode: statusCode)
-            var resultsDictionary: NSDictionary?
+            var resultsDictionary: [String:AnyObject]?
             
             if result != nil {
                 if type == .Read && status == errSecSuccess {
                     
                     if let data = result as? NSData {
                         // Convert the retrieved data to a dictionary
-                        resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+                        resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String:AnyObject]
                     }
                 }
             }
@@ -252,7 +252,7 @@ extension Locksmith {
         return error
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> (NSDictionary?, NSError?) {
+    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> ([String:AnyObject]?, NSError?) {
         let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
         return Locksmith.performRequest(readRequest)
     }
@@ -272,8 +272,10 @@ extension Locksmith {
     public class func clearKeychain() -> NSError? {
         // Delete all of the keychain data of the given class
         func deleteDataForSecClass(secClass: CFTypeRef) -> NSError? {
-            var request = NSMutableDictionary()
-            request.setObject(secClass, forKey: String(kSecClass))
+            var request = [String(kSecClass):secClass]
+            
+//            var request = NSMutableDictionary()
+//            request.setObject(secClass, forKey: String(kSecClass))
             
             var status: OSStatus? = SecItemDelete(request as CFDictionaryRef)
             
