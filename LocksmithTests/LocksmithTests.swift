@@ -54,7 +54,7 @@ class LocksmithTests: XCTestCase {
         Locksmith.saveData(["word": "definition"], forUserAccount: "user3", inService: "myService")
     }
     
-    // public class func loadDataInService(service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?)
+    // public class func loadDataInService(service: String, forUserAccount userAccount: String) -> ([String:AnyObject]?, NSError?)
     func testLoadData_Once() {
         setupLoads()
         

@@ -246,7 +246,7 @@ public class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    public class func saveData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
+    public class func saveData(data: [String:AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
         let saveRequest = LocksmithRequest(userAccount: userAccount, requestType: .Create, data: data, service: service)
         let (dictionary, error) = Locksmith.performRequest(saveRequest)
         return error
@@ -263,7 +263,7 @@ extension Locksmith {
         return error
     }
     
-    public class func updateData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
+    public class func updateData(data: [String:AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
         let updateRequest = LocksmithRequest(userAccount: userAccount, requestType: .Update, data: data, service: service)
         let (dictionary, error) = Locksmith.performRequest(updateRequest)
         return error
