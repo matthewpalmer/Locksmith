@@ -54,12 +54,12 @@ class LocksmithTests: XCTestCase {
         Locksmith.saveData(["word": "definition"], forUserAccount: "user3", inService: "myService")
     }
     
-    // public class func loadDataInService(service: String, forUserAccount userAccount: String) -> (NSDictionary?, NSError?)
+    // public class func loadDataInService(service: String, forUserAccount userAccount: String) -> ([String:AnyObject]?, NSError?)
     func testLoadData_Once() {
         setupLoads()
         
         let (dictionary, error) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
-        XCTAssert(dictionary!.valueForKey("key") as! NSString == "value" && error == nil, "❌: loading one item")
+        XCTAssert(dictionary!["key"] as! String == "value" && error == nil, "❌: loading one item")
     }
     
     func testLoadData_Multiple() {
@@ -69,9 +69,9 @@ class LocksmithTests: XCTestCase {
         let (dictionary2, error2) = Locksmith.loadDataForUserAccount("user2", inService: "myService")
         let (dictionary3, error3) = Locksmith.loadDataForUserAccount("user3", inService: "myService")
         
-        XCTAssert(dictionary!.valueForKey("key") as! NSString == "value" && error == nil, "❌: loading multiple items")
-        XCTAssert(dictionary2!.valueForKey("anotherkey") as! NSString == "anothervalue" && error == nil, "❌: loading multiple items")
-        XCTAssert(dictionary3!.valueForKey("word") as! NSString == "definition" && error == nil, "❌: loading multiple items")
+        XCTAssert(dictionary!["key"] as! String == "value" && error == nil, "❌: loading multiple items")
+        XCTAssert(dictionary2!["anotherkey"] as! String == "anothervalue" && error == nil, "❌: loading multiple items")
+        XCTAssert(dictionary3!["word"] as! String == "definition" && error == nil, "❌: loading multiple items")
     }
     
     // public class func updateData(data: Dictionary<String, String>, inService service: String, forUserAccount userAccount: String) -> NSError?
@@ -81,7 +81,7 @@ class LocksmithTests: XCTestCase {
         let error = Locksmith.updateData(["key": "newvalue"], forUserAccount: "user1", inService: "myService")
         let (dictionary, err) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
         
-        XCTAssert(dictionary!.valueForKey("key") as! NSString == "newvalue" && error == nil, "❌: updating item")
+        XCTAssert(dictionary!["key"] as! String == "newvalue" && error == nil, "❌: updating item")
         
         // Updating an item that doesn't exist should create that item (i.e. performs a regular create request)
         let error2 = Locksmith.updateData(["key": "anothervalue"], forUserAccount: "user1", inService: "myService")
