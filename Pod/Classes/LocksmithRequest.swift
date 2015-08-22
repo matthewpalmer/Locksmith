@@ -16,7 +16,7 @@ public enum SecurityClass: Int {
 
 public enum MatchLimit: Int {
     case One, All
-    @availability(*, deprecated=1.1.2, message="Use .All instead.") case Many
+    @available(*, deprecated=1.1.2, message="Use .All instead.") case Many
 }
 
 public enum RequestType: Int {
@@ -28,7 +28,7 @@ public enum Accessible: Int {
     WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
 }
 
-public class LocksmithRequest: NSObject, DebugPrintable {
+public class LocksmithRequest: NSObject {
     // Keychain Options
     // Required
     public var service: String = LocksmithDefaultService
@@ -42,12 +42,6 @@ public class LocksmithRequest: NSObject, DebugPrintable {
     public var matchLimit: MatchLimit = .One
     public var synchronizable = false
     public var accessible: Accessible?
-    
-    // Debugging
-    override public var debugDescription: String {
-        let accountString = self.userAccount ?? "<nil>"
-        return "service: \(self.service), type: \(self.type.rawValue), userAccount: \(accountString)"
-    }
     
     required public init(userAccount: String?, service: String = LocksmithDefaultService) {
         self.service = service
