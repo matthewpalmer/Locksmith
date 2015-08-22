@@ -2,10 +2,10 @@
 //  LocksmithTests.swift
 //  LocksmithTests
 //
-//  Copyright (c) 2014 Mathew Palmer. All rights reserved.
+//  Created by Matthew Palmer on 27/06/2015.
+//  Copyright © 2015 Matthew Palmer. All rights reserved.
 //
 
-import UIKit
 import XCTest
 import Locksmith
 
@@ -14,7 +14,7 @@ class LocksmithTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        Locksmith.clearKeychain()
+        try! Locksmith.clearKeychain()
     }
     
     override func tearDown() {
@@ -22,87 +22,83 @@ class LocksmithTests: XCTestCase {
         super.tearDown()
     }
     
-    // public class func saveData(data: Dictionary<String, String>, inService service: String, forUserAccount userAccount: String) -> NSError?
     func testSaveData_Once() {
-        let error = Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount", inService: "myService")
-        XCTAssert(error == nil, "❌: saving data")
+        try! Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount")
     }
     
     func testSaveData_Multiple() {
-        var errors: [NSError?] = []
         for i in 0...10 {
-            errors.append(Locksmith.saveData(["key": "value \(i)"], forUserAccount: "myAccount\(i)", inService: "myService"))
+            try! Locksmith.saveData(["key": "value \(i)"], forUserAccount: "myAccount\(i)", inService: "myService")
         }
-        XCTAssert(errors.filter({ $0 != nil }).isEmpty, "❌: saving multiple items")
     }
     
     func testSaveData_Duplicate() {
         // Should be successful
-        let error1 = Locksmith.saveData(["key": "value"], forUserAccount: "user", inService: "myService")
+        try! Locksmith.saveData(["key": "value"], forUserAccount: "user", inService: "myService")
         
         // Should fail
-        let error2 = Locksmith.saveData(["key": "value"], forUserAccount: "user", inService: "myService")
-        
-        XCTAssert(error1 == nil && error2 != nil, "❌: saving duplicate data")
+        do {
+            try Locksmith.saveData(["key": "value"], forUserAccount: "user", inService: "myService")
+        } catch {
+            XCTAssert(true)
+        }
     }
     
     // Setup the keychain for requests that use pre-existing values on the keychain (update, read, delete)
     func setupLoads() {
-        Locksmith.saveData(["key": "value"], forUserAccount: "user1", inService: "myService")
-        Locksmith.saveData(["anotherkey": "anothervalue"], forUserAccount: "user2", inService: "myService")
-        Locksmith.saveData(["word": "definition"], forUserAccount: "user3", inService: "myService")
+        try! Locksmith.saveData(["key": "value"], forUserAccount: "user1", inService: "myService")
+        try! Locksmith.saveData(["anotherkey": "anothervalue"], forUserAccount: "user2", inService: "myService")
+        try! Locksmith.saveData(["word": "definition"], forUserAccount: "user3", inService: "myService")
     }
     
-    // public class func loadDataInService(service: String, forUserAccount userAccount: String) -> ([String:AnyObject]?, NSError?)
     func testLoadData_Once() {
         setupLoads()
-        
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
-        XCTAssert(dictionary!["key"] as! String == "value" && error == nil, "❌: loading one item")
+        let dictionary = Locksmith.loadDataForUserAccount("user1", inService: "myService")
+        XCTAssert(dictionary!.valueForKey("key") as! NSString == "value", "❌: loading one item")
     }
     
     func testLoadData_Multiple() {
         setupLoads()
         
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
-        let (dictionary2, _) = Locksmith.loadDataForUserAccount("user2", inService: "myService")
-        let (dictionary3, _) = Locksmith.loadDataForUserAccount("user3", inService: "myService")
-        
-        XCTAssert(dictionary!["key"] as! String == "value" && error == nil, "❌: loading multiple items")
-        XCTAssert(dictionary2!["anotherkey"] as! String == "anothervalue" && error == nil, "❌: loading multiple items")
-        XCTAssert(dictionary3!["word"] as! String == "definition" && error == nil, "❌: loading multiple items")
-    }
-    
-    // public class func updateData(data: Dictionary<String, String>, inService service: String, forUserAccount userAccount: String) -> NSError?
-    func testUpdateData() {
-        setupLoads()
-        
-        let error = Locksmith.updateData(["key": "newvalue"], forUserAccount: "user1", inService: "myService")
-        let (dictionary, _) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
-        
-        XCTAssert(dictionary!["key"] as! String == "newvalue" && error == nil, "❌: updating item")
-        
-        // Updating an item that doesn't exist should create that item (i.e. performs a regular create request)
-        let error2 = Locksmith.updateData(["key": "anothervalue"], forUserAccount: "user1", inService: "myService")
-        XCTAssert(error2 == nil, "❌: updating item that doesn't exist")
-    }
-    
-    // public class func deleteDataInService(service: String, forUserAccount userAccount: String) -> NSError?
-    func testDeleteData() {
-        setupLoads()
-        
-        let error = Locksmith.deleteDataForUserAccount("user1", inService: "myService")
-        XCTAssert(error == nil, "❌: deleting existing item")
-        
-        let error2 = Locksmith.deleteDataForUserAccount("user1", inService: "myService")
-        XCTAssert(error2 != nil, "❌: deleting non existent item")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+        do {
+            let dictionary = Locksmith.loadDataForUserAccount("user1", inService: "myService")
+            let dictionary2 = Locksmith.loadDataForUserAccount("user2", inService: "myService")
+            let dictionary3 = Locksmith.loadDataForUserAccount("user3", inService: "myService")
+            
+            XCTAssert(dictionary!.valueForKey("key") as! NSString == "value", "❌: loading multiple items")
+            XCTAssert(dictionary2!.valueForKey("anotherkey") as! NSString == "anothervalue", "❌: loading multiple items")
+            XCTAssert(dictionary3!.valueForKey("word") as! NSString == "definition", "❌: loading multiple items")
+        } catch {
+            XCTAssert(false)
         }
     }
     
+    func testUpdateData() {
+        setupLoads()
+        
+        try! Locksmith.updateData(["key": "newvalue"], forUserAccount: "user1", inService: "myService")
+        let dictionary = Locksmith.loadDataForUserAccount("user1", inService: "myService")
+        
+        XCTAssert(dictionary!.valueForKey("key") as! NSString == "newvalue", "❌: updating item")
+        
+        // Updating an item that doesn't exist should create that item (i.e. performs a regular create request)
+        try! Locksmith.updateData(["key": "anothervalue"], forUserAccount: "user1", inService: "myService")
+        XCTAssert(true, "❌: updating item that doesn't exist")
+    }
+    
+    func testDeleteData() {
+        setupLoads()
+        
+        try! Locksmith.deleteDataForUserAccount("user1", inService: "myService")
+        XCTAssert(true, "❌: deleting existing item")
+        
+        do {
+            // Should fail
+            try Locksmith.deleteDataForUserAccount("user1", inService: "myService")
+            XCTAssert(false, "❌: did not throw error on deleting non existent item")
+        } catch {
+            XCTAssert(true, "❌: deleting non existent item")
+        }
+        
+    }
 }
