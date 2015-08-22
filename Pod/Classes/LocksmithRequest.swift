@@ -10,7 +10,6 @@ import Security
 
 public enum SecurityClass: Int {
     case GenericPassword, InternetPassword, Certificate, Key, Identity
-    
     static let allClasses = [GenericPassword, InternetPassword, Certificate, Key, Identity]
 }
 
@@ -38,7 +37,7 @@ public class LocksmithRequest: NSObject {
     // Optional
     public var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
     public var group: String?
-    public var data: NSDictionary?
+    public var data: [String:AnyObject]?
     public var matchLimit: MatchLimit = .One
     public var synchronizable = false
     public var accessible: Accessible?
@@ -53,7 +52,7 @@ public class LocksmithRequest: NSObject {
         self.type = requestType
     }
     
-    public convenience init(userAccount: String?, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, data: [String:AnyObject], service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }

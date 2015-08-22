@@ -14,13 +14,13 @@ public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![Strin
 
 public class Locksmith: NSObject {
     // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) -> (NSDictionary?, NSError?) {
+    public class func performRequest(request: LocksmithRequest) -> ([String:AnyObject]?, NSError?) {
         let type = request.type
         var result: AnyObject?
         var optionalStatus: OSStatus?
         let parsedRequest: NSMutableDictionary = parseRequest(request)
         let requestReference = parsedRequest as CFDictionaryRef
-        
+
         switch type {
         case .Create:
             optionalStatus = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
@@ -40,14 +40,14 @@ public class Locksmith: NSObject {
         
         let statusCode = Int(status)
         let error = Locksmith.keychainError(forCode: statusCode)
-        var resultsDictionary: NSDictionary?
+        var resultsDictionary: [String:AnyObject]?
         
         if result != nil {
             if type == .Read && status == errSecSuccess {
                 
                 if let data = result as? NSData {
                     // Convert the retrieved data to a dictionary
-                    resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+                    resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String:AnyObject]
                 }
             }
         }
@@ -239,13 +239,13 @@ public class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    public class func saveData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
+    public class func saveData(data: [String:AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
         let saveRequest = LocksmithRequest(userAccount: userAccount, requestType: .Create, data: data, service: service)
         let (_, error) = Locksmith.performRequest(saveRequest)
         return error
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> (NSDictionary?, NSError?) {
+    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> ([String:AnyObject]?, NSError?) {
         let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
         return Locksmith.performRequest(readRequest)
     }
@@ -256,7 +256,7 @@ extension Locksmith {
         return error
     }
     
-    public class func updateData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
+    public class func updateData(data: [String:AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) -> NSError? {
         let updateRequest = LocksmithRequest(userAccount: userAccount, requestType: .Update, data: data, service: service)
         let (_, error) = Locksmith.performRequest(updateRequest)
         return error
@@ -265,15 +265,15 @@ extension Locksmith {
     public class func clearKeychain() -> NSError? {
         // Delete all of the keychain data of the given class
         func deleteDataForSecClass(secClass: CFTypeRef) -> NSError? {
-            let request = NSMutableDictionary()
-            request.setObject(secClass, forKey: String(kSecClass))
+            let request = [String(kSecClass):secClass]
+            let status: OSStatus? = SecItemDelete(request as CFDictionaryRef)
             
-            guard let status: OSStatus = SecItemDelete(request as CFDictionaryRef) else {
-                return nil
+            if let status = status {
+                let statusCode = Int(status)
+                return Locksmith.keychainError(forCode: statusCode)
             }
             
-            let statusCode = Int(status)
-            return Locksmith.keychainError(forCode: statusCode)
+            return nil
         }
         
         // For each of the sec class types, delete all of the saved items of that type
