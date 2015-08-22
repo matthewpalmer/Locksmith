@@ -132,7 +132,7 @@ public class LocksmithRequest: NSObject {
         self.type = requestType
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, data: [String:AnyObject], service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, data: [String: AnyObject], service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }

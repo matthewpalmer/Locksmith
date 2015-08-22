@@ -57,7 +57,7 @@ public enum LocksmithError: String, ErrorType {
 // MARK: Locksmith
 public class Locksmith: NSObject {
     // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) throws -> NSDictionary? {
+    public class func performRequest(request: LocksmithRequest) throws -> [String: AnyObject]? {
         let type = request.type
         var result: AnyObject?
         var optionalStatus: OSStatus?
@@ -84,12 +84,12 @@ public class Locksmith: NSObject {
             throw error
         }
         
-        var resultsDictionary: NSDictionary?
+        var resultsDictionary: [String: AnyObject]?
         
         if result != nil && type == .Read && unwrappedStatus == errSecSuccess {
             if let data = result as? NSData {
                 // Convert the retrieved data to a dictionary
-                resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+                resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String: AnyObject]
             }
         }
         
@@ -170,12 +170,12 @@ public class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    public class func saveData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public class func saveData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         let saveRequest = LocksmithRequest(userAccount: userAccount, requestType: .Create, data: data, service: service)
         try Locksmith.performRequest(saveRequest)
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> NSDictionary? {
+    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> [String: AnyObject]? {
         let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
         
         do {
@@ -191,7 +191,7 @@ extension Locksmith {
         try Locksmith.performRequest(deleteRequest)
     }
     
-    public class func updateData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public class func updateData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         let updateRequest = LocksmithRequest(userAccount: userAccount, requestType: .Update, data: data, service: service)
         try Locksmith.performRequest(updateRequest)
     }
