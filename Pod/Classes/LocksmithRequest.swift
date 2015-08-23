@@ -13,6 +13,7 @@ import Security
 // MARK: Security Class
 public enum SecurityClass: RawRepresentable {
     case GenericPassword, InternetPassword, Certificate, Key, Identity
+    static let allClasses = [GenericPassword, InternetPassword, Certificate, Key, Identity]
     
     public init?(rawValue: String) {
         switch rawValue {
@@ -109,7 +110,8 @@ public enum Accessible: RawRepresentable {
 
 // MARK: Match Limit
 public enum MatchLimit {
-    case One, Many
+    case One, All
+    @available(*, deprecated=1.1.2, message="Use .All instead.") case Many
 }
 
 // MARK: Request Type
@@ -118,37 +120,32 @@ public enum RequestType {
 }
 
 // MARK: Locksmith Request
-public class LocksmithRequest: NSObject, CustomDebugStringConvertible {
+public class LocksmithRequest: NSObject {
     // Keychain Options
     // Required
     public var service: String = LocksmithDefaultService
-    public var userAccount: String
+    public var userAccount: String?
     public var type: RequestType = .Read  // Default to non-destructive
     
     // Optional
     public var securityClass: SecurityClass = .GenericPassword  // Default to password lookup
     public var group: String?
-    public var data: NSDictionary?
+    public var data: [String:AnyObject]?
     public var matchLimit: MatchLimit = .One
     public var synchronizable = false
     public var accessible: Accessible?
     
-    // Debugging
-    override public var debugDescription: String {
-        return "service: \(self.service), type: \(self.type), userAccount: \(self.userAccount)"
-    }
-    
-    required public init(userAccount: String, service: String = LocksmithDefaultService) {
+    required public init(userAccount: String?, service: String = LocksmithDefaultService) {
         self.service = service
         self.userAccount = userAccount
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String?, requestType: RequestType, service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, service: service)
         self.type = requestType
     }
     
-    public convenience init(userAccount: String, requestType: RequestType, data: NSDictionary, service: String = LocksmithDefaultService) {
+    public convenience init(userAccount: String, requestType: RequestType, data: [String: AnyObject], service: String = LocksmithDefaultService) {
         self.init(userAccount: userAccount, requestType: requestType, service: service)
         self.data = data
     }

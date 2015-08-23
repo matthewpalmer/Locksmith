@@ -18,6 +18,7 @@ Locksmith for Swift 2, simply add the following line to your Podfile:
 
     pod 'Locksmith', :git => 'https://github.com/matthewpalmer/Locksmith.git', :branch => '2.0'
 
+Swift 2 support is available via the `2.0` branch.
 
 ### Manual
 

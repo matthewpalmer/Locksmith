@@ -10,6 +10,9 @@ import UIKit
 import Security
 
 public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
+/// This key is used to index the result of `performRequest` when there are multiple results.
+/// An NSArray of the matching `[String: AnyObject]`s will be provided under this key.
+public let LocksmithMultipleResultsKey = "locksmith_multiple_results_key"
 
 // MARK: Locksmith Error
 public enum LocksmithError: String, ErrorType {
@@ -57,27 +60,25 @@ public enum LocksmithError: String, ErrorType {
 // MARK: Locksmith
 public class Locksmith: NSObject {
     // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) throws -> NSDictionary? {
+    public class func performRequest(request: LocksmithRequest) throws -> [String: AnyObject]? {
         let type = request.type
         var result: AnyObject?
-        var status: OSStatus?
-        
+        var optionalStatus: OSStatus?
         let parsedRequest: NSMutableDictionary = parseRequest(request)
-        
         let requestReference = parsedRequest as CFDictionaryRef
-        
+
         switch type {
         case .Create:
-            status = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
+            optionalStatus = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
         case .Read:
-            status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
+            optionalStatus = withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
         case .Delete:
-            status = SecItemDelete(requestReference)
+            optionalStatus = SecItemDelete(requestReference)
         case .Update:
-            status =  Locksmith.performUpdate(requestReference, result: &result)
+            optionalStatus =  Locksmith.performUpdate(requestReference, result: &result)
         }
         
-        guard let unwrappedStatus = status else {
+        guard let unwrappedStatus = optionalStatus else {
             throw LocksmithError.TypeNotFound
         }
         
@@ -86,15 +87,33 @@ public class Locksmith: NSObject {
             throw error
         }
         
-        var resultsDictionary: NSDictionary?
+        var resultsDictionary: [String: AnyObject]?
         
-        if result != nil && type == .Read && status == errSecSuccess {
-            if let data = result as? NSData {
-                // Convert the retrieved data to a dictionary
-                resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary
+        if type == .Read && unwrappedStatus == errSecSuccess {
+            if request.matchLimit == .All {
+                if let results = result as? NSArray {
+                    resultsDictionary = [String: AnyObject]()
+                    
+                    let convertedResults = results.map({ (i) -> [String: AnyObject]? in
+                        return Locksmith.dataToDictionary(i)
+                    }).flatMap { $0 }
+                    
+                    resultsDictionary![LocksmithMultipleResultsKey] = convertedResults
+                }
+            } else {
+                resultsDictionary = Locksmith.dataToDictionary(result)
             }
         }
         
+        return resultsDictionary
+    }
+    
+    private class func dataToDictionary(data: AnyObject?) -> [String: AnyObject]? {
+        var resultsDictionary: [String: AnyObject]?
+        if let data = data as? NSData {
+            // Convert the retrieved data to a dictionary
+            resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String: AnyObject]
+        }
         return resultsDictionary
     }
     
@@ -158,7 +177,7 @@ public class Locksmith: NSObject {
         switch request.matchLimit {
         case .One:
             dictionary.setObject(kSecMatchLimitOne, forKey: String(kSecMatchLimit))
-        case .Many:
+        case .Many, .All:
             dictionary.setObject(kSecMatchLimitAll, forKey: String(kSecMatchLimit))
         }
         
@@ -172,12 +191,12 @@ public class Locksmith: NSObject {
 
 // MARK: Convenient Class Methods
 extension Locksmith {
-    public class func saveData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public class func saveData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         let saveRequest = LocksmithRequest(userAccount: userAccount, requestType: .Create, data: data, service: service)
         try Locksmith.performRequest(saveRequest)
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> NSDictionary? {
+    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> [String: AnyObject]? {
         let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
         
         do {
@@ -193,7 +212,7 @@ extension Locksmith {
         try Locksmith.performRequest(deleteRequest)
     }
     
-    public class func updateData(data: Dictionary<String, String>, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public class func updateData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         let updateRequest = LocksmithRequest(userAccount: userAccount, requestType: .Update, data: data, service: service)
         try Locksmith.performRequest(updateRequest)
     }
@@ -229,6 +248,31 @@ extension Locksmith {
                 }
             }
         }
+    }
+    
+    /// Returns all the data for a given service.
+    /// :param: service The service to load data for. This may be omitted, and the default service will be used.
+    /// :return: An array of dictionaries corresponding to all of the results for this service.
+    public class func loadAllDataForService(service: String = LocksmithDefaultService) throws -> [[String: AnyObject]]? {
+        var resultForAllSecurityClasses = [[String: AnyObject]?]()
+        
+        // TODO: Switch to `allClasses`
+        let classes = [SecurityClass.GenericPassword]
+        
+        for classType in classes {
+            let request = LocksmithRequest(userAccount: nil, service: "myService")
+            request.matchLimit = .All
+            request.securityClass = classType
+            
+            if let result = try Locksmith.performRequest(request) {
+                let array = result[LocksmithMultipleResultsKey] as? [[String: AnyObject]]
+                array?.forEach({ (dict) -> () in
+                    resultForAllSecurityClasses.append(dict)
+                })
+            }
+        }
+        
+        return resultForAllSecurityClasses.flatMap{ $0 }
     }
 }
 
