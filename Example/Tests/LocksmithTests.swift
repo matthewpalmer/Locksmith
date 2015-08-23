@@ -95,6 +95,22 @@ class LocksmithTests: XCTestCase {
         } catch {
             XCTAssert(true, "❌: deleting non existent item")
         }
+    }
+    
+    func testLoadingAllData() {
+        setupLoads()
         
+        let allMatches = try! Locksmith.loadAllDataForService("myService")
+        var matches = [String: AnyObject]()
+        
+        for dict in allMatches! {
+            for key in dict.keys {
+                matches[key] = dict[key]
+            }
+        }
+        
+        XCTAssert(matches["key"] as! String == "value", "❌: loading multiple items")
+        XCTAssert(matches["anotherkey"] as! String == "anothervalue", "❌: loading multiple items")
+        XCTAssert(matches["word"] as! String == "definition", "❌: loading multiple items")
     }
 }
