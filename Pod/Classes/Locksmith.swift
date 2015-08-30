@@ -1,18 +1,52 @@
-//
-//  Locksmith.swift
-//
-//  Created by Matthew Palmer on 26/10/2014.
-//  Copyright (c) 2014 Colour Coding. All rights reserved.
-//
-
-import CoreFoundation
 import UIKit
-import Security
 
 public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
-/// This key is used to index the result of `performRequest` when there are multiple results.
-/// An NSArray of the matching `[String: AnyObject]`s will be provided under this key.
-public let LocksmithMultipleResultsKey = "locksmith_multiple_results_key"
+
+// MARK: Accessible
+public enum LocksmithAccessibleOption: RawRepresentable {
+    case WhenUnlocked, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecAttrAccessibleWhenUnlocked):
+            self = WhenUnlocked
+        case String(kSecAttrAccessibleAfterFirstUnlock):
+            self = AfterFirstUnlock
+        case String(kSecAttrAccessibleAlways):
+            self = Always
+        case String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly):
+            self = WhenPasscodeSetThisDeviceOnly
+        case String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly):
+            self = WhenUnlockedThisDeviceOnly
+        case String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly):
+            self = AfterFirstUnlockThisDeviceOnly
+        case String(kSecAttrAccessibleAlwaysThisDeviceOnly):
+            self = AlwaysThisDeviceOnly
+        default:
+            print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
+            self = WhenUnlocked
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .WhenUnlocked:
+            return String(kSecAttrAccessibleWhenUnlocked)
+        case .AfterFirstUnlock:
+            return String(kSecAttrAccessibleAfterFirstUnlock)
+        case .Always:
+            return String(kSecAttrAccessibleAlways)
+        case .WhenPasscodeSetThisDeviceOnly:
+            return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+        case .WhenUnlockedThisDeviceOnly:
+            return String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
+        case .AfterFirstUnlockThisDeviceOnly:
+            return String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)
+        case .AlwaysThisDeviceOnly:
+            return String(kSecAttrAccessibleAlwaysThisDeviceOnly)
+        }
+    }
+}
 
 // MARK: Locksmith Error
 public enum LocksmithError: String, ErrorType {
@@ -57,230 +91,699 @@ public enum LocksmithError: String, ErrorType {
     }
 }
 
-// MARK: Locksmith
-public class Locksmith: NSObject {
-    // MARK: Perform request
-    public class func performRequest(request: LocksmithRequest) throws -> [String: AnyObject]? {
-        let type = request.type
-        var result: AnyObject?
-        var optionalStatus: OSStatus?
-        let parsedRequest: NSMutableDictionary = parseRequest(request)
-        let requestReference = parsedRequest as CFDictionaryRef
+// With thanks to http://iosdeveloperzone.com/2014/10/22/taming-foundation-constants-into-swift-enums/
+// MARK: Security Class
+public enum LocksmithSecurityClass: RawRepresentable {
+    case GenericPassword, InternetPassword, Certificate, Key, Identity
+    static let allClasses = [GenericPassword, InternetPassword, Certificate, Key, Identity]
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecClassGenericPassword):
+            self = GenericPassword
+        case String(kSecClassInternetPassword):
+            self = InternetPassword
+        case String(kSecClassCertificate):
+            self = Certificate
+        case String(kSecClassKey):
+            self = Key
+        case String(kSecClassIdentity):
+            self = Identity
+        default:
+            print("SecurityClass: Invalid raw value provided. Defaulting to .GenericPassword")
+            self = GenericPassword
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .GenericPassword:
+            return String(kSecClassGenericPassword)
+        case .InternetPassword:
+            return String(kSecClassInternetPassword)
+        case .Certificate:
+            return String(kSecClassCertificate)
+        case .Key:
+            return String(kSecClassKey)
+        case .Identity:
+            return String(kSecClassIdentity)
+        }
+    }
+}
 
-        switch type {
-        case .Create:
-            optionalStatus = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
-        case .Read:
-            optionalStatus = withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
-        case .Delete:
-            optionalStatus = SecItemDelete(requestReference)
-        case .Update:
-            optionalStatus =  Locksmith.performUpdate(requestReference, result: &result)
+public enum LocksmithInternetAuthenticationType: RawRepresentable {
+    case NTLM, MSN, DPA, RPA, HTTPBasic, HTTPDigest, HTMLForm, Default
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecAttrAuthenticationTypeNTLM):
+            self = NTLM
+        case String(kSecAttrAuthenticationTypeMSN):
+            self = MSN
+        case String(kSecAttrAuthenticationTypeDPA):
+            self = DPA
+        case String(kSecAttrAuthenticationTypeRPA):
+            self = RPA
+        case String(kSecAttrAuthenticationTypeHTTPBasic):
+            self = HTTPBasic
+        case String(kSecAttrAuthenticationTypeHTTPDigest):
+            self = HTTPDigest
+        case String(kSecAttrAuthenticationTypeHTMLForm):
+            self = HTMLForm
+        case String(kSecAttrAuthenticationTypeDefault):
+            self = Default
+        default:
+            self = Default
         }
-        
-        guard let unwrappedStatus = optionalStatus else {
-            throw LocksmithError.TypeNotFound
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .NTLM:
+            return String(kSecAttrAuthenticationTypeNTLM)
+        case .MSN:
+            return String(kSecAttrAuthenticationTypeMSN)
+        case .DPA:
+            return String(kSecAttrAuthenticationTypeDPA)
+        case .RPA:
+            return String(kSecAttrAuthenticationTypeRPA)
+        case .HTTPBasic:
+            return String(kSecAttrAuthenticationTypeHTTPBasic)
+        case .HTTPDigest:
+            return String(kSecAttrAuthenticationTypeHTTPDigest)
+        case .HTMLForm:
+            return String(kSecAttrAuthenticationTypeHTMLForm)
+        case .Default:
+            return String(kSecAttrAuthenticationTypeDefault)
         }
+    }
+    
+}
+
+public enum LocksmithInternetProtocol: RawRepresentable {
+    case FTP, FTPAccount, HTTP, IRC, NNTP, POP3, SMTP, SOCKS, IMAP, LDAP, AppleTalk, AFP, Telnet, SSH, FTPS, HTTPS, HTTPProxy, HTTPSProxy, FTPProxy, SMB, RTSP, RTSPProxy, DAAP, EPPC, IPP, NNTPS, LDAPS, TelnetS, IMAPS, IRCS, POP3S
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case String(kSecAttrProtocolFTP):
+            self = FTP
+        case String(kSecAttrProtocolFTPAccount):
+            self = FTPAccount
+        case String(kSecAttrProtocolHTTP):
+            self = HTTP
+        case String(kSecAttrProtocolIRC):
+            self = IRC
+        case String(kSecAttrProtocolNNTP):
+            self = NNTP
+        case String(kSecAttrProtocolPOP3):
+            self = POP3
+        case String(kSecAttrProtocolSMTP):
+            self = SMTP
+        case String(kSecAttrProtocolSOCKS):
+            self = SOCKS
+        case String(kSecAttrProtocolIMAP):
+            self = IMAP
+        case String(kSecAttrProtocolLDAP):
+            self = LDAP
+        case String(kSecAttrProtocolAppleTalk):
+            self = AppleTalk
+        case String(kSecAttrProtocolAFP):
+            self = AFP
+        case String(kSecAttrProtocolTelnet):
+            self = Telnet
+        case String(kSecAttrProtocolSSH):
+            self = SSH
+        case String(kSecAttrProtocolFTPS):
+            self = FTPS
+        case String(kSecAttrProtocolHTTPS):
+            self = HTTPS
+        case String(kSecAttrProtocolHTTPProxy):
+            self = HTTPProxy
+        case String(kSecAttrProtocolHTTPSProxy):
+            self = HTTPSProxy
+        case String(kSecAttrProtocolFTPProxy):
+            self = FTPProxy
+        case String(kSecAttrProtocolSMB):
+            self = SMB
+        case String(kSecAttrProtocolRTSP):
+            self = RTSP
+        case String(kSecAttrProtocolRTSPProxy):
+            self = RTSPProxy
+        case String(kSecAttrProtocolDAAP):
+            self = DAAP
+        case String(kSecAttrProtocolEPPC):
+            self = EPPC
+        case String(kSecAttrProtocolIPP):
+            self = IPP
+        case String(kSecAttrProtocolNNTPS):
+            self = NNTPS
+        case String(kSecAttrProtocolLDAPS):
+            self = LDAPS
+        case String(kSecAttrProtocolTelnetS):
+            self = TelnetS
+        case String(kSecAttrProtocolIMAPS):
+            self = IMAPS
+        case String(kSecAttrProtocolIRCS):
+            self = IRCS
+        case String(kSecAttrProtocolPOP3S):
+            self = POP3S
+        default:
+            self = HTTP
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .FTP:
+            return String(kSecAttrProtocolFTP)
+        case .FTPAccount:
+            return String(kSecAttrProtocolFTPAccount)
+        case .HTTP:
+            return String(kSecAttrProtocolHTTP)
+        case .IRC:
+            return String(kSecAttrProtocolIRC)
+        case .NNTP:
+            return String(kSecAttrProtocolNNTP)
+        case .POP3:
+            return String(kSecAttrProtocolPOP3)
+        case .SMTP:
+            return String(kSecAttrProtocolSMTP)
+        case .SOCKS:
+            return String(kSecAttrProtocolSOCKS)
+        case .IMAP:
+            return String(kSecAttrProtocolIMAP)
+        case .LDAP:
+            return String(kSecAttrProtocolLDAP)
+        case .AppleTalk:
+            return String(kSecAttrProtocolAppleTalk)
+        case .AFP:
+            return String(kSecAttrProtocolAFP)
+        case .Telnet:
+            return String(kSecAttrProtocolTelnet)
+        case .SSH:
+            return String(kSecAttrProtocolSSH)
+        case .FTPS:
+            return String(kSecAttrProtocolFTPS)
+        case .HTTPS:
+            return String(kSecAttrProtocolHTTPS)
+        case .HTTPProxy:
+            return String(kSecAttrProtocolHTTPProxy)
+        case .HTTPSProxy:
+            return String(kSecAttrProtocolHTTPSProxy)
+        case .FTPProxy:
+            return String(kSecAttrProtocolFTPProxy)
+        case .SMB:
+            return String(kSecAttrProtocolSMB)
+        case .RTSP:
+            return String(kSecAttrProtocolRTSP)
+        case .RTSPProxy:
+            return String(kSecAttrProtocolRTSPProxy)
+        case .DAAP:
+            return String(kSecAttrProtocolDAAP)
+        case .EPPC:
+            return String(kSecAttrProtocolEPPC)
+        case .IPP:
+            return String(kSecAttrProtocolIPP)
+        case .NNTPS:
+            return String(kSecAttrProtocolNNTPS)
+        case .LDAPS:
+            return String(kSecAttrProtocolLDAPS)
+        case .TelnetS:
+            return String(kSecAttrProtocolTelnetS)
+        case .IMAPS:
+            return String(kSecAttrProtocolIMAPS)
+        case .IRCS:
+            return String(kSecAttrProtocolIRCS)
+        case .POP3S:
+            return String(kSecAttrProtocolPOP3S)
+        }
+    }
+}
+
+public typealias SecurelyStoredData = [String: AnyObject]
+public typealias PerformRequestClosureType = (requestReference: CFDictionaryRef, inout result: AnyObject?) -> (OSStatus)
+
+// MARK: - SecureStorable
+/// The base protocol that indicates conforming types will have the ability to be stored in a secure storage container, such as the iOS keychain.
+public protocol SecureStorable {
+    var performRequestClosure: PerformRequestClosureType { get }
+    var asSecureStoragePropertyDictionary: [String: AnyObject] { get }
+    var accessible: LocksmithAccessibleOption? { get }
+    var accessGroup: String? { get }
+}
+
+public extension SecureStorable {
+    var accessible: LocksmithAccessibleOption? { return nil }
+    var accessGroup: String? { return nil }
+    
+    var secureStorableBaseStoragePropertyDictionary: [String: AnyObject] {
+        let dictionary = [
+            String(kSecAttrAccessGroup): self.accessGroup,
+            String(kSecAttrAccessible): self.accessible?.rawValue
+        ]
         
-        let statusCode = Int(unwrappedStatus)
+        return Dictionary(withoutOptionalValues: dictionary)
+    }
+    
+    private func performSecureStorageAction() throws -> SecurelyStoredData? {
+        var result: AnyObject?
+        let request = self.asSecureStoragePropertyDictionary
+        let requestReference = request as CFDictionaryRef
+        
+        let status = performRequestClosure(requestReference: requestReference, result: &result)
+        
+        let statusCode = Int(status)
+        
         if let error = LocksmithError(fromStatusCode: statusCode) {
             throw error
         }
         
-        var resultsDictionary: [String: AnyObject]?
+        // hmmmm... bit leaky
+        if status != errSecSuccess {
+            return nil
+        }
         
-        if type == .Read && unwrappedStatus == errSecSuccess {
-            if request.matchLimit == .All {
-                if let results = result as? NSArray {
-                    resultsDictionary = [String: AnyObject]()
-                    
-                    let convertedResults = results.map({ (i) -> [String: AnyObject]? in
-                        return Locksmith.dataToDictionary(i)
-                    }).flatMap { $0 }
-                    
-                    resultsDictionary![LocksmithMultipleResultsKey] = convertedResults
-                }
-            } else {
-                resultsDictionary = Locksmith.dataToDictionary(result)
+        guard let data = result as? NSData else {
+            return nil
+        }
+        
+        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? SecurelyStoredData
+    }
+}
+
+public protocol AccountBasedSecureStorable {
+    /// The account that the stored value will belong to
+    var account: String { get }
+}
+
+public extension AccountBasedSecureStorable {
+    private var accountSecureStoragePropertyDictionary: [String: AnyObject] {
+        return [String(kSecAttrAccount): self.account]
+    }
+}
+
+public protocol DateableSecureStorable {
+    /// The date at which the item was created.
+    var creationDate: NSDate? { get }
+    /// The most recent date at which the item was modified.
+    var modificationDate: NSDate? { get }
+}
+
+public extension DateableSecureStorable {
+    var creationDate: NSDate? { return nil }
+    var modificationDate: NSDate? { return nil }
+    
+    private var dateableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [
+            String(kSecAttrCreationDate): self.creationDate,
+            String(kSecAttrModificationDate): self.modificationDate
+            ])
+    }
+}
+
+public protocol DescribableSecureStorable {
+    /// A description of the item in the secure storage container.
+    var description: String? { get }
+}
+
+public extension DescribableSecureStorable {
+    var description: String? { return nil }
+    
+    private var describableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [
+            String(kSecAttrDescription): self.description
+            ])
+    }
+}
+
+public protocol CommentableSecureStorable {
+    /// A comment attached to the item in the secure storage container.
+    var comment: String? { get }
+}
+
+public extension CommentableSecureStorable {
+    var comment: String? { return nil }
+    
+    private var commentableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [
+            String(kSecAttrComment): self.comment
+            ])
+    }
+}
+
+public protocol CreatorDesignatableSecureStorable {
+    /// The creator of the item in the secure storage container.
+    var creator: UInt? { get }
+}
+
+public extension CreatorDesignatableSecureStorable {
+    var creator: UInt? { return nil }
+    
+    private var creatorDesignatableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [String(kSecAttrCreator): self.creator])
+    }
+}
+
+public protocol LabellableSecureStorable {
+    /// A label for the item in the secure storage container.
+    var label: String? { get }
+}
+
+public extension LabellableSecureStorable {
+    var label: String? { return nil }
+    
+    private var labellableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [String(kSecAttrLabel): self.label])
+    }
+}
+
+public protocol TypeDesignatableSecureStorable {
+    /// The type of the stored item
+    var type: UInt? { get }
+}
+
+public extension TypeDesignatableSecureStorable {
+    var type: UInt? { return nil }
+    
+    private var typeDesignatableSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [String(kSecAttrType): self.type])
+    }
+}
+
+public protocol IsInvisibleAssignableSecureStorable {
+    var isInvisible: Bool? { get }
+}
+
+public extension IsInvisibleAssignableSecureStorable {
+    var isInvisible: Bool? { return nil }
+    
+    private var isInvisibleSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [String(kSecAttrIsInvisible): self.isInvisible])
+    }
+}
+
+public protocol IsNegativeAssignableSecureStorable {
+    var isNegative: Bool? { get }
+}
+
+public extension IsNegativeAssignableSecureStorable {
+    var isNegative: Bool? { return nil }
+    
+    private var isNegativeSecureStoragePropertyDictionary: [String: AnyObject] {
+        return Dictionary(withoutOptionalValues: [String(kSecAttrIsNegative): self.isNegative])
+    }
+}
+
+// MARK: - GenericPasswordSecureStorable
+/// The protocol that indicates a type conforms to the requirements of a generic password item in a secure storage container.
+/// Generic passwords are the most common types of things that are stored securely.
+public protocol GenericPasswordSecureStorable: AccountBasedSecureStorable, DateableSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, LabellableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
+    
+    /// The service to which the type belongs
+    var service: String { get }
+    
+    // Optional properties
+    var generic: NSData? { get }
+}
+
+// Add extension to allow for optional properties in protocol
+public extension GenericPasswordSecureStorable {
+    var generic: NSData? { return nil}
+}
+
+// MARK: - InternetPasswordSecureStorable
+/// A protocol that indicates a type conforms to the requirements of an internet password in a secure storage container.
+public protocol InternetPasswordSecureStorable: AccountBasedSecureStorable, DateableSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
+    var server: String { get }
+    var port: String { get }
+    var internetProtocol: LocksmithInternetProtocol { get }
+    var authenticationType: LocksmithInternetAuthenticationType { get }
+    var securityDomain: String? { get }
+    var path: String? { get }
+}
+
+public extension InternetPasswordSecureStorable {
+    var securityDomain: String? { return nil }
+    var path: String? { return nil }
+}
+
+// MARK: - CertificateSecureStorable
+
+public protocol CertificateSecureStorable: SecureStorable {}
+
+// MARK: - KeySecureStorable
+
+public protocol KeySecureStorable: SecureStorable {}
+
+// MARK: - CreateableSecureStorable
+
+/// Conformance to this protocol indicates that your type is able to be created and saved to a secure storage container.
+public protocol CreateableSecureStorable: SecureStorable {
+    var data: SecurelyStoredData { get }
+    func createInSecureStore() throws
+}
+
+// MARK: - ReadableSecureStorable
+/// Conformance to this protocol indicates that your type is able to be read from a secure storage container.
+public protocol ReadableSecureStorable: SecureStorable {
+    func readFromSecureStore() -> SecurelyStoredData?
+}
+
+// MARK: - DeleteableSecureStorable
+/// Conformance to this protocol indicates that your type is able to be deleted from a secure storage container.
+public protocol DeleteableSecureStorable: SecureStorable {
+    func deleteFromSecureStore() throws
+}
+
+public extension Dictionary {
+    init(withoutOptionalValues initial: Dictionary<Key, Value?>) {
+        self = [Key: Value]()
+        for pair in initial {
+            if pair.1 != nil {
+                self[pair.0] = pair.1!
             }
         }
-        
-        return resultsDictionary
     }
     
-    private class func dataToDictionary(data: AnyObject?) -> [String: AnyObject]? {
-        var resultsDictionary: [String: AnyObject]?
-        if let data = data as? NSData {
-            // Convert the retrieved data to a dictionary
-            resultsDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String: AnyObject]
+    init(pairs: [(Key, Value)]) {
+        self = [Key: Value]()
+        pairs.forEach { (k, v) -> () in
+            self[k] = v
         }
-        return resultsDictionary
     }
     
-    // MARK: Private methods
-    private class func performUpdate(request: CFDictionaryRef, inout result: AnyObject?) -> OSStatus {
-        // We perform updates to the keychain by first deleting the matching object, then writing to it with the new value.
-        SecItemDelete(request)
+    init(initial: Dictionary<Key, Value>, toMerge: Dictionary<Key, Value>) {
+        self = Dictionary<Key, Value>()
         
-        // Even if the delete request failed (e.g. if the item didn't exist before), still try to save the new item.
-        // If we get an error saving, we'll tell the user about it.
-        let status: OSStatus = withUnsafeMutablePointer(&result) { SecItemAdd(request, UnsafeMutablePointer($0)) }
-        return status
+        for pair in initial {
+            self[pair.0] = pair.1
+        }
+        
+        for pair in toMerge {
+            self[pair.0] = pair.1
+        }
     }
-    
-    private class func parseRequest(request: LocksmithRequest) -> NSMutableDictionary {
-        var parsedRequest = NSMutableDictionary()
+}
+
+// MARK: - Default property dictionaries
+
+public extension SecureStorable where Self : GenericPasswordSecureStorable {
+    private var genericPasswordBaseStoragePropertyDictionary: [String: AnyObject] {
+        var dictionary = [String: AnyObject?]()
         
-        var options = [String: AnyObject?]()
-        options[String(kSecAttrAccount)] = request.userAccount
-        options[String(kSecAttrAccessGroup)] = request.group
-        options[String(kSecAttrService)] = request.service
-        options[String(kSecAttrSynchronizable)] = request.synchronizable
-        options[String(kSecClass)] = request.securityClass.rawValue
+        dictionary[String(kSecAttrService)] = self.service
+        dictionary[String(kSecAttrGeneric)] = self.generic
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.GenericPassword.rawValue
         
-        if let accessibleMode = request.accessible {
-            options[String(kSecAttrAccessible)] = accessibleMode.rawValue
+        dictionary = Dictionary(initial: dictionary, toMerge: self.describableSecureStoragePropertyDictionary)
+        
+        let toMergeWith = [
+            self.secureStorableBaseStoragePropertyDictionary,
+            self.dateableSecureStoragePropertyDictionary,
+            self.accountSecureStoragePropertyDictionary,
+            self.describableSecureStoragePropertyDictionary,
+            self.commentableSecureStoragePropertyDictionary,
+            self.creatorDesignatableSecureStoragePropertyDictionary,
+            self.typeDesignatableSecureStoragePropertyDictionary,
+            self.labellableSecureStoragePropertyDictionary,
+            self.isInvisibleSecureStoragePropertyDictionary,
+            self.isNegativeSecureStoragePropertyDictionary,
+            self.dateableSecureStoragePropertyDictionary
+        ]
+        
+        for dict in toMergeWith {
+            dictionary = Dictionary(initial: dictionary, toMerge: dict)
         }
         
-        for (key, option) in options {
-            parsedRequest.setOptional(option, forKey: key)
-        }
-        
-        switch request.type {
-        case .Create:
-            parsedRequest = parseCreateRequest(request, inDictionary: parsedRequest)
-        case .Delete:
-            parsedRequest = parseDeleteRequest(request, inDictionary: parsedRequest)
-        case .Update:
-            parsedRequest = parseCreateRequest(request, inDictionary: parsedRequest)
-        default: // case .Read:
-            parsedRequest = parseReadRequest(request, inDictionary: parsedRequest)
-        }
-        
-        return parsedRequest
+        return Dictionary(withoutOptionalValues: dictionary)
     }
-    
-    private class func parseCreateRequest(request: LocksmithRequest, inDictionary dictionary: NSMutableDictionary) -> NSMutableDictionary {
+}
+
+public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        var old = self.genericPasswordBaseStoragePropertyDictionary
+        old[String(kSecValueData)] = NSKeyedArchiver.archivedDataWithRootObject(self.data)
+        return old
+    }
+}
+
+public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        var old = self.genericPasswordBaseStoragePropertyDictionary
+        old[String(kSecReturnData)] = true
+        old[String(kSecMatchLimit)] = kSecMatchLimitOne
+        return old
+    }
+}
+
+public extension DeleteableSecureStorable where Self : GenericPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        return self.genericPasswordBaseStoragePropertyDictionary
+    }
+}
+
+
+// MARK: InternetPasswordSecureStorable
+
+public extension SecureStorable where Self : InternetPasswordSecureStorable {
+    private var internetPasswordBaseStoragePropertyDictionary: [String: AnyObject] {
+        var dictionary = [String: AnyObject]()
         
-        if let data = request.data {
-            let encodedData = NSKeyedArchiver.archivedDataWithRootObject(data)
-            dictionary.setObject(encodedData, forKey: String(kSecValueData))
+        // add in whatever turns out to be required...
+        dictionary[String(kSecAttrServer)] = self.server
+        dictionary[String(kSecAttrPort)] = self.port
+        dictionary[String(kSecAttrProtocol)] = self.internetProtocol.rawValue
+        dictionary[String(kSecAttrAuthenticationType)] = self.authenticationType.rawValue
+        dictionary[String(kSecAttrSecurityDomain)] = self.securityDomain
+        dictionary[String(kSecAttrPath)] = self.path
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.InternetPassword.rawValue
+        
+        let toMergeWith = [
+            self.accountSecureStoragePropertyDictionary,
+            self.dateableSecureStoragePropertyDictionary,
+            self.describableSecureStoragePropertyDictionary,
+            self.commentableSecureStoragePropertyDictionary,
+            self.creatorDesignatableSecureStoragePropertyDictionary,
+            self.typeDesignatableSecureStoragePropertyDictionary,
+            self.isInvisibleSecureStoragePropertyDictionary,
+            self.isNegativeSecureStoragePropertyDictionary
+        ]
+        
+        for dict in toMergeWith {
+            dictionary = Dictionary(initial: dictionary, toMerge: dict)
         }
         
-        return dictionary
-    }
-    
-    
-    private class func parseReadRequest(request: LocksmithRequest, inDictionary dictionary: NSMutableDictionary) -> NSMutableDictionary {
-        dictionary.setOptional(kCFBooleanTrue, forKey: String(kSecReturnData))
-        
-        switch request.matchLimit {
-        case .One:
-            dictionary.setObject(kSecMatchLimitOne, forKey: String(kSecMatchLimit))
-        case .Many, .All:
-            dictionary.setObject(kSecMatchLimitAll, forKey: String(kSecMatchLimit))
-        }
-        
-        return dictionary
-    }
-    
-    private class func parseDeleteRequest(request: LocksmithRequest, inDictionary dictionary: NSMutableDictionary) -> NSMutableDictionary {
         return dictionary
     }
 }
 
-// MARK: Convenient Class Methods
-extension Locksmith {
-    public class func saveData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
-        let saveRequest = LocksmithRequest(userAccount: userAccount, requestType: .Create, data: data, service: service)
-        try Locksmith.performRequest(saveRequest)
+public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        var old = self.internetPasswordBaseStoragePropertyDictionary
+        old[String(kSecValueData)] = NSKeyedArchiver.archivedDataWithRootObject(self.data)
+        return old
+    }
+}
+
+public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        var old = self.internetPasswordBaseStoragePropertyDictionary
+        old[String(kSecReturnData)] = true
+        old[String(kSecMatchLimit)] = kSecMatchLimitOne
+        return old
+    }
+}
+
+public extension DeleteableSecureStorable where Self : InternetPasswordSecureStorable {
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        return self.internetPasswordBaseStoragePropertyDictionary
+    }
+}
+
+public extension CreateableSecureStorable {
+    var performRequestClosure: PerformRequestClosureType {
+        return { (requestReference: CFDictionaryRef, inout result: AnyObject?) in
+            return withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
+        }
     }
     
-    public class func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> [String: AnyObject]? {
-        let readRequest = LocksmithRequest(userAccount: userAccount, service: service)
-        
+    func createInSecureStore() throws {
+        try performSecureStorageAction()
+    }
+}
+
+public extension ReadableSecureStorable {
+    var performRequestClosure: PerformRequestClosureType {
+        return { (requestReference: CFDictionaryRef, inout result: AnyObject?) in
+            return withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
+        }
+    }
+    
+    func readFromSecureStore() -> SecurelyStoredData? {
         do {
-            let dictionary = try Locksmith.performRequest(readRequest)
-            return dictionary
-        } catch {
+            return try performSecureStorageAction()
+        } catch let error {
+            // Should very rarely occur
+            print(error)
             return nil
         }
     }
-    
-    public class func deleteDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) throws {
-        let deleteRequest = LocksmithRequest(userAccount: userAccount, requestType: .Delete, service: service)
-        try Locksmith.performRequest(deleteRequest)
-    }
-    
-    public class func updateData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
-        let updateRequest = LocksmithRequest(userAccount: userAccount, requestType: .Update, data: data, service: service)
-        try Locksmith.performRequest(updateRequest)
-    }
-    
-    public class func clearKeychain() throws {
-        // Delete all of the keychain data of the given class
-        func deleteDataForSecClass(secClass: CFTypeRef) throws {
-            let request = NSMutableDictionary()
-            request.setObject(secClass, forKey: String(kSecClass))
-            
-            let status: OSStatus? = SecItemDelete(request as CFDictionaryRef)
-            
-            if let status = status {
-                let statusCode = Int(status)
-                if let error = LocksmithError(fromStatusCode: statusCode) {
-                    throw error
-                }
-            }
-        }
-        
-        // For each of the sec class types, delete all of the saved items of that type
-        let classes = [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity]
-        
-        for classType in classes {
-            do {
-                try deleteDataForSecClass(classType)
-            } catch let error as LocksmithError {
-                // There was an error
-                // If the error indicates that there was no item with that security class, that's fine.
-                // Some of the sec classes will have nothing in them in most cases.
-                if error != LocksmithError.NotFound {
-                    throw LocksmithError.UnableToClear
-                }
-            }
+}
+
+public extension DeleteableSecureStorable {
+    var performRequestClosure: PerformRequestClosureType {
+        return { (requestReference, _) in
+            return SecItemDelete(requestReference)
         }
     }
     
-    /// Returns all the data for a given service.
-    /// :param: service The service to load data for. This may be omitted, and the default service will be used.
-    /// :return: An array of dictionaries corresponding to all of the results for this service.
-    public class func loadAllDataForService(service: String = LocksmithDefaultService) throws -> [[String: AnyObject]]? {
-        var resultForAllSecurityClasses = [[String: AnyObject]?]()
-        
-        // TODO: Switch to `allClasses`
-        let classes = [SecurityClass.GenericPassword]
-        
-        for classType in classes {
-            let request = LocksmithRequest(userAccount: nil, service: "myService")
-            request.matchLimit = .All
-            request.securityClass = classType
-            
-            if let result = try Locksmith.performRequest(request) {
-                let array = result[LocksmithMultipleResultsKey] as? [[String: AnyObject]]
-                array?.forEach({ (dict) -> () in
-                    resultForAllSecurityClasses.append(dict)
-                })
-            }
-        }
-        
-        return resultForAllSecurityClasses.flatMap{ $0 }
+    func deleteFromSecureStore() throws {
+        try performSecureStorageAction()
     }
 }
 
-// MARK: Dictionary Extension
-extension NSMutableDictionary {
-    func setOptional(optional: AnyObject?, forKey key: NSCopying) {
-        if let object: AnyObject = optional {
-            self.setObject(object, forKey: key)
+// MARK: - Locksmith
+public struct Locksmith {
+    public static func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> SecurelyStoredData? {
+        struct ReadRequest: GenericPasswordSecureStorable, ReadableSecureStorable {
+            let service: String
+            let account: String
         }
+        
+        let request = ReadRequest(service: service, account: userAccount)
+        return request.readFromSecureStore()
+    }
+    
+    public static func saveData(data: SecurelyStoredData, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+        struct CreateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
+            let service: String
+            let account: String
+            let data: SecurelyStoredData
+        }
+        
+        let request = CreateRequest(service: service, account: userAccount, data: data)
+        return try request.createInSecureStore()
+    }
+    
+    public static func deleteDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) throws {
+        struct DeleteRequest: GenericPasswordSecureStorable, DeleteableSecureStorable {
+            let service: String
+            let account: String
+        }
+        
+        let request = DeleteRequest(service: service, account: userAccount)
+        return try request.deleteFromSecureStore()
+    }
+    
+    public static func updateData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+        // Delete and then re-save
+        do {
+            try Locksmith.deleteDataForUserAccount(userAccount, inService: service)
+        } catch {
+            // Deletion is likely to fail if the piece of data doesn't exist yet.
+            // This doesn't matter--we only tell the user about errors on the save request.
+        }
+        
+        return try Locksmith.saveData(data, forUserAccount: userAccount, inService: service)
     }
 }

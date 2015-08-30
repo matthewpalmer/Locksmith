@@ -1,23 +1,11 @@
-#
-# Be sure to run `pod lib lint Locksmith.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "Locksmith"
   s.version          = "2.0"
-  s.summary          = "Locksmith is a sane way to work with the iOS Keychain in Swift."
+  s.summary          = "Locksmith is a protocol-oriented way to work with the iOS Keychain in Swift."
   s.description      = <<-DESC
-                       Locksmith is a sane way to work with the iOS Keychain in Swift.
-                       It provides a fast and intuitive way to work with the C Keychain API.
-                       Results are provided as tuples, and errors are informative and easily detected.
+                       Locksmith is a protocol-oriented way to work with the iOS Keychain in Swift. It provides extensive support for a lot of different keychain requests, and extensively uses Swift-native concepts.
                        DESC
   s.homepage         = "https://github.com/matthewpalmer/Locksmith"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "matthewpalmer" => "matt@matthewpalmer.net" }
   s.source           = { :git => "https://github.com/matthewpalmer/Locksmith.git", :tag => s.version.to_s }
@@ -31,7 +19,5 @@ Pod::Spec.new do |s|
     'Locksmith' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Security'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
