@@ -607,7 +607,7 @@ public extension GenericPasswordSecureStorableResultType {
 /// A protocol that indicates a type conforms to the requirements of an internet password in a secure storage container.
 public protocol InternetPasswordSecureStorable: AccountBasedSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
     var server: String { get }
-    var port: String { get }
+    var port: Int { get }
     var internetProtocol: LocksmithInternetProtocol { get }
     var authenticationType: LocksmithInternetAuthenticationType { get }
     var securityDomain: String? { get }
@@ -617,6 +617,38 @@ public protocol InternetPasswordSecureStorable: AccountBasedSecureStorable, Desc
 public extension InternetPasswordSecureStorable {
     var securityDomain: String? { return nil }
     var path: String? { return nil }
+}
+
+public protocol InternetPasswordSecureStorableResultType: AccountBasedSecureStorableResultType, DescribableSecureStorableResultType, CommentableSecureStorableResultType, CreatorDesignatableSecureStorableResultType, TypeDesignatableSecureStorableResultType, IsInvisibleAssignableSecureStorableResultType, IsNegativeAssignableSecureStorableResultType {}
+
+public extension InternetPasswordSecureStorableResultType {
+    private func stringFromResultDictionary(key: CFString) -> String? {
+        return self.resultDictionary[String(key)] as? String
+    }
+    
+    var server: String {
+        return stringFromResultDictionary(kSecAttrServer)!
+    }
+    
+    var port: Int {
+        return self.resultDictionary[String(kSecAttrPort)] as! Int
+    }
+    
+    var internetProtocol: LocksmithInternetProtocol {
+        return LocksmithInternetProtocol(rawValue: stringFromResultDictionary(kSecAttrProtocol)!)!
+    }
+    
+    var authenticationType: LocksmithInternetAuthenticationType {
+        return LocksmithInternetAuthenticationType(rawValue:  stringFromResultDictionary(kSecAttrAuthenticationType)!)!
+    }
+    
+    var securityDomain: String? {
+        return stringFromResultDictionary(kSecAttrSecurityDomain)
+    }
+    
+    var path: String? {
+        return stringFromResultDictionary(kSecAttrPath)
+    }
 }
 
 // MARK: - CertificateSecureStorable
@@ -812,30 +844,48 @@ public extension ReadableSecureStorable {
         }
     }
     
-    func readFromSecureStore() -> SecureStorableResultType? {
+    private func constructResult(constructor: ([String: AnyObject]) -> (SecureStorableResultType)) -> SecureStorableResultType? {
         do {
-            return nil // try performSecureStorageAction()
+            let result = try performSecureStorageAction()
+            return constructor(result!)
         } catch let error {
-            // Should very rarely occur
             print(error)
             return nil
         }
     }
+    
+    func readFromSecureStore() -> SecureStorableResultType? {
+        return nil
+    }
 }
 
-struct ResultType: GenericPasswordSecureStorableResultType {
+struct GenericPasswordResult: GenericPasswordSecureStorableResultType {
     var resultDictionary: [String: AnyObject]
+    
+    // Can't pass the initializer yet--even GenericPasswordResult.init doesn't work with the protocols
+    static func construct(resultDictionary: [String: AnyObject]) -> (SecureStorableResultType) {
+        return GenericPasswordResult(resultDictionary: resultDictionary)
+    }
 }
 
 public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
     func readFromSecureStore() -> GenericPasswordSecureStorableResultType? {
-        do {
-            let result = try performSecureStorageAction()
-            return ResultType(resultDictionary: result!)
-        } catch let error {
-            print(error)
-            return nil
-        }
+        return constructResult(GenericPasswordResult.construct) as? GenericPasswordSecureStorableResultType
+    }
+}
+
+struct InternetPasswordResult: InternetPasswordSecureStorableResultType {
+    var resultDictionary: [String: AnyObject]
+    
+    // Can't pass the initializer yet--even GenericPasswordResult.init doesn't work with the protocols
+    static func construct(resultDictionary: [String: AnyObject]) -> (SecureStorableResultType) {
+        return InternetPasswordResult(resultDictionary: resultDictionary)
+    }
+}
+
+public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
+    func readFromSecureStore() -> InternetPasswordSecureStorableResultType? {
+        return constructResult(InternetPasswordResult.construct) as? InternetPasswordSecureStorableResultType
     }
 }
 

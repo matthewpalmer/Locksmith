@@ -125,9 +125,7 @@ class LocksmithTests: XCTestCase {
         XCTAssert(d == nil)
     }
     
-    func testReturnedValuesForOptionalAttributes() {
-        let initialData = ["one": "two"]
-        
+    func testGenericPasswordMetaAttributesAreCreatedAndReturned() {
         struct Create: CreateableSecureStorable, GenericPasswordSecureStorable {
             let account: String
             let service: String
@@ -137,6 +135,7 @@ class LocksmithTests: XCTestCase {
             let data: [String: AnyObject]
         }
         
+        let initialData = ["one": "two"]
         let creator: UInt = 5
         let comment = "this is a comment"
         let description = "this is the description"
@@ -162,6 +161,51 @@ class LocksmithTests: XCTestCase {
         XCTAssertNil(d?.isInvisible)
     }
     
+    func testInternetPasswordMetaAttributesAreCreatedAndReturned() {
+        struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable {
+            let account: String
+            let data: [String: AnyObject]
+            let server: String
+            let port: Int
+            let internetProtocol: LocksmithInternetProtocol
+            let authenticationType: LocksmithInternetAuthenticationType
+            let path: String?
+            let securityDomain: String?
+        }
+        
+        let userAccount = "user \(NSDate())"
+        let initialData = ["internet": "data"]
+        let server = "net.matthewpalmer"
+        let port = 8080
+        let internetProtocol = LocksmithInternetProtocol.FTP
+        let authenticationType = LocksmithInternetAuthenticationType.HTTPBasic
+        let path = "somePath"
+        let securityDomain = "someDomain"
+        
+        struct ReadInternetPassword: ReadableSecureStorable, InternetPasswordSecureStorable {
+            let account: String
+            let server: String
+            let port: Int
+            let internetProtocol: LocksmithInternetProtocol
+            let authenticationType: LocksmithInternetAuthenticationType
+        }
+        
+        let c = CreateInternetPassword(account: userAccount, data: initialData, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain)
+        try! c.createInSecureStore()
+        
+        let r = ReadInternetPassword(account: userAccount, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType)
+        let result = r.readFromSecureStore()
+
+        XCTAssertEqual(result?.account, userAccount)
+        XCTAssertEqual(result!.data as! [String: String], initialData)
+        XCTAssertEqual(result?.server, server)
+        XCTAssertEqual(result?.port, port)
+        XCTAssertEqual(result?.internetProtocol, internetProtocol)
+        XCTAssertEqual(result?.authenticationType, authenticationType)
+        XCTAssertEqual(result?.securityDomain, securityDomain)
+        XCTAssertEqual(result?.path, path)
+    }
+    
     func assertStringPairsMatchInDictionary(dictionary: NSDictionary, pairs: [(key: CFString, expectedOutput: String)]) {
         for pair in pairs {
             let a = dictionary[String(pair.0)] as! CFStringRef
@@ -175,7 +219,7 @@ class LocksmithTests: XCTestCase {
             let service: String
             let data: [String: AnyObject]
             let server: String
-            let port: String
+            let port: Int
             let internetProtocol: LocksmithInternetProtocol
             let authenticationType: LocksmithInternetAuthenticationType
             let path: String?
@@ -185,7 +229,7 @@ class LocksmithTests: XCTestCase {
         }
         
         let account = "myUser"
-        let port = "8080"
+        let port = 8080
         let internetProtocol = LocksmithInternetProtocol.HTTP
         let authenticationType = LocksmithInternetAuthenticationType.HTTPBasic
         let path = "some_path"
@@ -198,7 +242,6 @@ class LocksmithTests: XCTestCase {
             
             self.assertStringPairsMatchInDictionary(dict, pairs: [
                 (kSecAttrAccount, account),
-                (kSecAttrPort, port),
                 (kSecAttrProtocol, internetProtocol.rawValue),
                 (kSecAttrAuthenticationType, authenticationType.rawValue),
                 (kSecAttrPath, path),
@@ -206,6 +249,9 @@ class LocksmithTests: XCTestCase {
                 (kSecAttrServer, server),
                 (kSecClass, String(kSecClassInternetPassword))
                 ])
+            
+            let p = dict[String(kSecAttrPort)] as! CFNumberRef
+            XCTAssertEqual(p as Int, port)
             
             return errSecSuccess
         }
