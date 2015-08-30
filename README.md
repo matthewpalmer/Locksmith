@@ -51,8 +51,6 @@ Locksmith works perfectly when itâ€™s used this way, but you might be wonderingâ
 
 > Bonus functionality, for free
 
-<br/>
-
 Locksmith has been designed with Swift 2, protocols, and protocol extensions in mind.
 
 Why do this? It means that you can *add keychain functionality to your existing types* with only the slightest change!
