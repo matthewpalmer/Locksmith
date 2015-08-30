@@ -51,11 +51,13 @@ Locksmith works perfectly when it’s used this way, but you might be wondering�
 
 > Bonus functionality, for free
 
+<br/>
+
 Locksmith has been designed with Swift 2, protocols, and protocol extensions in mind.
 
-Why do this? It means that you can *add keychain functionality to your existing types* without only the slightest change!
+Why do this? It means that you can *add keychain functionality to your existing types* with only the slightest change!
 
-Say we have an Instagram account
+Say we have a Twitter account
 
 ```swift
 struct TwitterAccount {
@@ -64,7 +66,7 @@ struct TwitterAccount {
 }
 ```
 
-and we want to add save it to the keychain as a generic password. All we need to do is conform to the right protocols in Locksmith and we get that functionality for free.
+and we want to save it to the keychain as a generic password. All we need to do is conform to the right protocols in Locksmith and we get that functionality for free.
 
 ```swift
 struct TwitterAccount: CreateableSecureStorable, GenericPasswordSecureStorable {
@@ -87,7 +89,7 @@ let account = TwitterAccount(username: "_matthewpalmer", password: "my_password"
 try account.createInSecureStore()
 ```
 
-To me, this is a crazy, different, and insanely powerful way to add capabilities to your existing types.
+This is a crazy, different, and insanely powerful way to add capabilities to your existing types.
 
 Creating, reading, and deleting are done similarly. Right now, it’s not possible to declare `CreateableSecureStorable`, `ReadableSecureStorable`, and `DeleteableSecureStorable` on the same type, but we’re working towards that.
 
@@ -119,43 +121,43 @@ try ExistingTwitterAccount(username: "_matthewpalmer").deleteFromSecureStore()
 
 ### The details
 
-> Your conformance is required
+> Diving deep on protocols
 
 There are a couple of key protocols that you will need to conform to in order to use the keychain (or any other secure storage container!)—each to indicate that your type is capable of being created in, read from, or deleted from the keychain.
 
-**`CreateableSecureStorable`**
+#### `CreateableSecureStorable`
 
 * Conformance to this protocol indicates that your type is able to be created and saved to a secure storage container.
 
-Required
+**Required**
 
 * `var data: [String: AnyObject]` is what will be saved to the keychain for your type
 
-Optional (override to change functionality)
+**Optional** (override to change functionality)
 
 * `func createInSecureStore() throws` by default loads an item from the iOS keychain. 
   This can be overridden for testing or if you would like to save to somewhere other than the keychain
 
-**`ReadableSecureStorable`**
+#### `ReadableSecureStorable`
 
 * Conformance to this protocol indicates that your type is able to be read from a secure storage container.
 
-Required
+**Required**
 * Nothing!
 
-Optional (override to change functionality)
+**Optional** (override to change functionality)
 
-* `func readFromSecureStore() -> SecurelyStoredData?` by default reads an item from the iOS keychain. This can be overridden for testing or if you would like to save to somewhere other than the keychain. `SecurelyStoredData` is a typealias for `[String: AnyObject]`.
+* `func readFromSecureStore() -> SecurelyStoredData?` by default reads an item from the iOS keychain. `SecurelyStoredData` is a typealias for `[String: AnyObject]`.
 
-**`DeleteableSecureStorable`**
+#### `DeleteableSecureStorable`
 
 * Conformance to this protocol indicates that your type is able to be deleted from a secure storage container.
 
-Required
+**Required**
 * Nothing!
 
-Optional (override to change functionality)
-* `func deleteFromSecureStore() throws` can be overridden for testing or if you would like to save to somewhere other than the keychain.
+**Optional** (override to change functionality)
+* `func deleteFromSecureStore() throws`
 
 ## Powerful support for the Cocoa Keychain
 
@@ -169,7 +171,7 @@ Please refer to the [Keychain Services Reference](https://developer.apple.com/li
 
 ### `GenericPasswordSecureStorable`
 
-You want to save a generic password? There’s a protocol for that.
+Generic passwords are probably the most common use-case of the keychain, and are great for storing usernames and passwords.
 
 Properties listed under ‘Required’ have to be implemented by any types that conform; those listed under ‘Optional’ can be implemented to add additional information to what is saved or read if desired.
 
@@ -214,7 +216,7 @@ var securityDomain: String? { get }
 var path: String? { get }
 ```
  
-**`CertificateSecureStorable` and `KeySecureStorable`**
+## `CertificateSecureStorable` and `KeySecureStorable`
 
 *Right now, Locksmith only supports generic passwords and internet passwords. The other types of items can be slotted into the library pretty easily, it’s simply a matter of adding tests and translating all the `kSecBlahBlahBlah` constants. I guess we shouldn’t have thrown shade earlier…*
 
