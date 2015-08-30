@@ -72,10 +72,10 @@ struct TwitterAccount: CreateableSecureStorable, GenericPasswordSecureStorable {
   let password: String
 
   let service = "Twitter"
-  var account = { username }
+  var account: String { return username }
 
-  var data {
-    return [ "password": password ]
+  var data: [String: AnyObject] {
+      return ["password": password]
   }
 }
 ```
@@ -98,7 +98,7 @@ struct SavedTwitterAccount: ReadableSecureStorable, GenericPasswordSecureStorabl
   let service = "Twitter"
   let username: String
 
-  var account = { username }
+  var account: String = { return username }
 }
 
 let dictionary = SavedTwitterAccount(username: "_matthewpalmer").readFromSecureStore()
@@ -111,7 +111,7 @@ struct ExistingTwitterAccount: DeleteableSecureStorable, GenericPasswordSecureSt
   let service = "Twitter"
   let username: String
 
-  var account = { username }
+  var account: String = { return username }
 }
 
 try ExistingTwitterAccount(username: "_matthewpalmer").deleteFromSecureStore()
