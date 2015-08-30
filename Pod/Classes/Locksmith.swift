@@ -320,7 +320,6 @@ public enum LocksmithInternetProtocol: RawRepresentable {
     }
 }
 
-public typealias SecurelyStoredData = [String: AnyObject]
 public typealias PerformRequestClosureType = (requestReference: CFDictionaryRef, inout result: AnyObject?) -> (OSStatus)
 
 // MARK: - SecureStorable
@@ -330,6 +329,36 @@ public protocol SecureStorable {
     var asSecureStoragePropertyDictionary: [String: AnyObject] { get }
     var accessible: LocksmithAccessibleOption? { get }
     var accessGroup: String? { get }
+}
+
+public protocol SecureStorableResultType: SecureStorable {
+    var resultDictionary: [String: AnyObject] { get }
+    var data: [String: AnyObject]? { get }
+}
+
+public extension SecureStorableResultType {
+    var performRequestClosure: PerformRequestClosureType {
+        // TODO: This is pretty bad
+        return { (_, _) in
+            return errSecSuccess
+        }
+    }
+    
+    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+        return [String: AnyObject]()
+    }
+    
+    var resultDictionary: [String: AnyObject] {
+        return [String: AnyObject]()
+    }
+    
+    var data: [String: AnyObject]? {
+        guard let aData = resultDictionary[String(kSecValueData)] as? NSData else {
+            return nil
+        }
+        
+        return NSKeyedUnarchiver.unarchiveObjectWithData(aData) as? [String: AnyObject]
+    }
 }
 
 public extension SecureStorable {
@@ -345,7 +374,7 @@ public extension SecureStorable {
         return Dictionary(withoutOptionalValues: dictionary)
     }
     
-    private func performSecureStorageAction() throws -> SecurelyStoredData? {
+    private func performSecureStorageAction() throws -> [String: AnyObject]? {
         var result: AnyObject?
         let request = self.asSecureStoragePropertyDictionary
         let requestReference = request as CFDictionaryRef
@@ -363,11 +392,15 @@ public extension SecureStorable {
             return nil
         }
         
-        guard let data = result as? NSData else {
+        guard let dictionary = result as? NSDictionary else {
             return nil
         }
         
-        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? SecurelyStoredData
+        guard let data = dictionary[String(kSecValueData)] as? NSData else {
+            return nil
+        }
+        
+        return result as? [String: AnyObject]
     }
 }
 
@@ -382,22 +415,11 @@ public extension AccountBasedSecureStorable {
     }
 }
 
-public protocol DateableSecureStorable {
-    /// The date at which the item was created.
-    var creationDate: NSDate? { get }
-    /// The most recent date at which the item was modified.
-    var modificationDate: NSDate? { get }
-}
+public protocol AccountBasedSecureStorableResultType: AccountBasedSecureStorable, SecureStorableResultType {}
 
-public extension DateableSecureStorable {
-    var creationDate: NSDate? { return nil }
-    var modificationDate: NSDate? { return nil }
-    
-    private var dateableSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [
-            String(kSecAttrCreationDate): self.creationDate,
-            String(kSecAttrModificationDate): self.modificationDate
-            ])
+public extension AccountBasedSecureStorableResultType {
+    var account: String {
+        return self.resultDictionary[String(kSecAttrAccount)] as! String
     }
 }
 
@@ -416,6 +438,14 @@ public extension DescribableSecureStorable {
     }
 }
 
+public protocol DescribableSecureStorableResultType: DescribableSecureStorable, SecureStorableResultType {}
+
+public extension DescribableSecureStorableResultType {
+    var description: String? {
+        return self.resultDictionary[String(kSecAttrDescription)] as? String
+    }
+}
+
 public protocol CommentableSecureStorable {
     /// A comment attached to the item in the secure storage container.
     var comment: String? { get }
@@ -428,6 +458,14 @@ public extension CommentableSecureStorable {
         return Dictionary(withoutOptionalValues: [
             String(kSecAttrComment): self.comment
             ])
+    }
+}
+
+public protocol CommentableSecureStorableResultType: CommentableSecureStorable, SecureStorableResultType {}
+
+public extension CommentableSecureStorableResultType {
+    var comment: String? {
+        return self.resultDictionary[String(kSecAttrComment)] as? String
     }
 }
 
@@ -444,6 +482,14 @@ public extension CreatorDesignatableSecureStorable {
     }
 }
 
+public protocol CreatorDesignatableSecureStorableResultType: CreatorDesignatableSecureStorable, SecureStorableResultType {}
+
+public extension CreatorDesignatableSecureStorableResultType {
+    var creator: UInt? {
+        return self.resultDictionary[String(kSecAttrCreator)] as? UInt
+    }
+}
+
 public protocol LabellableSecureStorable {
     /// A label for the item in the secure storage container.
     var label: String? { get }
@@ -454,6 +500,14 @@ public extension LabellableSecureStorable {
     
     private var labellableSecureStoragePropertyDictionary: [String: AnyObject] {
         return Dictionary(withoutOptionalValues: [String(kSecAttrLabel): self.label])
+    }
+}
+
+public protocol LabellableSecureStorableResultType: LabellableSecureStorable, SecureStorableResultType {}
+
+public extension LabellableSecureStorableResultType {
+    var label: String? {
+        return self.resultDictionary[String(kSecAttrLabel)] as? String
     }
 }
 
@@ -470,6 +524,14 @@ public extension TypeDesignatableSecureStorable {
     }
 }
 
+public protocol TypeDesignatableSecureStorableResultType: TypeDesignatableSecureStorable, SecureStorableResultType {}
+
+public extension TypeDesignatableSecureStorableResultType {
+    var type: UInt? {
+        return self.resultDictionary[String(kSecAttrType)] as? UInt
+    }
+}
+
 public protocol IsInvisibleAssignableSecureStorable {
     var isInvisible: Bool? { get }
 }
@@ -479,6 +541,14 @@ public extension IsInvisibleAssignableSecureStorable {
     
     private var isInvisibleSecureStoragePropertyDictionary: [String: AnyObject] {
         return Dictionary(withoutOptionalValues: [String(kSecAttrIsInvisible): self.isInvisible])
+    }
+}
+
+public protocol IsInvisibleAssignableSecureStorableResultType: IsInvisibleAssignableSecureStorable, SecureStorableResultType {}
+
+public extension IsInvisibleAssignableSecureStorableResultType {
+    var isInvisible: Bool? {
+        return self.resultDictionary[String(kSecAttrIsInvisible)] as? Bool
     }
 }
 
@@ -494,10 +564,19 @@ public extension IsNegativeAssignableSecureStorable {
     }
 }
 
+public protocol IsNegativeAssignableSecureStorableResultType: IsNegativeAssignableSecureStorable, SecureStorableResultType {
+}
+
+public extension IsNegativeAssignableSecureStorableResultType {
+    var isNegative: Bool? {
+        return self.resultDictionary[String(kSecAttrIsNegative)] as? Bool
+    }
+}
+
 // MARK: - GenericPasswordSecureStorable
 /// The protocol that indicates a type conforms to the requirements of a generic password item in a secure storage container.
 /// Generic passwords are the most common types of things that are stored securely.
-public protocol GenericPasswordSecureStorable: AccountBasedSecureStorable, DateableSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, LabellableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
+public protocol GenericPasswordSecureStorable: AccountBasedSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, LabellableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
     
     /// The service to which the type belongs
     var service: String { get }
@@ -511,9 +590,22 @@ public extension GenericPasswordSecureStorable {
     var generic: NSData? { return nil}
 }
 
+// dear god what have i done...
+public protocol GenericPasswordSecureStorableResultType: GenericPasswordSecureStorable, SecureStorableResultType, AccountBasedSecureStorableResultType, DescribableSecureStorableResultType, CommentableSecureStorableResultType, CreatorDesignatableSecureStorableResultType, LabellableSecureStorableResultType, TypeDesignatableSecureStorableResultType, IsInvisibleAssignableSecureStorableResultType, IsNegativeAssignableSecureStorableResultType {}
+
+public extension GenericPasswordSecureStorableResultType {
+    var service: String {
+        return self.resultDictionary[String(kSecAttrService)] as! String
+    }
+    
+    var generic: NSData? {
+        return self.resultDictionary[String(kSecAttrGeneric)] as? NSData
+    }
+}
+
 // MARK: - InternetPasswordSecureStorable
 /// A protocol that indicates a type conforms to the requirements of an internet password in a secure storage container.
-public protocol InternetPasswordSecureStorable: AccountBasedSecureStorable, DateableSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
+public protocol InternetPasswordSecureStorable: AccountBasedSecureStorable, DescribableSecureStorable, CommentableSecureStorable, CreatorDesignatableSecureStorable, TypeDesignatableSecureStorable, IsInvisibleAssignableSecureStorable, IsNegativeAssignableSecureStorable {
     var server: String { get }
     var port: String { get }
     var internetProtocol: LocksmithInternetProtocol { get }
@@ -539,15 +631,16 @@ public protocol KeySecureStorable: SecureStorable {}
 
 /// Conformance to this protocol indicates that your type is able to be created and saved to a secure storage container.
 public protocol CreateableSecureStorable: SecureStorable {
-    var data: SecurelyStoredData { get }
+    var data: [String: AnyObject] { get }
     func createInSecureStore() throws
 }
 
 // MARK: - ReadableSecureStorable
 /// Conformance to this protocol indicates that your type is able to be read from a secure storage container.
 public protocol ReadableSecureStorable: SecureStorable {
-    func readFromSecureStore() -> SecurelyStoredData?
+    func readFromSecureStore() -> SecureStorableResultType?
 }
+
 
 // MARK: - DeleteableSecureStorable
 /// Conformance to this protocol indicates that your type is able to be deleted from a secure storage container.
@@ -599,7 +692,6 @@ public extension SecureStorable where Self : GenericPasswordSecureStorable {
         
         let toMergeWith = [
             self.secureStorableBaseStoragePropertyDictionary,
-            self.dateableSecureStoragePropertyDictionary,
             self.accountSecureStoragePropertyDictionary,
             self.describableSecureStoragePropertyDictionary,
             self.commentableSecureStoragePropertyDictionary,
@@ -607,8 +699,7 @@ public extension SecureStorable where Self : GenericPasswordSecureStorable {
             self.typeDesignatableSecureStoragePropertyDictionary,
             self.labellableSecureStoragePropertyDictionary,
             self.isInvisibleSecureStoragePropertyDictionary,
-            self.isNegativeSecureStoragePropertyDictionary,
-            self.dateableSecureStoragePropertyDictionary
+            self.isNegativeSecureStoragePropertyDictionary
         ]
         
         for dict in toMergeWith {
@@ -632,6 +723,8 @@ public extension ReadableSecureStorable where Self : GenericPasswordSecureStorab
         var old = self.genericPasswordBaseStoragePropertyDictionary
         old[String(kSecReturnData)] = true
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
+        old[String(kSecReturnAttributes)] = kCFBooleanTrue
+        
         return old
     }
 }
@@ -660,7 +753,6 @@ public extension SecureStorable where Self : InternetPasswordSecureStorable {
         
         let toMergeWith = [
             self.accountSecureStoragePropertyDictionary,
-            self.dateableSecureStoragePropertyDictionary,
             self.describableSecureStoragePropertyDictionary,
             self.commentableSecureStoragePropertyDictionary,
             self.creatorDesignatableSecureStoragePropertyDictionary,
@@ -690,6 +782,7 @@ public extension ReadableSecureStorable where Self : InternetPasswordSecureStora
         var old = self.internetPasswordBaseStoragePropertyDictionary
         old[String(kSecReturnData)] = true
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
+        old[String(kSecReturnAttributes)] = kCFBooleanTrue
         return old
     }
 }
@@ -719,11 +812,27 @@ public extension ReadableSecureStorable {
         }
     }
     
-    func readFromSecureStore() -> SecurelyStoredData? {
+    func readFromSecureStore() -> SecureStorableResultType? {
         do {
-            return try performSecureStorageAction()
+            return nil // try performSecureStorageAction()
         } catch let error {
             // Should very rarely occur
+            print(error)
+            return nil
+        }
+    }
+}
+
+struct ResultType: GenericPasswordSecureStorableResultType {
+    var resultDictionary: [String: AnyObject]
+}
+
+public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
+    func readFromSecureStore() -> GenericPasswordSecureStorableResultType? {
+        do {
+            let result = try performSecureStorageAction()
+            return ResultType(resultDictionary: result!)
+        } catch let error {
             print(error)
             return nil
         }
@@ -744,21 +853,21 @@ public extension DeleteableSecureStorable {
 
 // MARK: - Locksmith
 public struct Locksmith {
-    public static func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> SecurelyStoredData? {
+    public static func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> [String: AnyObject]? {
         struct ReadRequest: GenericPasswordSecureStorable, ReadableSecureStorable {
             let service: String
             let account: String
         }
         
         let request = ReadRequest(service: service, account: userAccount)
-        return request.readFromSecureStore()
+        return request.readFromSecureStore()?.data
     }
     
-    public static func saveData(data: SecurelyStoredData, forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public static func saveData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         struct CreateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
             let service: String
             let account: String
-            let data: SecurelyStoredData
+            let data: [String: AnyObject]
         }
         
         let request = CreateRequest(service: service, account: userAccount, data: data)

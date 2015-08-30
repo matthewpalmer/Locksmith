@@ -78,9 +78,9 @@ class LocksmithTests: XCTestCase {
         XCTAssertEqual(loaded3, updatedData)
     }
     
-    func createGenericPasswordWithData(data: SecurelyStoredData) {
+    func createGenericPasswordWithData(data: [String: AnyObject]) {
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable {
-            let data: SecurelyStoredData
+            let data: [String: AnyObject]
             let account: String
             let service: String
         }
@@ -104,7 +104,7 @@ class LocksmithTests: XCTestCase {
         }
         
         let read = ReadGenericPassword(account: userAccount, service: service)
-        let actual = read.readFromSecureStore()! as! TestingDictionaryType
+        let actual = read.readFromSecureStore()!.data as! TestingDictionaryType
         XCTAssertEqual(actual, data)
     }
     
@@ -125,6 +125,43 @@ class LocksmithTests: XCTestCase {
         XCTAssert(d == nil)
     }
     
+    func testReturnedValuesForOptionalAttributes() {
+        let initialData = ["one": "two"]
+        
+        struct Create: CreateableSecureStorable, GenericPasswordSecureStorable {
+            let account: String
+            let service: String
+            let comment: String?
+            let description: String?
+            let creator: UInt?
+            let data: [String: AnyObject]
+        }
+        
+        let creator: UInt = 5
+        let comment = "this is a comment"
+        let description = "this is the description"
+        let c = Create(account: userAccount, service: service, comment: comment, description: description, creator: creator, data: initialData)
+        try! c.createInSecureStore()
+        
+        struct Read: ReadableSecureStorable, GenericPasswordSecureStorable {
+            let account: String
+            let service: String
+        }
+        
+        let r = Read(account: userAccount, service: service)
+        let d = r.readFromSecureStore()
+        
+        XCTAssertEqual(d?.account, userAccount)
+        XCTAssertEqual(d?.service, service)
+        XCTAssertEqual(d!.data as! [String: String], initialData)
+        XCTAssertEqual(d?.creator, creator)
+        XCTAssertEqual(d?.comment, comment)
+        XCTAssertEqual(d?.description, description)
+        
+        XCTAssertNil(d?.generic)
+        XCTAssertNil(d?.isInvisible)
+    }
+    
     func assertStringPairsMatchInDictionary(dictionary: NSDictionary, pairs: [(key: CFString, expectedOutput: String)]) {
         for pair in pairs {
             let a = dictionary[String(pair.0)] as! CFStringRef
@@ -136,7 +173,7 @@ class LocksmithTests: XCTestCase {
         struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable {
             let account: String
             let service: String
-            let data: SecurelyStoredData
+            let data: [String: AnyObject]
             let server: String
             let port: String
             let internetProtocol: LocksmithInternetProtocol
@@ -179,16 +216,14 @@ class LocksmithTests: XCTestCase {
     
     func testGenericPasswordOptionalAttributesAreAppliedForConformingTypes() {
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable {
-            let data: SecurelyStoredData
+            let data: [String: AnyObject]
             let account: String
             let service: String
             let accessGroup: String?
             let description: String?
-            let creationDate: NSDate?
             let creator: UInt?
             var performRequestClosure: PerformRequestClosureType
             let accessible: LocksmithAccessibleOption?
-            let modificationDate: NSDate?
             let comment: String?
             let type: UInt?
             let isInvisible: Bool?
@@ -196,15 +231,13 @@ class LocksmithTests: XCTestCase {
             let generic: NSData?
         }
         
-        let data: SecurelyStoredData = ["some": "data"]
+        let data: [String: AnyObject] = ["some": "data"]
         let account: String = "myUser"
         let service: String = "myService"
         let accessGroup: String = "myAccessGroup"
         let description: String = "myDescription"
-        let creationDate: NSDate = NSDate()
         let creator: UInt = 5
         let accessible: LocksmithAccessibleOption = LocksmithAccessibleOption.Always
-        let modificationDate: NSDate = NSDate()
         let comment: String = "myComment"
         let type: UInt = 10
         let isInvisible: Bool = false
@@ -224,12 +257,6 @@ class LocksmithTests: XCTestCase {
                 (kSecClass, String(kSecClassGenericPassword))
                 ])
             
-            let created = dict[String(kSecAttrCreationDate)] as! CFDateRef
-            XCTAssertEqual(created, creationDate)
-            
-            let modified = dict[String(kSecAttrModificationDate)] as! CFDateRef
-            XCTAssertEqual(modified, modificationDate)
-            
             let cr = dict[String(kSecAttrCreator)] as! CFNumberRef
             XCTAssertEqual(cr as UInt, creator)
             
@@ -248,7 +275,7 @@ class LocksmithTests: XCTestCase {
             return errSecSuccess
         }
         
-        let create: CreateGenericPassword = CreateGenericPassword(data: data, account: account, service: service, accessGroup: accessGroup, description: description, creationDate: creationDate, creator: creator, performRequestClosure: performRequestClosure, accessible: accessible, modificationDate: modificationDate, comment: comment, type: type, isInvisible: isInvisible, isNegative: isNegative, generic: generic)
+        let create: CreateGenericPassword = CreateGenericPassword(data: data, account: account, service: service, accessGroup: accessGroup, description: description, creator: creator, performRequestClosure: performRequestClosure, accessible: accessible, comment: comment, type: type, isInvisible: isInvisible, isNegative: isNegative, generic: generic)
         
         try! create.createInSecureStore()
     }

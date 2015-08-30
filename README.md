@@ -1,3 +1,5 @@
+**Note**: These docs are currently out of date for this branch. They’re roughly right, but won’t be exactly correct.
+
 # Locksmith
 
 A protocol-oriented way to work with the iOS Keychain in Swift.
