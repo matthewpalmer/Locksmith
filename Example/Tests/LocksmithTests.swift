@@ -125,6 +125,36 @@ class LocksmithTests: XCTestCase {
         XCTAssert(d == nil)
     }
     
+    func testForConformanceToAll3Protocols() {
+        struct Omnivore: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
+            let account: String
+            let service: String
+            let data: [String: AnyObject]
+        }
+        
+        let data: [String: String] = ["something": "else"]
+        let omni = Omnivore(account: userAccount, service: service, data: data)
+        
+        try! omni.createInSecureStore()
+        
+        let result = omni.readFromSecureStore()
+        let resultData = result?.data as! [String: String]
+
+        XCTAssertEqual(result?.account, userAccount)
+        XCTAssertEqual(result?.service, service)
+        XCTAssertEqual(resultData, data)
+        
+        try! omni.deleteFromSecureStore()
+        
+        let noResult = omni.readFromSecureStore()
+        XCTAssertNil(noResult?.service)
+        
+        try! omni.createInSecureStore()
+        XCTAssertEqual(result?.account, userAccount)
+        XCTAssertEqual(result?.service, service)
+        XCTAssertEqual(resultData, data)
+    }
+    
     func testDeleteForInternetPassword() {
         struct Create : CreateableSecureStorable, InternetPasswordSecureStorable {
             let account: String

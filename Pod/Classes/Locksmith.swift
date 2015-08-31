@@ -325,8 +325,8 @@ public typealias PerformRequestClosureType = (requestReference: CFDictionaryRef,
 // MARK: - SecureStorable
 /// The base protocol that indicates conforming types will have the ability to be stored in a secure storage container, such as the iOS keychain.
 public protocol SecureStorable {
-    var performRequestClosure: PerformRequestClosureType { get }
-    var asSecureStoragePropertyDictionary: [String: AnyObject] { get }
+//    var performRequestClosure: PerformRequestClosureType { get }
+//    var asSecureStoragePropertyDictionary: [String: AnyObject] { get }
     var accessible: LocksmithAccessibleOption? { get }
     var accessGroup: String? { get }
 }
@@ -374,12 +374,12 @@ public extension SecureStorable {
         return Dictionary(withoutOptionalValues: dictionary)
     }
     
-    private func performSecureStorageAction() throws -> [String: AnyObject]? {
+    private func performSecureStorageAction(closure: PerformRequestClosureType, secureStoragePropertyDictionary: [String: AnyObject]) throws -> [String: AnyObject]? {
         var result: AnyObject?
-        let request = self.asSecureStoragePropertyDictionary
+        let request = secureStoragePropertyDictionary
         let requestReference = request as CFDictionaryRef
         
-        let status = performRequestClosure(requestReference: requestReference, result: &result)
+        let status = closure(requestReference: requestReference, result: &result)
         
         let statusCode = Int(status)
         
@@ -743,7 +743,7 @@ public extension SecureStorable where Self : GenericPasswordSecureStorable {
 }
 
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asCreateableSecureStoragePropertyDictionary: [String: AnyObject] {
         var old = self.genericPasswordBaseStoragePropertyDictionary
         old[String(kSecValueData)] = NSKeyedArchiver.archivedDataWithRootObject(self.data)
         return old
@@ -751,7 +751,7 @@ public extension CreateableSecureStorable where Self : GenericPasswordSecureStor
 }
 
 public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asReadableSecureStoragePropertyDictionary: [String: AnyObject] {
         var old = self.genericPasswordBaseStoragePropertyDictionary
         old[String(kSecReturnData)] = true
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
@@ -762,7 +762,7 @@ public extension ReadableSecureStorable where Self : GenericPasswordSecureStorab
 }
 
 public extension DeleteableSecureStorable where Self : GenericPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asDeleteableSecureStoragePropertyDictionary: [String: AnyObject] {
         return self.genericPasswordBaseStoragePropertyDictionary
     }
 }
@@ -802,7 +802,7 @@ public extension SecureStorable where Self : InternetPasswordSecureStorable {
 }
 
 public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asCreateableSecureStoragePropertyDictionary: [String: AnyObject] {
         var old = self.internetPasswordBaseStoragePropertyDictionary
         old[String(kSecValueData)] = NSKeyedArchiver.archivedDataWithRootObject(self.data)
         return old
@@ -810,7 +810,7 @@ public extension CreateableSecureStorable where Self : InternetPasswordSecureSto
 }
 
 public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asReadableSecureStoragePropertyDictionary: [String: AnyObject] {
         var old = self.internetPasswordBaseStoragePropertyDictionary
         old[String(kSecReturnData)] = true
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
@@ -820,84 +820,97 @@ public extension ReadableSecureStorable where Self : InternetPasswordSecureStora
 }
 
 public extension DeleteableSecureStorable where Self : InternetPasswordSecureStorable {
-    var asSecureStoragePropertyDictionary: [String: AnyObject] {
+    var asDeleteableSecureStoragePropertyDictionary: [String: AnyObject] {
         return self.internetPasswordBaseStoragePropertyDictionary
     }
 }
 
 public extension CreateableSecureStorable {
-    var performRequestClosure: PerformRequestClosureType {
+    var performCreateRequestClosure: PerformRequestClosureType {
         return { (requestReference: CFDictionaryRef, inout result: AnyObject?) in
             return withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
         }
     }
     
     func createInSecureStore() throws {
-        try performSecureStorageAction()
+//        try performSecureStorageAction(performCreateRequestClosure, secureStoragePropertyDictionary: self.asC)
+    }
+}
+
+public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
+    func createInSecureStore() throws {
+        try performSecureStorageAction(performCreateRequestClosure, secureStoragePropertyDictionary: self.asCreateableSecureStoragePropertyDictionary)
+    }
+}
+
+public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
+    func createInSecureStore() throws {
+        try performSecureStorageAction(performCreateRequestClosure, secureStoragePropertyDictionary: self.asCreateableSecureStoragePropertyDictionary)
     }
 }
 
 public extension ReadableSecureStorable {
-    var performRequestClosure: PerformRequestClosureType {
+    var performReadRequestClosure: PerformRequestClosureType {
         return { (requestReference: CFDictionaryRef, inout result: AnyObject?) in
             return withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
         }
     }
     
-    private func constructResult(constructor: ([String: AnyObject]) -> (SecureStorableResultType)) -> SecureStorableResultType? {
-        do {
-            let result = try performSecureStorageAction()
-            return constructor(result!)
-        } catch let error {
-            print(error)
-            return nil
-        }
-    }
-    
     func readFromSecureStore() -> SecureStorableResultType? {
+        // This must be implemented here so that we can properly override it in the type-specific implementations
         return nil
     }
 }
 
 struct GenericPasswordResult: GenericPasswordSecureStorableResultType {
     var resultDictionary: [String: AnyObject]
-    
-    // Can't pass the initializer yet--even GenericPasswordResult.init doesn't work with the protocols
-    static func construct(resultDictionary: [String: AnyObject]) -> (SecureStorableResultType) {
-        return GenericPasswordResult(resultDictionary: resultDictionary)
-    }
 }
 
 public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
     func readFromSecureStore() -> GenericPasswordSecureStorableResultType? {
-        return constructResult(GenericPasswordResult.construct) as? GenericPasswordSecureStorableResultType
+        do {
+            let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: self.asReadableSecureStoragePropertyDictionary)
+            return GenericPasswordResult(resultDictionary: result!)
+        } catch {
+            print(error)
+            return nil
+        }
     }
 }
 
 struct InternetPasswordResult: InternetPasswordSecureStorableResultType {
     var resultDictionary: [String: AnyObject]
-    
-    // Can't pass the initializer yet--even GenericPasswordResult.init doesn't work with the protocols
-    static func construct(resultDictionary: [String: AnyObject]) -> (SecureStorableResultType) {
-        return InternetPasswordResult(resultDictionary: resultDictionary)
-    }
 }
 
 public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
     func readFromSecureStore() -> InternetPasswordSecureStorableResultType? {
-        return constructResult(InternetPasswordResult.construct) as? InternetPasswordSecureStorableResultType
+        do {
+            let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: self.asReadableSecureStoragePropertyDictionary)
+            return InternetPasswordResult(resultDictionary: result!)
+        } catch {
+            print(error)
+            return nil
+        }
     }
 }
 
 public extension DeleteableSecureStorable {
-    var performRequestClosure: PerformRequestClosureType {
+    var performDeleteRequestClosure: PerformRequestClosureType {
         return { (requestReference, _) in
             return SecItemDelete(requestReference)
         }
     }
-    
+}
+
+public extension DeleteableSecureStorable where Self : GenericPasswordSecureStorable {
     func deleteFromSecureStore() throws {
-        try performSecureStorageAction()
+        try performSecureStorageAction(performDeleteRequestClosure, secureStoragePropertyDictionary: self.asDeleteableSecureStoragePropertyDictionary)
+    }
+}
+
+public extension DeleteableSecureStorable where Self : InternetPasswordSecureStorable {
+    func deleteFromSecureStore() throws {
+        try performSecureStorageAction(performDeleteRequestClosure, secureStoragePropertyDictionary: self.asDeleteableSecureStoragePropertyDictionary)
     }
 }
 
