@@ -18,7 +18,7 @@ A sane way to work with the iOS Keychain in Swift.
 Locksmith is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "Locksmith"
+    pod "Locksmith", :git => 'https://github.com/matthewpalmer/Locksmith.git', :branch => '1.2.2'
 
 ### Manual
 
