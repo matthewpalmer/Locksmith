@@ -23,7 +23,7 @@ Locksmith for Swift 2, simply add the following line to your Podfile:
 
     pod 'Locksmith'
 
-> Swift 1.2 support is available via the `1.2` branch.
+> Swift 1.2 support is available via the `1.2.2` branch.
 
 ## Quick start
 
