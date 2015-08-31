@@ -289,7 +289,7 @@ class LocksmithTests: XCTestCase {
     }
     
     func testInternetPasswordAttributesAreAppliedForConformingTypes() {
-        struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable {
+        struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable, DeleteableSecureStorable {
             let account: String
             let service: String
             let data: [String: AnyObject]
@@ -299,8 +299,7 @@ class LocksmithTests: XCTestCase {
             let authenticationType: LocksmithInternetAuthenticationType
             let path: String?
             let securityDomain: String?
-            
-            let performRequestClosure: PerformRequestClosureType
+            let performCreateRequestClosure: PerformRequestClosureType
         }
         
         let account = "myUser"
@@ -311,6 +310,8 @@ class LocksmithTests: XCTestCase {
         let securityDomain = "secdomain"
         let data = ["some": "data"]
         let server = "server"
+        
+        let expect = self.expectationWithDescription("Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -328,11 +329,16 @@ class LocksmithTests: XCTestCase {
             let p = dict[String(kSecAttrPort)] as! CFNumberRef
             XCTAssertEqual(p as Int, port)
             
+            expect.fulfill()
+            
             return errSecSuccess
         }
         
-        let create = CreateInternetPassword(account: account, service: service, data: data, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain, performRequestClosure: performRequestClosure)
+        let create = CreateInternetPassword(account: account, service: service, data: data, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain, performCreateRequestClosure: performRequestClosure)
+        do { try create.deleteFromSecureStore() } catch {}
         try! create.createInSecureStore()
+        
+        self.waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
     func testGenericPasswordOptionalAttributesAreAppliedForConformingTypes() {
@@ -343,7 +349,7 @@ class LocksmithTests: XCTestCase {
             let accessGroup: String?
             let description: String?
             let creator: UInt?
-            var performRequestClosure: PerformRequestClosureType
+            var performCreateRequestClosure: PerformRequestClosureType
             let accessible: LocksmithAccessibleOption?
             let comment: String?
             let type: UInt?
@@ -364,6 +370,8 @@ class LocksmithTests: XCTestCase {
         let isInvisible: Bool = false
         let isNegative: Bool = false
         let generic: NSData = NSData()
+        
+        let expect = self.expectationWithDescription("Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -393,11 +401,15 @@ class LocksmithTests: XCTestCase {
             let gen = dict[String(kSecAttrGeneric)] as! CFDataRef
             XCTAssertEqual(gen, generic)
             
+            expect.fulfill()
+            
             return errSecSuccess
         }
         
-        let create: CreateGenericPassword = CreateGenericPassword(data: data, account: account, service: service, accessGroup: accessGroup, description: description, creator: creator, performRequestClosure: performRequestClosure, accessible: accessible, comment: comment, type: type, isInvisible: isInvisible, isNegative: isNegative, generic: generic)
+        let create: CreateGenericPassword = CreateGenericPassword(data: data, account: account, service: service, accessGroup: accessGroup, description: description, creator: creator, performCreateRequestClosure: performRequestClosure, accessible: accessible, comment: comment, type: type, isInvisible: isInvisible, isNegative: isNegative, generic: generic)
         
         try! create.createInSecureStore()
+
+        self.waitForExpectationsWithTimeout(0.1, handler: nil)
     }
 }
