@@ -90,8 +90,6 @@ struct TwitterAccount: CreateableSecureStorable, GenericPasswordSecureStorable {
 
 Now we get the ability to save our account in the keychain.
 
-- overwrites whatever is stored on the keychain under this user account (if nothing is stored, we save as normal)
-
 ```swift
 let account = TwitterAccount(username: "_matthewpalmer", password: "my_password")
 try account.createInSecureStore()
