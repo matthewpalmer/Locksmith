@@ -125,6 +125,51 @@ class LocksmithTests: XCTestCase {
         XCTAssert(d == nil)
     }
     
+    func testDeleteForInternetPassword() {
+        struct Create : CreateableSecureStorable, InternetPasswordSecureStorable {
+            let account: String
+            let server: String
+            let data: [String: AnyObject]
+            let port: Int
+            let internetProtocol: LocksmithInternetProtocol
+            let authenticationType: LocksmithInternetAuthenticationType
+        }
+        
+        let server = "server"
+        let initialData = ["one": "two"]
+        let port = 8080
+        let internetProtocol = LocksmithInternetProtocol.HTTPS
+        let authenticationType = LocksmithInternetAuthenticationType.DPA
+        
+        struct Delete: DeleteableSecureStorable, InternetPasswordSecureStorable {
+            let account: String
+            let server: String
+            let port: Int
+            let internetProtocol: LocksmithInternetProtocol
+            let authenticationType: LocksmithInternetAuthenticationType
+        }
+
+        struct Read: ReadableSecureStorable, InternetPasswordSecureStorable {
+            let account: String
+            let server: String
+            let port: Int
+            let internetProtocol: LocksmithInternetProtocol
+            let authenticationType: LocksmithInternetAuthenticationType
+        }
+        
+        let c = Create(account: userAccount, server: server, data: initialData, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType)
+        try! c.createInSecureStore()
+        let r1 = Read(account: userAccount, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType)
+        let result1 = r1.readFromSecureStore()
+        XCTAssertEqual(result1?.server, server)
+
+        let d = Delete(account: userAccount, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType)
+        try! d.deleteFromSecureStore()
+
+        let result2 = r1.readFromSecureStore()
+        XCTAssertEqual(result2?.server, nil)
+    }
+    
     func testGenericPasswordMetaAttributesAreCreatedAndReturned() {
         struct Create: CreateableSecureStorable, GenericPasswordSecureStorable {
             let account: String
