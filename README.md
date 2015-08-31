@@ -406,6 +406,7 @@ public enum LocksmithInternetAuthenticationType {
 
 `LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more.
 
+```swift
 public enum {
   case AFP
   case AppleTalk
