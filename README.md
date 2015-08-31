@@ -1,18 +1,18 @@
-<h1><span style='color:red;'>Locksmith</span></h1>
+<h1><span style='color:red !important;'>Locksmith</span></h1>
 
 A powerful, protocol-oriented library for working with the iOS Keychain in Swift.
+
+**What makes Locksmith different to other keychain wrappers?**
+
+* Locksmith’s API is both super-simple and deeply powerful
+* Provides access to all of the keychain’s metadata in a type-useful way via `ResultType` protocols—save an `NSDate`, get an `NSDate` back (without typecasting!)
+* Add functionality to your existing types for free
+* Useful enums and Swift-native types
 
 [![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
-
-**What makes Locksmith different to other keychain wrappers?**
-
-* Locksmith is both super-simple and deeply powerful
-* Provides access to all of the keychain’s metadata in a type-useful way via `ResultType` protocols—save an `NSDate`, get an `NSDate` back (without typecasting!)
-* Add functionality to your existing types for free
-* Useful enums and Swift-native types
 
 ## Installation
 
@@ -84,19 +84,22 @@ struct TwitterAccount: CreateableSecureStorable, GenericPasswordSecureStorable {
 }
 ```
 
-Then, all we’ve got to do is create the account and save it to the keychain
+Now we get the ability to save our account in the keychain.
 
 ```swift
 let account = TwitterAccount(username: "_matthewpalmer", password: "my_password")
 try account.createInSecureStore()
 ```
 
-Creating, reading, and deleting are done similarly. And the best part?
+Creating, reading, and deleting each have their own protocols: `CreateableSecureStorable`, `ReadableSecureStorable`, and `DeleteableSecureStorable`. And the best part?
 
-*You can conform to all three protocols on the same type!*
+**You can conform to all three protocols on the same type!**
 
 ```swift
-struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
+struct TwitterAccount: ReadableSecureStorable, 
+                       CreateableSecureStorable,
+                       DeleteableSecureStorable,
+                       GenericPasswordSecureStorable {
   let username: String
   let password: String
 
@@ -109,13 +112,13 @@ struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, Deletea
 
 let account = TwitterAccount(username: "_matthewpalmer", password: "my_password")
 
-// CreateableSecureStorable lets us create in the keychain
+// CreateableSecureStorable lets us create the account in the keychain
 try account.createInSecureStore()
 
-// ReadableSecureStorable lets us read from the keychain
+// ReadableSecureStorable lets us read the account from the keychain
 let result = account.readFromSecureStore()
 
-// DeleteableSecureStorable lets us delete from the keychain
+// DeleteableSecureStorable lets us delete the account from the keychain
 try account.deleteFromSecureStore()
 ```
 
@@ -192,9 +195,7 @@ var performDeleteRequestClosure: PerformRequestClosureType { get }
 
 ## Powerful support for the Cocoa Keychain
 
-> The coolest part of being protocol oriented
-
-Many wrappers around the keychain have only partial support for the keychain. They usually support only the critical parts, and ignore the rest. This is because there are so many options and variations on the way you can query the keychain that it’s almost impossible to do it reliably, or in a way that is easy for users to adopt.
+Many wrappers around the keychain have only support certain parts of the API.  This is because there are so many options and variations on the way you can query the keychain that it’s almost impossible to abstract effectively.
 
 Locksmith tries to include as much of the keychain as possible, using protocols and protocol extensions to minimize the complexity. You can mix-and-match your generic passwords with your read requests while staying completely type-safe.
 
@@ -208,25 +209,26 @@ Generic passwords are probably the most common use-case of the keychain, and are
 
 Properties listed under ‘Required’ have to be implemented by any types that conform; those listed under ‘Optional’ can be implemented to add additional information to what is saved or read if desired.
 
-One thing to note: if you implement an optional property, its type annotation must match the type specified in the protocol *exactly*. If you implement `description: String?` it has to be that, and it can’t be `var description: String`.
+One thing to note: if you implement an optional property, its type annotation must match the type specified in the protocol *exactly*. If you implement `description: String?` it can’t be declared as `var description: String`.
 
 **Required**
 
 ```swift
-var service: String { get }
 var account: String { get }
+var service: String { get }
 ```
 
 **Optional**
 
 ```swift
-var description: String? { get }
 var comment: String? { get }
 var creator: UInt? { get }
-var label: String? { get }
-var type: UInt? { get }
+var description: String? { get }
+var generic: NSData? { get }
 var isInvisible: Bool? { get }
 var isNegative: Bool? { get }
+var label: String? { get }
+var type: UInt? { get }
 ```
 
 #### `InternetPasswordSecureStorable`
@@ -236,27 +238,36 @@ Types that conform to `InternetPasswordSecureStorable` typically come from web s
 **Required**
 
 ```swift
-var server: String { get }
-var port: String { get }
-var internetProtocol: LocksmithInternetProtocol { get }
+var account: String { get }
 var authenticationType: LocksmithInternetAuthenticationType { get }
+var internetProtocol: LocksmithInternetProtocol { get }
+var port: String { get }
+var server: String { get }
 ```
 
 **Optional**
 
 ```swift
-var securityDomain: String? { get }
+var comment: String? { get }
+var creator: UInt? { get }
+var description: String? { get }
+var isInvisible: Bool? { get }
+var isNegative: Bool? { get }
 var path: String? { get }
+var securityDomain: String? { get }
+var type: UInt? { get }
 ```
 
 ## Result types
 
 By adopting a protocol-oriented design from the ground up, Locksmith can provide access to the result of your keychain queries *with type annotations included*—store an `NSDate`, get an `NSDate` back with no type-casting!
 
-Let’s start with an example—the Twitter account from before, except it’s now an `InternetPasswordSecureStorable`, which lets us store a bit more metadata.
+Let’s start with an example: the Twitter account from before, except it’s now an `InternetPasswordSecureStorable`, which lets us store a bit more metadata.
 
 ```swift
-struct TwitterAccount: InternetPasswordSecureStorable, ReadableSecureStorable, CreateableSecureStorable {
+struct TwitterAccount: InternetPasswordSecureStorable, 
+                       ReadableSecureStorable,
+                       CreateableSecureStorable {
   let username: String
   let password: String
 
@@ -269,6 +280,7 @@ struct TwitterAccount: InternetPasswordSecureStorable, ReadableSecureStorable, C
   let port = 80
   let internetProtocol = .HTTPS
   let authenticationType = .HTTPBasic
+  let path: String? = "/api/2.0/"
 }
 
 let account = TwitterAccount(username: "_matthewpalmer", password: "my_password")
@@ -281,6 +293,8 @@ let result: InternetPasswordSecureStorableResultType = account.readFromSecureSto
 
 result?.port // Gives us an Int directly!
 result?.internetProtocol // Gives us a LocksmithInternetProtocol enum case directly!
+result?.data // Gives us a [String: AnyObject] of what was saved
+// and so on...
 ```
 
 This is *awesome*. No more typecasting.
@@ -290,16 +304,17 @@ This is *awesome*. No more typecasting.
 Everything listed here can be set on a type conforming to `GenericPasswordSecureStorable`, and gotten back from the result returned from `readFromSecureStore()` on that type.
 
 ```swift
-var service: String { get }
 var account: String { get }
-var description: String? { get }
+var service: String { get }
 var comment: String? { get }
 var creator: UInt? { get }
-var label: String? { get }
-var type: UInt? { get }
+var description: String? { get }
+var data: [String: AnyObject]? { get }
+var generic: NSData? { get }
 var isInvisible: Bool? { get }
 var isNegative: Bool? { get }
-var generic: NSData? { get }
+var label: String? { get }
+var type: UInt? { get }
 ```
 
 #### `InternetPasswordSecureStorableResultType`
@@ -308,18 +323,19 @@ Everything listed here can be set on a type conforming to `InternetPasswordSecur
 
 ```swift
 var account: String { get }
-var server: String { get }
-var port: Int { get }
-var internetProtocol: LocksmithInternetProtocol { get }
 var authenticationType: LocksmithInternetAuthenticationType { get }
-var description: String? { get }
+var internetProtocol: LocksmithInternetProtocol { get }
+var port: Int { get }
+var server: String { get }
 var comment: String? { get }
 var creator: UInt? { get }
-var type: UInt? { get }
+var data: [String: AnyObject]? { get }
+var description: String? { get }
 var isInvisible: Bool? { get }
 var isNegative: Bool? { get }
-var securityDomain: String? { get }
 var path: String? { get }
+var securityDomain: String? { get }
+var type: UInt? { get }
 ```
 
 ## Enumerations
@@ -332,13 +348,14 @@ Locksmith provides a bunch of handy enums for configuring your requests, so you 
 
 ```swift
 public enum LocksmithAccessibleOption {
-  case WhenUnlocked
   case AfterFirstUnlock
-  case Always
-  case WhenPasscodeSetThisDeviceOnly
-  case WhenUnlockedThisDeviceOnly
   case AfterFirstUnlockThisDeviceOnly
+  case Always
   case AlwaysThisDeviceOnly
+  case WhenPasscodeSetThisDeviceOnly
+  case WhenUnlocked
+  case WhenUnlockedThisDeviceOnly
+}
 ```
 
 #### `LocksmithError`
@@ -370,14 +387,14 @@ public enum LocksmithError: ErrorType {
 
 ```swift
 public enum LocksmithInternetAuthenticationType {
-  case NTLM
-  case MSN
+  case Default
   case DPA
-  case RPA
+  case HTMLForm
   case HTTPBasic
   case HTTPDigest
-  case HTMLForm
-  case Default
+  case MSN
+  case NTLM
+  case RPA
 }
 ```
 
@@ -386,36 +403,36 @@ public enum LocksmithInternetAuthenticationType {
 `LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more.
 
 public enum {
-  case FTP
-  case FTPAccount
-  case HTTP
-  case IRC
-  case NNTP
-  case POP3
-  case SMTP
-  case SOCKS
-  case IMAP
-  case LDAP
-  case AppleTalk
   case AFP
-  case Telnet
-  case SSH
-  case FTPS
-  case HTTPS
-  case HTTPProxy
-  case HTTPSProxy
-  case FTPProxy
-  case SMB
-  case RTSP
-  case RTSPProxy
+  case AppleTalk
   case DAAP
   case EPPC
-  case IPP
-  case NNTPS, LDAPS
-  case TelnetS
+  case FTP
+  case FTPAccount
+  case FTPProxy
+  case FTPS
+  case HTTP
+  case HTTPProxy
+  case HTTPS
+  case HTTPSProxy
+  case IMAP
   case IMAPS
+  case IPP
+  case IRC
   case IRCS
+  case LDAP
+  case NNTP
+  case NNTPS, LDAPS
+  case POP3
   case POP3S
+  case RTSP
+  case RTSPProxy
+  case SMB
+  case SMTP
+  case SOCKS
+  case SSH
+  case Telnet
+  case TelnetS
 }
 ```
 
