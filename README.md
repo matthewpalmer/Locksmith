@@ -1,6 +1,8 @@
-<h1><span style='color:red !important;'>Locksmith</span></h1>
+# Locksmith
 
 A powerful, protocol-oriented library for working with the iOS Keychain in Swift.
+
+> Want to read more about Locksmith’s design? I wrote a blog post on [protocol oriented programming in Swift](http://matthewpalmer.net/blog/2015/08/30/protocol-oriented-programming-in-the-real-world/).
 
 **What makes Locksmith different to other keychain wrappers?**
 
