@@ -1,3 +1,5 @@
+> This is Locksmith’s compatibility branch for Swift 1.2
+
 # Locksmith
 
 A sane way to work with the iOS Keychain in Swift.
@@ -17,8 +19,6 @@ Locksmith is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
     pod "Locksmith"
-
-Swift 2 support is available via the `2.0` branch.
 
 ### Manual
 
