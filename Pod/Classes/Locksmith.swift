@@ -68,9 +68,9 @@ public class Locksmith: NSObject {
         
         switch type {
         case .Create:
-            status = withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
+            status = SecItemAdd(requestReference, &result)
         case .Read:
-            status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
+            status = SecItemCopyMatching(requestReference, &result)
         case .Delete:
             status = SecItemDelete(requestReference)
         case .Update:
