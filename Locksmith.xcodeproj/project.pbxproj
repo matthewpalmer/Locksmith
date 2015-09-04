@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		9D60D8141B10927B00BE14A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D60D8131B10927B00BE14A9 /* Info.plist */; };
 		9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */; };
-		9DF0A2C11B0E394F0049F83A /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */; };
 		9DF0A2C81B0E3D370049F83A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DF0A2C71B0E3D370049F83A /* Info.plist */; };
+		B30EBCF41B96FF5200E0B60C /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */; };
+		B30EBCF61B96FF5200E0B60C /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */; };
+		B30EBCF71B96FF5200E0B60C /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */; };
+		B30EBCF81B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */; };
+		B30EBCF91B96FF5200E0B60C /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */; };
+		B30EBCFA1B96FF5200E0B60C /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */; };
+		B30EBCFC1B96FFF700E0B60C /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */; };
 		BFFB19DC1A4870A300CCFFC3 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */; };
-		BFFB19E31A4870A300CCFFC3 /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB19E21A4870A300CCFFC3 /* LocksmithTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,11 +33,16 @@
 /* Begin PBXFileReference section */
 		9D60D8131B10927B00BE14A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Pod/Info.plist; sourceTree = SOURCE_ROOT; };
 		9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locksmith.swift; path = Pod/Classes/Locksmith.swift; sourceTree = SOURCE_ROOT; };
-		9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithRequest.swift; path = Pod/Classes/LocksmithRequest.swift; sourceTree = SOURCE_ROOT; };
 		9DF0A2C71B0E3D370049F83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary_Initializers.swift; path = Pod/Classes/Dictionary_Initializers.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithAccessibleOption.swift; path = Pod/Classes/LocksmithAccessibleOption.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithError.swift; path = Pod/Classes/LocksmithError.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithInternetAuthenticationType.swift; path = Pod/Classes/LocksmithInternetAuthenticationType.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithInternetProtocol.swift; path = Pod/Classes/LocksmithInternetProtocol.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithSecurityClass.swift; path = Pod/Classes/LocksmithSecurityClass.swift; sourceTree = SOURCE_ROOT; };
+		B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithTests.swift; path = Example/Tests/LocksmithTests.swift; sourceTree = SOURCE_ROOT; };
 		BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFFB19DB1A4870A300CCFFC3 /* LocksmithTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocksmithTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFFB19E21A4870A300CCFFC3 /* LocksmithTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocksmithTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */,
-				9DF0A2BF1B0E394F0049F83A /* LocksmithRequest.swift */,
+				B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */,
+				B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */,
+				B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */,
+				B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */,
+				B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */,
+				B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */,
 				BFFB19D31A4870A300CCFFC3 /* Supporting Files */,
 			);
 			path = Locksmith;
@@ -93,7 +108,7 @@
 		BFFB19DF1A4870A300CCFFC3 /* LocksmithTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB19E21A4870A300CCFFC3 /* LocksmithTests.swift */,
+				B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */,
 				BFFB19E01A4870A300CCFFC3 /* Supporting Files */,
 			);
 			path = LocksmithTests;
@@ -216,8 +231,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF0A2C11B0E394F0049F83A /* LocksmithRequest.swift in Sources */,
+				B30EBCF71B96FF5200E0B60C /* LocksmithError.swift in Sources */,
+				B30EBCF81B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift in Sources */,
+				B30EBCF91B96FF5200E0B60C /* LocksmithInternetProtocol.swift in Sources */,
+				B30EBCFA1B96FF5200E0B60C /* LocksmithSecurityClass.swift in Sources */,
+				B30EBCF41B96FF5200E0B60C /* Dictionary_Initializers.swift in Sources */,
 				9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */,
+				B30EBCF61B96FF5200E0B60C /* LocksmithAccessibleOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFB19E31A4870A300CCFFC3 /* LocksmithTests.swift in Sources */,
+				B30EBCFC1B96FFF700E0B60C /* LocksmithTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
