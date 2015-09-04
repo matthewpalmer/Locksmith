@@ -1,7 +1,7 @@
 # references:
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
-
+osx_image: xcode7
 language: swift
 # cache: cocoapods
 # podfile: Example/Podfile
@@ -11,5 +11,5 @@ language: swift
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -workspace Example/Locksmith.xcworkspace -scheme Locksmith -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/Locksmith.xcworkspace/ -scheme Locksmith-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
 - pod lib lint --quick
