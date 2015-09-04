@@ -43,7 +43,7 @@ let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
 
 **Update data**
 
-- writes the data to the keychain if it does not exist already
+- as well as replacing existing data, this writes data to the keychain if it does not exist already
 
 ```swift
 try Locksmith.updateData(["some key": "another value"], forUserAccount: "myUserAccount")
@@ -132,7 +132,7 @@ So. cool.
 
 By declaring that your type adopts these protocols—which is what we did above with `struct TwitterAccount: CreateableSecureStorable, ...`—you get a bunch of functionality for free.
 
-I like to think about protocols with extensions in terms of “what you get,” “what you’ve gotta do,” and ”what’s optional.” Most of the stuff under ‘optional’ should only be implemented if you want to change existing functionality.
+I like to think about protocols with extensions in terms of “what you get,” “what you’ve gotta do,” and “what’s optional.” Most of the stuff under ‘optional’ should only be implemented if you want to change existing functionality.
 
 #### `CreateableSecureStorable`
 
