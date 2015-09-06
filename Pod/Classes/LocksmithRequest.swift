@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Colour Coding. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Security
 
 // With thanks to http://iosdeveloperzone.com/2014/10/22/taming-foundation-constants-into-swift-enums/
