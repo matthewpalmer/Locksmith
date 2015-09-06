@@ -122,7 +122,7 @@ class LocksmithTests: XCTestCase {
         try! delete.deleteFromSecureStore()
         
         let d = Locksmith.loadDataForUserAccount(userAccount, inService: service)
-        XCTAssert(d == nil)
+        XCTAssertNil(d)
     }
     
     func testForConformanceToAll3Protocols() {
@@ -197,7 +197,7 @@ class LocksmithTests: XCTestCase {
         try! d.deleteFromSecureStore()
 
         let result2 = r1.readFromSecureStore()
-        XCTAssertEqual(result2?.server, nil)
+        XCTAssertNil(result2?.server)
     }
     
     func testGenericPasswordMetaAttributesAreCreatedAndReturned() {
