@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
     'Locksmith' => ['Pod/Assets/*.png']
   }
 
-  s.frameworks = 'UIKit', 'Security'
+  s.frameworks = 'Foundation', 'Security'
 end

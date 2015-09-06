@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 public enum LocksmithInternetAuthenticationType: RawRepresentable {
     case NTLM, MSN, DPA, RPA, HTTPBasic, HTTPDigest, HTMLForm, Default

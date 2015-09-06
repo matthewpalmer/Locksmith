@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 public extension Dictionary {
     init(withoutOptionalValues initial: Dictionary<Key, Value?>) {

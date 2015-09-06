@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 // MARK: Locksmith Error
 public enum LocksmithError: String, ErrorType {

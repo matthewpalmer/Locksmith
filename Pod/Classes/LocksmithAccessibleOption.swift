@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 // MARK: Accessible
 public enum LocksmithAccessibleOption: RawRepresentable {

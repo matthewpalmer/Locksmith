@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
 

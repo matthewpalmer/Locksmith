@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 // With thanks to http://iosdeveloperzone.com/2014/10/22/taming-foundation-constants-into-swift-enums/
 // MARK: Security Class
