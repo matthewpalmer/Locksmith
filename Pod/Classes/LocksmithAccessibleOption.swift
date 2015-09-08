@@ -2,7 +2,9 @@ import Foundation
 
 // MARK: Accessible
 public enum LocksmithAccessibleOption: RawRepresentable {
-    case WhenUnlocked, AfterFirstUnlock, Always, WhenPasscodeSetThisDeviceOnly, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    case WhenUnlocked, AfterFirstUnlock, Always, WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
+    @available (iOS 8,*)
+    case WhenPasscodeSetThisDeviceOnly
     
     public init?(rawValue: String) {
         switch rawValue {
@@ -12,8 +14,6 @@ public enum LocksmithAccessibleOption: RawRepresentable {
             self = AfterFirstUnlock
         case String(kSecAttrAccessibleAlways):
             self = Always
-        case String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly):
-            self = WhenPasscodeSetThisDeviceOnly
         case String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly):
             self = WhenUnlockedThisDeviceOnly
         case String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly):
@@ -21,8 +21,17 @@ public enum LocksmithAccessibleOption: RawRepresentable {
         case String(kSecAttrAccessibleAlwaysThisDeviceOnly):
             self = AlwaysThisDeviceOnly
         default:
-            print("Accessible: invalid rawValue provided. Defaulting to Accessible.WhenUnlocked.")
-            self = WhenUnlocked
+            if #available(iOS 8.0, *) {
+                if rawValue == String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly) {
+                    self = WhenPasscodeSetThisDeviceOnly
+                } else {
+                    print("Accessible: invalid rawValue provided. Defaulting to LocksmithAccessibleOption.WhenUnlocked.")
+                    self = WhenUnlocked
+                }
+            } else {
+                print("Accessible: invalid rawValue provided. Defaulting to LocksmithAccessibleOption.WhenUnlocked.")
+                self = WhenUnlocked
+            }
         }
     }
     
@@ -35,7 +44,11 @@ public enum LocksmithAccessibleOption: RawRepresentable {
         case .Always:
             return String(kSecAttrAccessibleAlways)
         case .WhenPasscodeSetThisDeviceOnly:
-            return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            if #available(iOS 8.0, *) {
+                return String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+            } else {
+                fatalError("LocksmithAccessibleOption.WhenPasscodeSetThisDeviceOnly has no raw representation in iOS 7 or OS X.")
+            }
         case .WhenUnlockedThisDeviceOnly:
             return String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
         case .AfterFirstUnlockThisDeviceOnly:
