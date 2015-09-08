@@ -13,6 +13,19 @@
 		07A4B71C50D9597CF917D4FE /* EXPMatchers.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EFE3DF93A99DBAC7EFBEC2 /* EXPMatchers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B5CF8891029C5DFBAD3FA3C /* SPTExample.h in Headers */ = {isa = PBXBuildFile; fileRef = D48C5C55D0644D7CB0CD3551 /* SPTExample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E4571BBF518AE8F42E817B3 /* EXPMatchers+endWith.h in Headers */ = {isa = PBXBuildFile; fileRef = 93B6CDD1C13BE6F21D7C0D6E /* EXPMatchers+endWith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0E460E811B92B7D000D5241B /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF96FAE7F7FF350B0CB2B3C7 /* Locksmith.swift */; };
+		0E460E831B944F4300D5241B /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E821B944F4300D5241B /* LocksmithInternetProtocol.swift */; };
+		0E460E841B944F4300D5241B /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E821B944F4300D5241B /* LocksmithInternetProtocol.swift */; };
+		0E460E861B944FB800D5241B /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E851B944FB800D5241B /* LocksmithError.swift */; };
+		0E460E871B944FB800D5241B /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E851B944FB800D5241B /* LocksmithError.swift */; };
+		0E460E891B944FF800D5241B /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E881B944FF800D5241B /* LocksmithSecurityClass.swift */; };
+		0E460E8A1B944FF800D5241B /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E881B944FF800D5241B /* LocksmithSecurityClass.swift */; };
+		0E460E8C1B94502500D5241B /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E8B1B94502500D5241B /* LocksmithInternetAuthenticationType.swift */; };
+		0E460E8D1B94502500D5241B /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E8B1B94502500D5241B /* LocksmithInternetAuthenticationType.swift */; };
+		0E460E8F1B94504B00D5241B /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E8E1B94504B00D5241B /* LocksmithAccessibleOption.swift */; };
+		0E460E901B94504B00D5241B /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E8E1B94504B00D5241B /* LocksmithAccessibleOption.swift */; };
+		0E460E921B9451E900D5241B /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E911B9451E900D5241B /* Dictionary_Initializers.swift */; };
+		0E460E931B9451E900D5241B /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E460E911B9451E900D5241B /* Dictionary_Initializers.swift */; };
 		10C30956E8ADE7A1C87DA2EB /* SpectaSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 00234EE34EBD5D8B8A2CC35A /* SpectaSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14168A1F75A19980EFD2D2E5 /* EXPMatchers+equal.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBE72B542ED9074425509EB /* EXPMatchers+equal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19AB0D01E5490DB99785D465 /* EXPMatchers+raise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3086223A59C78DD82DADBF33 /* EXPMatchers+raise.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,7 +69,6 @@
 		5E2FD81F9B213781D134CF33 /* XCTestRun+Specta.h in Headers */ = {isa = PBXBuildFile; fileRef = CE3402F17C786AA866ED4184 /* XCTestRun+Specta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60871D3B9E631A69D701881D /* EXPMatchers+notify.m in Sources */ = {isa = PBXBuildFile; fileRef = 3664AF859D0947E85BD8ADC5 /* EXPMatchers+notify.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		60E3837FC9535B3DB6A55A39 /* EXPMatchers+beSupersetOf.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BE9072FDBDE322B2EA2CF8 /* EXPMatchers+beSupersetOf.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6178C30ADF1231DDC3671C9B /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2E53D799048701CD641B75 /* LocksmithRequest.swift */; };
 		64FEA2541907D8B2727AA88D /* EXPMatchers+beInstanceOf.m in Sources */ = {isa = PBXBuildFile; fileRef = DADA5F60ABEAB0D22A8FEA6B /* EXPMatchers+beInstanceOf.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6563354F35A4B7764F0AAAB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6D6D61DC0B85CFDC896E1E /* Foundation.framework */; };
 		68BF8DDB6233161110E31AB0 /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9CAFBC6CE6CC0D7919AE88 /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,7 +81,6 @@
 		721930BAF47FD79EA044A058 /* EXPMatchers+respondTo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59E72B0EBCE7546D636796 /* EXPMatchers+respondTo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7328DA8830FE9F1529D31993 /* SPTXCTestReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = EBF978B58927361F7366B880 /* SPTXCTestReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		737A765D45D8C6F58236756D /* EXPMatchers+respondTo.h in Headers */ = {isa = PBXBuildFile; fileRef = 88F119C17D8261E851EB20D5 /* EXPMatchers+respondTo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		796912D454A5B93D65D6F91E /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF96FAE7F7FF350B0CB2B3C7 /* Locksmith.swift */; };
 		7B9537FD66766934E5558676 /* EXPDoubleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA84F8CF432584BBC70748B /* EXPDoubleTuple.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7E38C020DB81BBF88D9222B8 /* XCTestLog+Specta.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A44F6F4215603D9E89E41A /* XCTestLog+Specta.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7E815AE22AFE1C28581211F6 /* ExpectaSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 473488C99695CA079D32EDBD /* ExpectaSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,7 +95,6 @@
 		8C1B8746364E4D9E3B893748 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6D6D61DC0B85CFDC896E1E /* Foundation.framework */; };
 		8E708CCDCC73888523C30107 /* Pods-Tests-Locksmith-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D038C4A26BDE4ED9F64DA9F /* Pods-Tests-Locksmith-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FF363667C3364E6AAEE9A77 /* EXPDoubleTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C4004DC631978F7FC5DF072 /* EXPDoubleTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		922638F637E8B15970504607 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2E53D799048701CD641B75 /* LocksmithRequest.swift */; };
 		9373C9B0EE80CD4B79BB5FFF /* Pods-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7395FFDBE01E3C1A49DD3501 /* Pods-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96CBFDF35FAAADF325BA110D /* EXPMatchers+conformTo.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DFDCFE7C93F09A152EE1A3B /* EXPMatchers+conformTo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D5A95A1D2BD0C3E8C0BA213 /* EXPMatchers+beCloseTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667AE19B7E489A5C53FBB92 /* EXPMatchers+beCloseTo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -191,6 +201,12 @@
 		0C4004DC631978F7FC5DF072 /* EXPDoubleTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPDoubleTuple.h; path = src/EXPDoubleTuple.h; sourceTree = "<group>"; };
 		0DFA3BB43F6A3B0157A90070 /* EXPMatchers+beGreaterThanOrEqualTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beGreaterThanOrEqualTo.m"; path = "src/matchers/EXPMatchers+beGreaterThanOrEqualTo.m"; sourceTree = "<group>"; };
 		0E198AA4AC832494E0B63E5E /* Pods-Locksmith-Locksmith-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Locksmith-Locksmith-dummy.m"; sourceTree = "<group>"; };
+		0E460E821B944F4300D5241B /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
+		0E460E851B944FB800D5241B /* LocksmithError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithError.swift; sourceTree = "<group>"; };
+		0E460E881B944FF800D5241B /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithSecurityClass.swift; sourceTree = "<group>"; };
+		0E460E8B1B94502500D5241B /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetAuthenticationType.swift; sourceTree = "<group>"; };
+		0E460E8E1B94504B00D5241B /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithAccessibleOption.swift; sourceTree = "<group>"; };
+		0E460E911B9451E900D5241B /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary_Initializers.swift; sourceTree = "<group>"; };
 		12A029F492765C4C99EB830C /* XCTestCase+Specta.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestCase+Specta.m"; path = "src/XCTestCase+Specta.m"; sourceTree = "<group>"; };
 		12C3719A9EB3BD854C6E87A1 /* EXPFloatTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPFloatTuple.h; path = src/EXPFloatTuple.h; sourceTree = "<group>"; };
 		1549D4BE3B7613E6F6BE4B04 /* EXPMatchers+haveCountOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+haveCountOf.m"; path = "src/matchers/EXPMatchers+haveCountOf.m"; sourceTree = "<group>"; };
@@ -336,7 +352,6 @@
 		EBF978B58927361F7366B880 /* SPTXCTestReporter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTXCTestReporter.h; path = src/SPTXCTestReporter.h; sourceTree = "<group>"; };
 		EDBE72B542ED9074425509EB /* EXPMatchers+equal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+equal.h"; path = "src/matchers/EXPMatchers+equal.h"; sourceTree = "<group>"; };
 		EEE8816D049FD510B554FFDA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF2E53D799048701CD641B75 /* LocksmithRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		EF3657385FF29C09AA38DC9D /* Pods-Locksmith-Locksmith.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Locksmith-Locksmith.modulemap"; sourceTree = "<group>"; };
 		EFD37A935FC49CABEAC95838 /* Pods-Locksmith-Locksmith.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Locksmith-Locksmith.xcconfig"; sourceTree = "<group>"; };
 		F0C5BBB4A14F0B660AFAC239 /* EXPMatchers+beInTheRangeOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beInTheRangeOf.m"; path = "src/matchers/EXPMatchers+beInTheRangeOf.m"; sourceTree = "<group>"; };
@@ -580,7 +595,12 @@
 			isa = PBXGroup;
 			children = (
 				DF96FAE7F7FF350B0CB2B3C7 /* Locksmith.swift */,
-				EF2E53D799048701CD641B75 /* LocksmithRequest.swift */,
+				0E460E911B9451E900D5241B /* Dictionary_Initializers.swift */,
+				0E460E8E1B94504B00D5241B /* LocksmithAccessibleOption.swift */,
+				0E460E8B1B94502500D5241B /* LocksmithInternetAuthenticationType.swift */,
+				0E460E881B944FF800D5241B /* LocksmithSecurityClass.swift */,
+				0E460E851B944FB800D5241B /* LocksmithError.swift */,
+				0E460E821B944F4300D5241B /* LocksmithInternetProtocol.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -984,6 +1004,7 @@
 		50F3A9DFDD0E9D9B2A0EC128 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = 9B6594FB78E82DA91E0F5B4C /* Build configuration list for PBXProject "Pods" */;
@@ -1077,7 +1098,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E460E811B92B7D000D5241B /* Locksmith.swift in Sources */,
+				0E460E8C1B94502500D5241B /* LocksmithInternetAuthenticationType.swift in Sources */,
 				2053EC95BD153CAF516EA7EE /* Pods-Locksmith-dummy.m in Sources */,
+				0E460E8F1B94504B00D5241B /* LocksmithAccessibleOption.swift in Sources */,
+				0E460E921B9451E900D5241B /* Dictionary_Initializers.swift in Sources */,
+				0E460E831B944F4300D5241B /* LocksmithInternetProtocol.swift in Sources */,
+				0E460E891B944FF800D5241B /* LocksmithSecurityClass.swift in Sources */,
+				0E460E861B944FB800D5241B /* LocksmithError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,8 +1114,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43013AD8CD8A7F330BE2BC4 /* Locksmith.swift in Sources */,
-				922638F637E8B15970504607 /* LocksmithRequest.swift in Sources */,
+				0E460E8D1B94502500D5241B /* LocksmithInternetAuthenticationType.swift in Sources */,
 				AEFCE8AD57F178A2FA9339BF /* Pods-Tests-Locksmith-dummy.m in Sources */,
+				0E460E901B94504B00D5241B /* LocksmithAccessibleOption.swift in Sources */,
+				0E460E931B9451E900D5241B /* Dictionary_Initializers.swift in Sources */,
+				0E460E841B944F4300D5241B /* LocksmithInternetProtocol.swift in Sources */,
+				0E460E8A1B944FF800D5241B /* LocksmithSecurityClass.swift in Sources */,
+				0E460E871B944FB800D5241B /* LocksmithError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,8 +1135,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796912D454A5B93D65D6F91E /* Locksmith.swift in Sources */,
-				6178C30ADF1231DDC3671C9B /* LocksmithRequest.swift in Sources */,
 				6B44D8A6FE8B116C35B7D573 /* Pods-Locksmith-Locksmith-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1390,6 +1421,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D17689735EB0279DFA27E08 /* Pods-Locksmith.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1485,6 +1517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 314BC53FBA90AFDDB7704685 /* Pods-Locksmith.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
