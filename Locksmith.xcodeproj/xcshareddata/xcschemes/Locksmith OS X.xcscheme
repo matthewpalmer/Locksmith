@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFFB19CF1A4870A300CCFFC3"
+               BlueprintIdentifier = "0EC25C741BA385F6004191AF"
                BuildableName = "Locksmith.framework"
-               BlueprintName = "Locksmith"
-               ReferencedContainer = "container:Locksmith.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFFB19DA1A4870A300CCFFC3"
-               BuildableName = "LocksmithTests.xctest"
-               BlueprintName = "LocksmithTests"
+               BlueprintName = "Locksmith OS X"
                ReferencedContainer = "container:Locksmith.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFFB19DA1A4870A300CCFFC3"
-               BuildableName = "LocksmithTests.xctest"
-               BlueprintName = "LocksmithTests"
+               BlueprintIdentifier = "0EC25C7D1BA385F6004191AF"
+               BuildableName = "Locksmith OS X Tests.xctest"
+               BlueprintName = "Locksmith OS X Tests"
                ReferencedContainer = "container:Locksmith.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFFB19CF1A4870A300CCFFC3"
+            BlueprintIdentifier = "0EC25C741BA385F6004191AF"
             BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith"
+            BlueprintName = "Locksmith OS X"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFFB19CF1A4870A300CCFFC3"
+            BlueprintIdentifier = "0EC25C741BA385F6004191AF"
             BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith"
+            BlueprintName = "Locksmith OS X"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFFB19CF1A4870A300CCFFC3"
+            BlueprintIdentifier = "0EC25C741BA385F6004191AF"
             BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith"
+            BlueprintName = "Locksmith OS X"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

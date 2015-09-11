@@ -1,6 +1,6 @@
 # Locksmith
 
-A powerful, protocol-oriented library for working with the Cocoa Keychain in Swift.
+A powerful, protocol-oriented library for working with the keychain in Swift.
 
 - [x] 📱 iOS 8.0+
 - [x] 💻 Mac OS X 10.10+
