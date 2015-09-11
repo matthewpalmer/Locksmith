@@ -1,22 +1,25 @@
 # Locksmith
 
-A powerful, protocol-oriented library for working with the iOS Keychain in Swift.
+A powerful, protocol-oriented library for working with the Cocoa Keychain in Swift.
 
-> Want to read more about Locksmith’s design? I wrote a blog post on [protocol oriented programming in Swift](http://matthewpalmer.net/blog/2015/08/30/protocol-oriented-programming-in-the-real-world/).
+- [x] 📱 iOS 8.0+
+- [x] 💻 Mac OS X 10.10+
+- [ ] ⌚️ watchOS 2 (*coming soon*)
+- [ ] 📺 tvOS (*coming soon?*)
 
-**What makes Locksmith different to other keychain wrappers?**
+How is Locksmith different to other keychain wrappers?
 
 * Locksmith’s API is both super-simple and deeply powerful
-* Provides access to all of the keychain’s metadata in a type-useful way via `ResultType` protocols—save an `NSDate`, get an `NSDate` back (without typecasting!)
+* Provides access to all of the keychain’s metadata with strongly typed results
 * Add functionality to your existing types for free
 * Useful enums and Swift-native types
 
-[![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![License](https://img.shields.io/cocoapods/l/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
-[![Platform](https://img.shields.io/cocoapods/p/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
+> Want to read more about Locksmith’s design? I wrote a blog post on [protocol oriented programming in Swift](http://matthewpalmer.net/blog/2015/08/30/protocol-oriented-programming-in-the-real-world/).
 
 ## Installation
+
+[![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ### CocoaPods
 
