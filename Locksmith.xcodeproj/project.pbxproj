@@ -60,6 +60,7 @@
 		0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Locksmith OS X Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC25C9D1BA389BD004191AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC25C9E1BA389CB004191AF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC25CA71BA39C9F004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC25C7F1BA385F6004191AF /* Locksmith.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA31BA39C9F004191AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +160,7 @@
 				0EC25C621BA385AB004191AF /* Locksmith iOS Tests.xctest */,
 				0EC25C751BA385F6004191AF /* Locksmith.framework */,
 				0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */,
+				0EC25CA71BA39C9F004191AF /* Locksmith.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +176,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0EC25C721BA385F6004191AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA41BA39C9F004191AF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -248,6 +264,24 @@
 			productReference = 0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		0EC25CA61BA39C9F004191AF /* Locksmith watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EC25CAE1BA39CA0004191AF /* Build configuration list for PBXNativeTarget "Locksmith watchOS" */;
+			buildPhases = (
+				0EC25CA21BA39C9F004191AF /* Sources */,
+				0EC25CA31BA39C9F004191AF /* Frameworks */,
+				0EC25CA41BA39C9F004191AF /* Headers */,
+				0EC25CA51BA39C9F004191AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Locksmith watchOS";
+			productName = "Locksmith watchOS";
+			productReference = 0EC25CA71BA39C9F004191AF /* Locksmith.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -270,6 +304,9 @@
 					0EC25C7D1BA385F6004191AF = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					0EC25CA61BA39C9F004191AF = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = BFFB19CA1A4870A300CCFFC3 /* Build configuration list for PBXProject "Locksmith" */;
@@ -288,6 +325,7 @@
 				0EC25C611BA385AB004191AF /* Locksmith iOS Tests */,
 				0EC25C741BA385F6004191AF /* Locksmith OS X */,
 				0EC25C7D1BA385F6004191AF /* Locksmith OS X Tests */,
+				0EC25CA61BA39C9F004191AF /* Locksmith watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -316,6 +354,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0EC25C7C1BA385F6004191AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA51BA39C9F004191AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -366,6 +411,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC25C8D1BA38648004191AF /* LocksmithTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA21BA39C9F004191AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +583,49 @@
 			};
 			name = Release;
 		};
+		0EC25CAC1BA39CA0004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-watchOS";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		0EC25CAD1BA39CA0004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-watchOS";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		BFFB19E41A4870A300CCFFC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -631,6 +726,7 @@
 				0EC25C6C1BA385AB004191AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EC25C6D1BA385AB004191AF /* Build configuration list for PBXNativeTarget "Locksmith iOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -639,6 +735,7 @@
 				0EC25C6F1BA385AB004191AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EC25C861BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X" */ = {
 			isa = XCConfigurationList;
@@ -647,12 +744,22 @@
 				0EC25C881BA385F6004191AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EC25C891BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EC25C8A1BA385F6004191AF /* Debug */,
 				0EC25C8B1BA385F6004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EC25CAE1BA39CA0004191AF /* Build configuration list for PBXNativeTarget "Locksmith watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25CAC1BA39CA0004191AF /* Debug */,
+				0EC25CAD1BA39CA0004191AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
