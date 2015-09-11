@@ -1,6 +1,0 @@
-framework module Locksmith {
-  umbrella header "Pods-Locksmith-Locksmith-umbrella.h"
-
-  export *
-  module * { export * }
-}
