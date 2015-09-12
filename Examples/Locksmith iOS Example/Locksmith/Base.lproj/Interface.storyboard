@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8089"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -10,22 +10,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Locksmith" customModuleProvider="target">
                     <items>
-                        <label alignment="center" text="Password:" numberOfLines="0" id="hcW-97-G1G"/>
-                        <label alignment="center" id="8LW-rc-VdQ"/>
-                        <button width="1" alignment="left" title="Retrieve" id="6FB-mv-1h1">
-                            <connections>
-                                <action selector="retrievePassword" destination="AgC-eL-Hgc" id="cqK-Ry-IBC"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Set Password" id="XbP-dk-e0C">
-                            <connections>
-                                <action selector="saveHardcodedData" destination="AgC-eL-Hgc" id="KKd-sI-3qb"/>
-                            </connections>
-                        </button>
+                        <label width="136" alignment="left" text="Locksmith" id="0hb-l0-xFa"/>
                     </items>
-                    <connections>
-                        <outlet property="retrievedPassword" destination="8LW-rc-VdQ" id="CKt-hA-BNa"/>
-                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>

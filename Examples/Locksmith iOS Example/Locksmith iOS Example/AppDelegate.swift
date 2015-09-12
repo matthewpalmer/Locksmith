@@ -11,19 +11,17 @@ import Locksmith
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        struct TwitterAccount: ReadableSecureStorable,
-                               CreateableSecureStorable,
-                               DeleteableSecureStorable,
-                               GenericPasswordSecureStorable {
+        struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
             let username: String
             let password: String
             
             let service = "Twitter"
+            
             var account: String { return username }
+            
             var data: [String: AnyObject] {
                 return ["password": password]
             }
@@ -37,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ReadableSecureStorable lets us read the account from the keychain
         let result = account.readFromSecureStore()
         
-        print("Result: \(result) \(result?.data)")
+        print("iOS app: \(result), \(result?.data)")
         
         // DeleteableSecureStorable lets us delete the account from the keychain
         try! account.deleteFromSecureStore()
