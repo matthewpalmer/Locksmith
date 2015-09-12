@@ -4,7 +4,7 @@ A powerful, protocol-oriented library for working with the keychain in Swift.
 
 - [x] 📱 iOS 8.0+
 - [x] 💻 Mac OS X 10.10+
-- [ ] ⌚️ watchOS 2 (*coming soon*)
+- [x] ⌚️ watchOS 2
 - [ ] 📺 tvOS (*coming soon?*)
 
 How is Locksmith different to other keychain wrappers?
@@ -20,11 +20,11 @@ How is Locksmith different to other keychain wrappers?
 
 [![Version](https://img.shields.io/cocoapods/v/Locksmith.svg?style=flat)](http://cocoadocs.org/docsets/Locksmith)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/matthewpalmer/Locksmith.svg?branch=master)](https://travis-ci.org/matthewpalmer/Locksmith)
 
 ### CocoaPods
 
-Locksmith is available through [CocoaPods](http://cocoapods.org). To install
-Locksmith for Swift 2, simply add the following line to your Podfile:
+Locksmith is available through [CocoaPods](http://cocoapods.org).
 
     pod 'Locksmith'
 
@@ -206,7 +206,7 @@ Locksmith tries to include as much of the keychain as possible, using protocols 
 
 Please refer to the [Keychain Services Reference](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/) for full information on what each of the attributes mean and what they can do.
 
-> Certificates, keys, and identities are coming soon—it’s just a matter of translating the `kSec...` constants!
+> Certificates, keys, and identities are possible—it’s just a matter of translating the `kSec...` constants!
 
 #### `GenericPasswordSecureStorable`
 
