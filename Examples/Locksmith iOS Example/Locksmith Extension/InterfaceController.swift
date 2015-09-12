@@ -1,19 +1,27 @@
 //
-//  AppDelegate.swift
-//  Locksmith iOS Example
+//  InterfaceController.swift
+//  LocksmithExample WatchKit Extension
 //
-//  Created by Matthew Palmer on 12/09/2015.
-//  Copyright © 2015 Matthew Palmer. All rights reserved.
+//  Created by Tai Heng on 05/09/2015.
+//  Copyright © 2015 matthewpalmer. All rights reserved.
 //
 
-import UIKit
+import WatchKit
+import Foundation
 import Locksmith
+import WatchConnectivity
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+        
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
+        
         struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
             let username: String
             let password: String
@@ -35,13 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ReadableSecureStorable lets us read the account from the keychain
         let result = account.readFromSecureStore()
         
-        print("iOS app: \(result), \(result?.data)")
+        print("Watch app: \(result), \(result?.data)")
         
         // DeleteableSecureStorable lets us delete the account from the keychain
         try! account.deleteFromSecureStore()
-        
-        
-        return true
     }
 }
-
