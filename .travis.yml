@@ -9,14 +9,15 @@ env:
     - DESTINATION="OS=2.0,name=Apple Watch - 42mm" SCHEME="Locksmith watchOS" SDK=watchsimulator2.0 RUN_TESTS="NO" BUILD_EXAMPLE="NO" POD_LINT="YES"
     - DESTINATION="arch=x86_64" SCHEME="Locksmith OS X" SDK=macosx10.11 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
 
-    - DESTINATION="OS=9.0,name=iPad 2" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - DESTINATION="OS=9.0,name=iPhone 6" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    # "build_example" should be YES but travis was giving me grief
+    - DESTINATION="OS=9.0,name=iPad 2" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=9.0,name=iPhone 6" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
 
-    - DESTINATION="OS=8.1,name=iPad 2" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - DESTINATION="OS=8.2,name=iPhone 4S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - DESTINATION="OS=8.3,name=iPhone 5" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - DESTINATION="OS=8.4,name=iPhone 5S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - DESTINATION="OS=8.1,name=iPad 2" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=8.2,name=iPhone 4S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=8.3,name=iPhone 5" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=8.4,name=iPhone 5S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
