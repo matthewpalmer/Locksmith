@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0EC25CA61BA39C9F004191AF"
-               BuildableName = "Locksmith watchOS.framework"
+               BuildableName = "Locksmith.framework"
                BlueprintName = "Locksmith watchOS"
                ReferencedContainer = "container:Locksmith.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0EC25CA61BA39C9F004191AF"
-            BuildableName = "Locksmith watchOS.framework"
+            BuildableName = "Locksmith.framework"
             BlueprintName = "Locksmith watchOS"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0EC25CA61BA39C9F004191AF"
-            BuildableName = "Locksmith watchOS.framework"
+            BuildableName = "Locksmith.framework"
             BlueprintName = "Locksmith watchOS"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
