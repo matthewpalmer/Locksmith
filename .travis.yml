@@ -13,6 +13,7 @@ env:
     - DESTINATION="OS=9.0,name=iPhone 6" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
 
+    - DESTINATION="OS=8.1,name=iPad 2" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - DESTINATION="OS=8.2,name=iPhone 4S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - DESTINATION="OS=8.3,name=iPhone 5" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - DESTINATION="OS=8.4,name=iPhone 5S" SCHEME="Locksmith iOS" SDK=iphonesimulator9.0 RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
