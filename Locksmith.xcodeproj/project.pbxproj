@@ -33,6 +33,9 @@
 		0EC25C9B1BA38662004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
 		0EC25C9C1BA38663004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
 		0EC25C9F1BA389CB004191AF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EC25C9E1BA389CB004191AF /* Info.plist */; };
+		DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,7 @@
 		0EC25C9D1BA389BD004191AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC25C9E1BA389CB004191AF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC25CA71BA39C9F004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locksmith.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */,
+				DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */,
 				0EC25C421BA38539004191AF /* Locksmith.swift */,
 				0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */,
 				0EC25C441BA38539004191AF /* LocksmithError.swift */,
@@ -179,6 +184,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +192,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +200,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
