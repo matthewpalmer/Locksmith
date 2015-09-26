@@ -7,68 +7,160 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D60D8141B10927B00BE14A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D60D8131B10927B00BE14A9 /* Info.plist */; };
-		9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */; };
-		9DF0A2C81B0E3D370049F83A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DF0A2C71B0E3D370049F83A /* Info.plist */; };
-		B30EBCF41B96FF5200E0B60C /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */; };
-		B30EBCF61B96FF5200E0B60C /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */; };
-		B30EBCF71B96FF5200E0B60C /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */; };
-		B30EBCF81B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */; };
-		B30EBCF91B96FF5200E0B60C /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */; };
-		B30EBCFA1B96FF5200E0B60C /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */; };
-		B30EBCFC1B96FFF700E0B60C /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */; };
-		BFFB19DC1A4870A300CCFFC3 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */; };
+		056F2A971BA4316700B24B65 /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A981BA4316700B24B65 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C421BA38539004191AF /* Locksmith.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A991BA4316700B24B65 /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A9A1BA4316700B24B65 /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C441BA38539004191AF /* LocksmithError.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A9B1BA4316700B24B65 /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A9C1BA4316700B24B65 /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		056F2A9D1BA4316700B24B65 /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; settings = {ASSET_TAGS = (); }; };
+		0EC25C631BA385AB004191AF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC25C591BA385AA004191AF /* Locksmith.framework */; };
+		0EC25C7F1BA385F6004191AF /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC25C751BA385F6004191AF /* Locksmith.framework */; };
+		0EC25C8D1BA38648004191AF /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C491BA38539004191AF /* LocksmithTests.swift */; };
+		0EC25C8E1BA38649004191AF /* LocksmithTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C491BA38539004191AF /* LocksmithTests.swift */; };
+		0EC25C8F1BA3864C004191AF /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */; };
+		0EC25C901BA3864D004191AF /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */; };
+		0EC25C911BA3864F004191AF /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C421BA38539004191AF /* Locksmith.swift */; };
+		0EC25C921BA38651004191AF /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C421BA38539004191AF /* Locksmith.swift */; };
+		0EC25C931BA38653004191AF /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */; };
+		0EC25C941BA38654004191AF /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */; };
+		0EC25C951BA38657004191AF /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C441BA38539004191AF /* LocksmithError.swift */; };
+		0EC25C961BA38659004191AF /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C441BA38539004191AF /* LocksmithError.swift */; };
+		0EC25C971BA3865B004191AF /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */; };
+		0EC25C981BA3865C004191AF /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */; };
+		0EC25C991BA3865F004191AF /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */; };
+		0EC25C9A1BA38660004191AF /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */; };
+		0EC25C9B1BA38662004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
+		0EC25C9C1BA38663004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
+		0EC25C9F1BA389CB004191AF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EC25C9E1BA389CB004191AF /* Info.plist */; };
+		DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BFFB19DD1A4870A300CCFFC3 /* PBXContainerItemProxy */ = {
+		0EC25C641BA385AB004191AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFFB19C71A4870A300CCFFC3 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BFFB19CF1A4870A300CCFFC3;
-			remoteInfo = Locksmith;
+			remoteGlobalIDString = 0EC25C581BA385AA004191AF;
+			remoteInfo = "Locksmith iOS";
+		};
+		0EC25C801BA385F6004191AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFFB19C71A4870A300CCFFC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EC25C741BA385F6004191AF;
+			remoteInfo = "Locksmith OS X";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9D60D8131B10927B00BE14A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Pod/Info.plist; sourceTree = SOURCE_ROOT; };
-		9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locksmith.swift; path = Pod/Classes/Locksmith.swift; sourceTree = SOURCE_ROOT; };
-		9DF0A2C71B0E3D370049F83A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary_Initializers.swift; path = Pod/Classes/Dictionary_Initializers.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithAccessibleOption.swift; path = Pod/Classes/LocksmithAccessibleOption.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithError.swift; path = Pod/Classes/LocksmithError.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithInternetAuthenticationType.swift; path = Pod/Classes/LocksmithInternetAuthenticationType.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithInternetProtocol.swift; path = Pod/Classes/LocksmithInternetProtocol.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithSecurityClass.swift; path = Pod/Classes/LocksmithSecurityClass.swift; sourceTree = SOURCE_ROOT; };
-		B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithTests.swift; path = Example/Tests/LocksmithTests.swift; sourceTree = SOURCE_ROOT; };
-		BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFFB19DB1A4870A300CCFFC3 /* LocksmithTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocksmithTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary_Initializers.swift; sourceTree = "<group>"; };
+		0EC25C421BA38539004191AF /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithAccessibleOption.swift; sourceTree = "<group>"; };
+		0EC25C441BA38539004191AF /* LocksmithError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithError.swift; sourceTree = "<group>"; };
+		0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetAuthenticationType.swift; sourceTree = "<group>"; };
+		0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
+		0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithSecurityClass.swift; sourceTree = "<group>"; };
+		0EC25C491BA38539004191AF /* LocksmithTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithTests.swift; sourceTree = "<group>"; };
+		0EC25C591BA385AA004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC25C621BA385AB004191AF /* Locksmith iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Locksmith iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC25C751BA385F6004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Locksmith OS X Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC25C9D1BA389BD004191AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC25C9E1BA389CB004191AF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC25CA71BA39C9F004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locksmith.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BFFB19CC1A4870A300CCFFC3 /* Frameworks */ = {
+		0EC25C551BA385AA004191AF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFFB19D81A4870A300CCFFC3 /* Frameworks */ = {
+		0EC25C5F1BA385AB004191AF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFB19DC1A4870A300CCFFC3 /* Locksmith.framework in Frameworks */,
+				0EC25C631BA385AB004191AF /* Locksmith.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C711BA385F6004191AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C7B1BA385F6004191AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EC25C7F1BA385F6004191AF /* Locksmith.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA31BA39C9F004191AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EC25C481BA38539004191AF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */,
+				DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */,
+				0EC25C421BA38539004191AF /* Locksmith.swift */,
+				0EC25C431BA38539004191AF /* LocksmithAccessibleOption.swift */,
+				0EC25C441BA38539004191AF /* LocksmithError.swift */,
+				0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */,
+				0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */,
+				0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */,
+				0EC25CA01BA38A05004191AF /* Supporting Files */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		0EC25C4A1BA38539004191AF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0EC25C491BA38539004191AF /* LocksmithTests.swift */,
+				0EC25CA11BA38A0B004191AF /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		0EC25CA01BA38A05004191AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EC25C9E1BA389CB004191AF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0EC25CA11BA38A0B004191AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EC25C9D1BA389BD004191AF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BFFB19C61A4870A300CCFFC3 = {
 			isa = PBXGroup;
 			children = (
-				BFFB19D21A4870A300CCFFC3 /* Locksmith */,
-				BFFB19DF1A4870A300CCFFC3 /* LocksmithTests */,
+				0EC25C481BA38539004191AF /* Source */,
+				0EC25C4A1BA38539004191AF /* Tests */,
 				BFFB19D11A4870A300CCFFC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,100 +168,134 @@
 		BFFB19D11A4870A300CCFFC3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */,
-				BFFB19DB1A4870A300CCFFC3 /* LocksmithTests.xctest */,
+				0EC25C591BA385AA004191AF /* Locksmith.framework */,
+				0EC25C621BA385AB004191AF /* Locksmith iOS Tests.xctest */,
+				0EC25C751BA385F6004191AF /* Locksmith.framework */,
+				0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */,
+				0EC25CA71BA39C9F004191AF /* Locksmith.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BFFB19D21A4870A300CCFFC3 /* Locksmith */ = {
-			isa = PBXGroup;
-			children = (
-				9DF0A2BE1B0E394F0049F83A /* Locksmith.swift */,
-				B30EBCED1B96FF5200E0B60C /* Dictionary_Initializers.swift */,
-				B30EBCEF1B96FF5200E0B60C /* LocksmithAccessibleOption.swift */,
-				B30EBCF01B96FF5200E0B60C /* LocksmithError.swift */,
-				B30EBCF11B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift */,
-				B30EBCF21B96FF5200E0B60C /* LocksmithInternetProtocol.swift */,
-				B30EBCF31B96FF5200E0B60C /* LocksmithSecurityClass.swift */,
-				BFFB19D31A4870A300CCFFC3 /* Supporting Files */,
-			);
-			path = Locksmith;
-			sourceTree = "<group>";
-		};
-		BFFB19D31A4870A300CCFFC3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9D60D8131B10927B00BE14A9 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BFFB19DF1A4870A300CCFFC3 /* LocksmithTests */ = {
-			isa = PBXGroup;
-			children = (
-				B30EBCFB1B96FFF700E0B60C /* LocksmithTests.swift */,
-				BFFB19E01A4870A300CCFFC3 /* Supporting Files */,
-			);
-			path = LocksmithTests;
-			sourceTree = "<group>";
-		};
-		BFFB19E01A4870A300CCFFC3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9DF0A2C71B0E3D370049F83A /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BFFB19CD1A4870A300CCFFC3 /* Headers */ = {
+		0EC25C561BA385AA004191AF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C721BA385F6004191AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA41BA39C9F004191AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BFFB19CF1A4870A300CCFFC3 /* Locksmith */ = {
+		0EC25C581BA385AA004191AF /* Locksmith iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFFB19E61A4870A300CCFFC3 /* Build configuration list for PBXNativeTarget "Locksmith" */;
+			buildConfigurationList = 0EC25C6A1BA385AB004191AF /* Build configuration list for PBXNativeTarget "Locksmith iOS" */;
 			buildPhases = (
-				BFFB19CB1A4870A300CCFFC3 /* Sources */,
-				BFFB19CC1A4870A300CCFFC3 /* Frameworks */,
-				BFFB19CD1A4870A300CCFFC3 /* Headers */,
-				BFFB19CE1A4870A300CCFFC3 /* Resources */,
+				0EC25C541BA385AA004191AF /* Sources */,
+				0EC25C551BA385AA004191AF /* Frameworks */,
+				0EC25C561BA385AA004191AF /* Headers */,
+				0EC25C571BA385AA004191AF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Locksmith;
-			productName = Locksmith;
-			productReference = BFFB19D01A4870A300CCFFC3 /* Locksmith.framework */;
+			name = "Locksmith iOS";
+			productName = "Locksmith iOS";
+			productReference = 0EC25C591BA385AA004191AF /* Locksmith.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BFFB19DA1A4870A300CCFFC3 /* LocksmithTests */ = {
+		0EC25C611BA385AB004191AF /* Locksmith iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFFB19E91A4870A300CCFFC3 /* Build configuration list for PBXNativeTarget "LocksmithTests" */;
+			buildConfigurationList = 0EC25C6D1BA385AB004191AF /* Build configuration list for PBXNativeTarget "Locksmith iOS Tests" */;
 			buildPhases = (
-				BFFB19D71A4870A300CCFFC3 /* Sources */,
-				BFFB19D81A4870A300CCFFC3 /* Frameworks */,
-				BFFB19D91A4870A300CCFFC3 /* Resources */,
+				0EC25C5E1BA385AB004191AF /* Sources */,
+				0EC25C5F1BA385AB004191AF /* Frameworks */,
+				0EC25C601BA385AB004191AF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BFFB19DE1A4870A300CCFFC3 /* PBXTargetDependency */,
+				0EC25C651BA385AB004191AF /* PBXTargetDependency */,
 			);
-			name = LocksmithTests;
-			productName = LocksmithTests;
-			productReference = BFFB19DB1A4870A300CCFFC3 /* LocksmithTests.xctest */;
+			name = "Locksmith iOS Tests";
+			productName = "Locksmith iOSTests";
+			productReference = 0EC25C621BA385AB004191AF /* Locksmith iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0EC25C741BA385F6004191AF /* Locksmith OS X */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EC25C861BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X" */;
+			buildPhases = (
+				0EC25C701BA385F6004191AF /* Sources */,
+				0EC25C711BA385F6004191AF /* Frameworks */,
+				0EC25C721BA385F6004191AF /* Headers */,
+				0EC25C731BA385F6004191AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Locksmith OS X";
+			productName = "Locksmith OS X";
+			productReference = 0EC25C751BA385F6004191AF /* Locksmith.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0EC25C7D1BA385F6004191AF /* Locksmith OS X Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EC25C891BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X Tests" */;
+			buildPhases = (
+				0EC25C7A1BA385F6004191AF /* Sources */,
+				0EC25C7B1BA385F6004191AF /* Frameworks */,
+				0EC25C7C1BA385F6004191AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0EC25C811BA385F6004191AF /* PBXTargetDependency */,
+			);
+			name = "Locksmith OS X Tests";
+			productName = "Locksmith OS XTests";
+			productReference = 0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0EC25CA61BA39C9F004191AF /* Locksmith watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EC25CAE1BA39CA0004191AF /* Build configuration list for PBXNativeTarget "Locksmith watchOS" */;
+			buildPhases = (
+				0EC25CA21BA39C9F004191AF /* Sources */,
+				0EC25CA31BA39C9F004191AF /* Frameworks */,
+				0EC25CA41BA39C9F004191AF /* Headers */,
+				0EC25CA51BA39C9F004191AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Locksmith watchOS";
+			productName = "Locksmith watchOS";
+			productReference = 0EC25CA71BA39C9F004191AF /* Locksmith.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -178,14 +304,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mathew Palmer";
 				TargetAttributes = {
-					BFFB19CF1A4870A300CCFFC3 = {
-						CreatedOnToolsVersion = 6.1.1;
+					0EC25C581BA385AA004191AF = {
+						CreatedOnToolsVersion = 7.0;
 					};
-					BFFB19DA1A4870A300CCFFC3 = {
-						CreatedOnToolsVersion = 6.1.1;
+					0EC25C611BA385AB004191AF = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					0EC25C741BA385F6004191AF = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					0EC25C7D1BA385F6004191AF = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					0EC25CA61BA39C9F004191AF = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -201,65 +336,318 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BFFB19CF1A4870A300CCFFC3 /* Locksmith */,
-				BFFB19DA1A4870A300CCFFC3 /* LocksmithTests */,
+				0EC25C581BA385AA004191AF /* Locksmith iOS */,
+				0EC25C611BA385AB004191AF /* Locksmith iOS Tests */,
+				0EC25C741BA385F6004191AF /* Locksmith OS X */,
+				0EC25C7D1BA385F6004191AF /* Locksmith OS X Tests */,
+				0EC25CA61BA39C9F004191AF /* Locksmith watchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BFFB19CE1A4870A300CCFFC3 /* Resources */ = {
+		0EC25C571BA385AA004191AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D60D8141B10927B00BE14A9 /* Info.plist in Resources */,
+				0EC25C9F1BA389CB004191AF /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFFB19D91A4870A300CCFFC3 /* Resources */ = {
+		0EC25C601BA385AB004191AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DF0A2C81B0E3D370049F83A /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C731BA385F6004191AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C7C1BA385F6004191AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA51BA39C9F004191AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BFFB19CB1A4870A300CCFFC3 /* Sources */ = {
+		0EC25C541BA385AA004191AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B30EBCF71B96FF5200E0B60C /* LocksmithError.swift in Sources */,
-				B30EBCF81B96FF5200E0B60C /* LocksmithInternetAuthenticationType.swift in Sources */,
-				B30EBCF91B96FF5200E0B60C /* LocksmithInternetProtocol.swift in Sources */,
-				B30EBCFA1B96FF5200E0B60C /* LocksmithSecurityClass.swift in Sources */,
-				B30EBCF41B96FF5200E0B60C /* Dictionary_Initializers.swift in Sources */,
-				9DF0A2C01B0E394F0049F83A /* Locksmith.swift in Sources */,
-				B30EBCF61B96FF5200E0B60C /* LocksmithAccessibleOption.swift in Sources */,
+				0EC25C931BA38653004191AF /* LocksmithAccessibleOption.swift in Sources */,
+				0EC25C9B1BA38662004191AF /* LocksmithSecurityClass.swift in Sources */,
+				0EC25C911BA3864F004191AF /* Locksmith.swift in Sources */,
+				0EC25C8F1BA3864C004191AF /* Dictionary_Initializers.swift in Sources */,
+				0EC25C951BA38657004191AF /* LocksmithError.swift in Sources */,
+				0EC25C971BA3865B004191AF /* LocksmithInternetAuthenticationType.swift in Sources */,
+				0EC25C991BA3865F004191AF /* LocksmithInternetProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFFB19D71A4870A300CCFFC3 /* Sources */ = {
+		0EC25C5E1BA385AB004191AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B30EBCFC1B96FFF700E0B60C /* LocksmithTests.swift in Sources */,
+				0EC25C8E1BA38649004191AF /* LocksmithTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C701BA385F6004191AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EC25C941BA38654004191AF /* LocksmithAccessibleOption.swift in Sources */,
+				0EC25C9C1BA38663004191AF /* LocksmithSecurityClass.swift in Sources */,
+				0EC25C921BA38651004191AF /* Locksmith.swift in Sources */,
+				0EC25C901BA3864D004191AF /* Dictionary_Initializers.swift in Sources */,
+				0EC25C961BA38659004191AF /* LocksmithError.swift in Sources */,
+				0EC25C981BA3865C004191AF /* LocksmithInternetAuthenticationType.swift in Sources */,
+				0EC25C9A1BA38660004191AF /* LocksmithInternetProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25C7A1BA385F6004191AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EC25C8D1BA38648004191AF /* LocksmithTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC25CA21BA39C9F004191AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056F2A991BA4316700B24B65 /* LocksmithAccessibleOption.swift in Sources */,
+				056F2A9D1BA4316700B24B65 /* LocksmithSecurityClass.swift in Sources */,
+				056F2A981BA4316700B24B65 /* Locksmith.swift in Sources */,
+				056F2A971BA4316700B24B65 /* Dictionary_Initializers.swift in Sources */,
+				056F2A9A1BA4316700B24B65 /* LocksmithError.swift in Sources */,
+				056F2A9B1BA4316700B24B65 /* LocksmithInternetAuthenticationType.swift in Sources */,
+				056F2A9C1BA4316700B24B65 /* LocksmithInternetProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BFFB19DE1A4870A300CCFFC3 /* PBXTargetDependency */ = {
+		0EC25C651BA385AB004191AF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BFFB19CF1A4870A300CCFFC3 /* Locksmith */;
-			targetProxy = BFFB19DD1A4870A300CCFFC3 /* PBXContainerItemProxy */;
+			target = 0EC25C581BA385AA004191AF /* Locksmith iOS */;
+			targetProxy = 0EC25C641BA385AB004191AF /* PBXContainerItemProxy */;
+		};
+		0EC25C811BA385F6004191AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0EC25C741BA385F6004191AF /* Locksmith OS X */;
+			targetProxy = 0EC25C801BA385F6004191AF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0EC25C6B1BA385AB004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOS";
+				PRODUCT_NAME = Locksmith;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0EC25C6C1BA385AB004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOS";
+				PRODUCT_NAME = Locksmith;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0EC25C6E1BA385AB004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0EC25C6F1BA385AB004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0EC25C871BA385F6004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-OS-X";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0EC25C881BA385F6004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-OS-X";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0EC25C8A1BA385F6004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-OS-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0EC25C8B1BA385F6004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-OS-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0EC25CAC1BA39CA0004191AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-watchOS";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		0EC25CAD1BA39CA0004191AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-watchOS";
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		BFFB19E41A4870A300CCFFC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -281,6 +669,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -296,8 +685,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -336,7 +727,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -345,96 +738,59 @@
 			};
 			name = Release;
 		};
-		BFFB19E71A4870A300CCFFC3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Pod/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		BFFB19E81A4870A300CCFFC3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Pod/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Release;
-		};
-		BFFB19EA1A4870A300CCFFC3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LockSmithTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		BFFB19EB1A4870A300CCFFC3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LockSmithTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0EC25C6A1BA385AB004191AF /* Build configuration list for PBXNativeTarget "Locksmith iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25C6B1BA385AB004191AF /* Debug */,
+				0EC25C6C1BA385AB004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EC25C6D1BA385AB004191AF /* Build configuration list for PBXNativeTarget "Locksmith iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25C6E1BA385AB004191AF /* Debug */,
+				0EC25C6F1BA385AB004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EC25C861BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25C871BA385F6004191AF /* Debug */,
+				0EC25C881BA385F6004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EC25C891BA385F6004191AF /* Build configuration list for PBXNativeTarget "Locksmith OS X Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25C8A1BA385F6004191AF /* Debug */,
+				0EC25C8B1BA385F6004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EC25CAE1BA39CA0004191AF /* Build configuration list for PBXNativeTarget "Locksmith watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC25CAC1BA39CA0004191AF /* Debug */,
+				0EC25CAD1BA39CA0004191AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFFB19CA1A4870A300CCFFC3 /* Build configuration list for PBXProject "Locksmith" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFFB19E41A4870A300CCFFC3 /* Debug */,
 				BFFB19E51A4870A300CCFFC3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BFFB19E61A4870A300CCFFC3 /* Build configuration list for PBXNativeTarget "Locksmith" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BFFB19E71A4870A300CCFFC3 /* Debug */,
-				BFFB19E81A4870A300CCFFC3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BFFB19E91A4870A300CCFFC3 /* Build configuration list for PBXNativeTarget "LocksmithTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BFFB19EA1A4870A300CCFFC3 /* Debug */,
-				BFFB19EB1A4870A300CCFFC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

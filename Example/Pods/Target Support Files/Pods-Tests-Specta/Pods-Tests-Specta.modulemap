@@ -1,6 +1,0 @@
-framework module Specta {
-  umbrella header "Pods-Tests-Specta-umbrella.h"
-
-  export *
-  module * { export * }
-}

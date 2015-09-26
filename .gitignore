@@ -26,8 +26,6 @@ DerivedData
 #
 # Pods/
 =======
-*.xcworkspace
-!default.xcworkspace
 xcuserdata
 profile
 *.moved-aside
@@ -35,4 +33,3 @@ DerivedData
 .idea/
 # Pods - for those of you who use CocoaPods
 Pods
->>>>>>> a8d082ca0a00018a7df906eca307a0961fbd4357
