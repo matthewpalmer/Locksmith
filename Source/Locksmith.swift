@@ -474,8 +474,11 @@ struct GenericPasswordResult: GenericPasswordSecureStorableResultType {
 public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
     func readFromSecureStore() -> GenericPasswordSecureStorableResultType? {
         do {
-            let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: asReadableSecureStoragePropertyDictionary)
-            return GenericPasswordResult(resultDictionary: result!)
+            if let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: asReadableSecureStoragePropertyDictionary) {
+                return GenericPasswordResult(resultDictionary: result)
+            } else {
+                return nil
+            }
         } catch {
             print(error)
             return nil
@@ -486,8 +489,11 @@ public extension ReadableSecureStorable where Self : GenericPasswordSecureStorab
 public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
     func readFromSecureStore() -> InternetPasswordSecureStorableResultType? {
         do {
-            let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: asReadableSecureStoragePropertyDictionary)
-            return InternetPasswordResult(resultDictionary: result!)
+            if let result = try performSecureStorageAction(performReadRequestClosure, secureStoragePropertyDictionary: asReadableSecureStoragePropertyDictionary) {
+                return InternetPasswordResult(resultDictionary: result)
+            } else {
+                return nil
+            }
         } catch {
             print(error)
             return nil
