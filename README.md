@@ -365,7 +365,7 @@ public enum LocksmithAccessibleOption {
 
 #### `LocksmithError`
 
-`LocksmithError` provides Swift-friendly translations of common keychain error codes. These are thrown from methods throughout the library.
+`LocksmithError` provides Swift-friendly translations of common keychain error codes. These are thrown from methods throughout the library. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/c/econst/errSecSuccess) provides more information on these errors.
 
 ```swift
 public enum LocksmithError: ErrorType {
@@ -388,7 +388,7 @@ public enum LocksmithError: ErrorType {
 
 #### `LocksmithInternetAuthenticationType`
 
-`LocksmithInternetAuthenticationType` lets you pick out the type of authentication you want to store alongside your `.InternetPassword`s—anything from `.MSN` to `.HTTPDigest`.
+`LocksmithInternetAuthenticationType` lets you pick out the type of authentication you want to store alongside your `.InternetPassword`s—anything from `.MSN` to `.HTTPDigest`. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Authentication_Type_Values) provides more information on these values. 
 
 ```swift
 public enum LocksmithInternetAuthenticationType {
@@ -405,7 +405,7 @@ public enum LocksmithInternetAuthenticationType {
 
 #### `LocksmithInternetProtocol`
 
-`LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more.
+`LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Protocol_Values) provides more information on these values. 
 
 ```swift
 public enum {
