@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EC25C581BA385AA004191AF"
+               BlueprintIdentifier = "FBD0C9481C1866BE00291F2A"
                BuildableName = "Locksmith.framework"
-               BlueprintName = "Locksmith iOS"
+               BlueprintName = "Locksmith tvOS"
                ReferencedContainer = "container:Locksmith.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EC25C611BA385AB004191AF"
-               BuildableName = "Locksmith iOS Tests.xctest"
-               BlueprintName = "Locksmith iOS Tests"
-               ReferencedContainer = "container:Locksmith.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EC25C581BA385AA004191AF"
-            BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith iOS"
-            ReferencedContainer = "container:Locksmith.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EC25C581BA385AA004191AF"
+            BlueprintIdentifier = "FBD0C9481C1866BE00291F2A"
             BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith iOS"
+            BlueprintName = "Locksmith tvOS"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EC25C581BA385AA004191AF"
+            BlueprintIdentifier = "FBD0C9481C1866BE00291F2A"
             BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith iOS"
+            BlueprintName = "Locksmith tvOS"
             ReferencedContainer = "container:Locksmith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
