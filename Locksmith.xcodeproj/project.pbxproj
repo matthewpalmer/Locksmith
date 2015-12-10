@@ -32,7 +32,6 @@
 		0EC25C9A1BA38660004191AF /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */; };
 		0EC25C9B1BA38662004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
 		0EC25C9C1BA38663004191AF /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */; };
-		0EC25C9F1BA389CB004191AF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EC25C9E1BA389CB004191AF /* Info.plist */; };
 		DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -350,7 +349,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EC25C9F1BA389CB004191AF /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
