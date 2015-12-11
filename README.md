@@ -30,10 +30,9 @@ Locksmith is available through [CocoaPods](http://cocoapods.org).
 
 ### Carthage
 
-Add to your Cartfile:
+Locksmith is available through [Carthage](https://github.com/Carthage/Carthage).
 
     github 'matthewpalmer/Locksmith'
-
 
 ## Quick start
 
