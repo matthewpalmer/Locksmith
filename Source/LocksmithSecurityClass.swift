@@ -18,7 +18,6 @@ public enum LocksmithSecurityClass: RawRepresentable {
         case String(kSecClassIdentity):
             self = Identity
         default:
-            print("SecurityClass: Invalid raw value provided. Defaulting to .GenericPassword")
             self = GenericPassword
         }
     }

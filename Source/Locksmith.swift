@@ -480,7 +480,6 @@ public extension ReadableSecureStorable where Self : GenericPasswordSecureStorab
                 return nil
             }
         } catch {
-            print(error)
             return nil
         }
     }
@@ -495,7 +494,6 @@ public extension ReadableSecureStorable where Self : InternetPasswordSecureStora
                 return nil
             }
         } catch {
-            print(error)
             return nil
         }
     }
