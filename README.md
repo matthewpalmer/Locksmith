@@ -28,6 +28,13 @@ Locksmith is available through [CocoaPods](http://cocoapods.org).
 
     pod 'Locksmith'
 
+### Carthage
+
+Add to your Cartfile:
+
+    github 'matthewpalmer/Locksmith'
+
+
 ## Quick start
 
 **Save data**
