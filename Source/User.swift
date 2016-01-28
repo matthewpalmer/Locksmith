@@ -5,6 +5,8 @@
 //  Copyright © 2016 \(work). All rights reserved.
 //
 
+import Locksmith
+
 class User: ReadableSecureStorable,
             CreateableSecureStorable,
             DeleteableSecureStorable,

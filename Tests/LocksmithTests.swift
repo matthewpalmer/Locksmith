@@ -438,6 +438,14 @@ class LocksmithTests: XCTestCase {
         let secondUser = User(username: "second user", password: "123456 like my luggage")
         XCTAssertTrue(secondUser.store(), "We can create a second user")
         
+        // We can update it and its username changes.
+        secondUser.username = "second user with a haircut"
+        XCTAssertTrue(secondUser.store(), "We can store a second user again")
+        let refetchedSecondUser = User().fetch()
+        XCTAssertNotNil(refetchedSecondUser, "We can fetch the second user again")
+        XCTAssertEqual(refetchedSecondUser!.username!, secondUser.username, "Its details have updated")
+        
+        
         // We can create a third user, which replaces the second user.
         let thirdUser = User(username: "third user", password: "Take a wild guess")
         XCTAssertTrue(thirdUser.store(), "We can create a third user")
