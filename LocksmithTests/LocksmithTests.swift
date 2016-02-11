@@ -25,7 +25,7 @@ class LocksmithTests: XCTestCase {
     
     // public class func saveData(data: Dictionary<String, String>, inService service: String, forUserAccount userAccount: String) -> NSError?
     func testSaveData_Once() {
-        var error = Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount", inService: "myService")
+        let error = Locksmith.saveData(["key": "value"], forUserAccount: "myUserAccount", inService: "myService")
         XCTAssert(error == nil, "❌: saving data")
     }
     
@@ -66,8 +66,8 @@ class LocksmithTests: XCTestCase {
         setupLoads()
         
         let (dictionary, error) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
-        let (dictionary2, error2) = Locksmith.loadDataForUserAccount("user2", inService: "myService")
-        let (dictionary3, error3) = Locksmith.loadDataForUserAccount("user3", inService: "myService")
+        let (dictionary2, _) = Locksmith.loadDataForUserAccount("user2", inService: "myService")
+        let (dictionary3, _) = Locksmith.loadDataForUserAccount("user3", inService: "myService")
         
         XCTAssert(dictionary!.valueForKey("key") as! NSString == "value" && error == nil, "❌: loading multiple items")
         XCTAssert(dictionary2!.valueForKey("anotherkey") as! NSString == "anothervalue" && error == nil, "❌: loading multiple items")
@@ -79,7 +79,7 @@ class LocksmithTests: XCTestCase {
         setupLoads()
         
         let error = Locksmith.updateData(["key": "newvalue"], forUserAccount: "user1", inService: "myService")
-        let (dictionary, err) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
+        let (dictionary, _) = Locksmith.loadDataForUserAccount("user1", inService: "myService")
         
         XCTAssert(dictionary!.valueForKey("key") as! NSString == "newvalue" && error == nil, "❌: updating item")
         
