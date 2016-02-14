@@ -39,15 +39,14 @@ public struct Locksmith {
     }
     
     public static func updateData(data: [String: AnyObject], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
-        // Delete and then re-save
-        do {
-            try Locksmith.deleteDataForUserAccount(userAccount, inService: service)
-        } catch {
-            // Deletion is likely to fail if the piece of data doesn't exist yet.
-            // This doesn't matter--we only tell the user about errors on the save request.
+        struct UpdateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
+            let service: String
+            let account: String
+            let data: [String: AnyObject]
         }
-        
-        return try Locksmith.saveData(data, forUserAccount: userAccount, inService: service)
+
+        let request = UpdateRequest(service: service, account: userAccount, data: data)
+        try request.updateInSecureStore()
     }
 }
 
@@ -424,6 +423,7 @@ public protocol CreateableSecureStorable: SecureStorable {
     var data: [String: AnyObject] { get }
     var performCreateRequestClosure: PerformRequestClosureType { get }
     func createInSecureStore() throws
+    func updateInSecureStore() throws
 }
 
 // MARK: - ReadableSecureStorable
@@ -509,6 +509,23 @@ public protocol DeleteableSecureStorable: SecureStorable {
 
 // MARK: - Default property dictionaries
 
+extension CreateableSecureStorable {
+    func updateInSecureStore(query: [String: AnyObject]) throws {
+        var attributesToUpdate = query
+        attributesToUpdate[String(kSecClass)] = nil
+
+        let status = SecItemUpdate(query, attributesToUpdate)
+
+        if let error = LocksmithError(fromStatusCode: Int(status)) {
+            throw error
+        }
+
+        if status != errSecSuccess {
+            throw LocksmithError.Undefined
+        }
+    }
+}
+
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
     var asCreateableSecureStoragePropertyDictionary: [String: AnyObject] {
         var old = genericPasswordBaseStoragePropertyDictionary
@@ -520,6 +537,9 @@ public extension CreateableSecureStorable where Self : GenericPasswordSecureStor
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
     func createInSecureStore() throws {
         try performSecureStorageAction(performCreateRequestClosure, secureStoragePropertyDictionary: asCreateableSecureStoragePropertyDictionary)
+    }
+    func updateInSecureStore() throws {
+        try self.updateInSecureStore(self.asCreateableSecureStoragePropertyDictionary)
     }
 }
 
@@ -542,6 +562,9 @@ public extension CreateableSecureStorable {
 public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
     func createInSecureStore() throws {
         try performSecureStorageAction(performCreateRequestClosure, secureStoragePropertyDictionary: asCreateableSecureStoragePropertyDictionary)
+    }
+    func updateInSecureStore() throws {
+        try self.updateInSecureStore(self.asCreateableSecureStoragePropertyDictionary)
     }
 }
 

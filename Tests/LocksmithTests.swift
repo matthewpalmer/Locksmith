@@ -94,6 +94,24 @@ class LocksmithTests: XCTestCase {
         createGenericPasswordWithData(data)
     }
     
+    func testUpdateForGenericPassword() {
+        let data = ["some": "data"]
+        
+        struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable, ReadableSecureStorable {
+            var data: [String: AnyObject]
+            let account: String
+            let service: String
+        }
+        
+        var create = CreateGenericPassword(data: data, account: userAccount, service: service)
+        try! create.createInSecureStore() // make sure it doesn't throw
+        create.data = ["other": "data"]
+        try! create.updateInSecureStore()
+        
+        let read = create.readFromSecureStore()!.data as! [String: String]
+        XCTAssertEqual(read, ["other": "data"])
+    }
+    
     func testLoadForGenericPassword() {
         let data = ["one": "two"]
         createGenericPasswordWithData(data)
@@ -239,7 +257,7 @@ class LocksmithTests: XCTestCase {
     func testInternetPasswordMetaAttributesAreCreatedAndReturned() {
         struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable {
             let account: String
-            let data: [String: AnyObject]
+            var data: [String: AnyObject]
             let server: String
             let port: Int
             let internetProtocol: LocksmithInternetProtocol
@@ -265,20 +283,31 @@ class LocksmithTests: XCTestCase {
             let authenticationType: LocksmithInternetAuthenticationType
         }
         
-        let c = CreateInternetPassword(account: userAccount, data: initialData, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain)
+        var c = CreateInternetPassword(account: userAccount, data: initialData, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain)
         try! c.createInSecureStore()
+
+        func assertResultMetadataIsOk(result: InternetPasswordSecureStorableResultType?) {
+            XCTAssertEqual(result?.account, userAccount)
+            XCTAssertEqual(result?.server, server)
+            XCTAssertEqual(result?.port, port)
+            XCTAssertEqual(result?.internetProtocol, internetProtocol)
+            XCTAssertEqual(result?.authenticationType, authenticationType)
+            XCTAssertEqual(result?.securityDomain, securityDomain)
+            XCTAssertEqual(result?.path, path)
+        }
         
         let r = ReadInternetPassword(account: userAccount, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType)
         let result = r.readFromSecureStore()
-
-        XCTAssertEqual(result?.account, userAccount)
         XCTAssertEqual(result!.data as! [String: String], initialData)
-        XCTAssertEqual(result?.server, server)
-        XCTAssertEqual(result?.port, port)
-        XCTAssertEqual(result?.internetProtocol, internetProtocol)
-        XCTAssertEqual(result?.authenticationType, authenticationType)
-        XCTAssertEqual(result?.securityDomain, securityDomain)
-        XCTAssertEqual(result?.path, path)
+        assertResultMetadataIsOk(result)
+        
+        // Assert that metadata is maintained after an update
+        c.data = ["other internet": "junk"]
+        try! c.updateInSecureStore()
+        
+        let result2 = r.readFromSecureStore()
+        XCTAssertEqual(result2!.data as! [String: String], ["other internet": "junk"])
+        assertResultMetadataIsOk(result2)
     }
     
     func assertStringPairsMatchInDictionary(dictionary: NSDictionary, pairs: [(key: CFString, expectedOutput: String)]) {
