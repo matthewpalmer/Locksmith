@@ -517,11 +517,15 @@ extension CreateableSecureStorable {
         let status = SecItemUpdate(query, attributesToUpdate)
 
         if let error = LocksmithError(fromStatusCode: Int(status)) {
-            throw error
-        }
-
-        if status != errSecSuccess {
-            throw LocksmithError.Undefined
+            if error == .NotFound || error == .NotAvailable {
+                try self.createInSecureStore()
+            } else {
+                throw error
+            }
+        } else {
+            if status != errSecSuccess {
+                throw LocksmithError.Undefined
+            }
         }
     }
 }

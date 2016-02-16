@@ -53,6 +53,12 @@ class LocksmithTests: XCTestCase {
         let loaded3 = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! TestingDictionaryType
         
         XCTAssertEqual(loaded3, updatedData)
+        
+        try! Locksmith.deleteDataForUserAccount(userAccount, inService: service)
+        
+        try! Locksmith.updateData(["some update": "data"], forUserAccount: userAccount, inService: service)
+        let updateResult = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! [String: String]
+        XCTAssertEqual(updateResult, ["some update": "data"])
     }
     
     func testStaticMethodsForDefaultService() {
@@ -92,6 +98,22 @@ class LocksmithTests: XCTestCase {
     func testCreateForGenericPassword() {
         let data = ["some": "data"]
         createGenericPasswordWithData(data)
+    }
+    
+    func testUpdateCreatesIfNotExists() {
+        let data = ["some": "data"]
+        
+        struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable, ReadableSecureStorable {
+            var data: [String: AnyObject]
+            let account: String
+            let service: String
+        }
+        
+        let update = CreateGenericPassword(data: data, account: userAccount, service: service)
+        try! update.updateInSecureStore()
+        
+        let read = update.readFromSecureStore()!.data as! [String: String]
+        XCTAssertEqual(read, ["some": "data"])
     }
     
     func testUpdateForGenericPassword() {
