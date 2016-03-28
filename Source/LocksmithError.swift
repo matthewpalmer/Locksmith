@@ -7,7 +7,6 @@ public enum LocksmithError: String, ErrorType {
     case Decode = "Unable to decode the provided data."
     case Duplicate = "The item already exists."
     case InteractionNotAllowed = "Interaction with the Security Server is not allowed."
-    case NoError = "No error."
     case NotAvailable = "No trust results are available."
     case NotFound = "The item cannot be found."
     case Param = "One or more parameters passed to the function were not valid."

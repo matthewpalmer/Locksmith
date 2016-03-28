@@ -380,7 +380,6 @@ public enum LocksmithError: ErrorType {
   case Decode
   case Duplicate
   case InteractionNotAllowed
-  case NoError
   case NotAvailable
   case NotFound
   case Param
