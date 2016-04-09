@@ -32,7 +32,7 @@ Locksmith is available through [CocoaPods](http://cocoapods.org).
 
 Locksmith is available through [Carthage](https://github.com/Carthage/Carthage).
 
-    github 'matthewpalmer/Locksmith'
+    github "matthewpalmer/Locksmith"
 
 ## Quick start
 
