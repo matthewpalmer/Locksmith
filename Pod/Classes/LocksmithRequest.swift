@@ -25,7 +25,7 @@ public enum Accessible: Int {
     WhenUnlockedThisDeviceOnly, AfterFirstUnlockThisDeviceOnly, AlwaysThisDeviceOnly
 }
 
-public class LocksmithRequest: NSObject, CustomDebugStringConvertible {
+public class LocksmithRequest: NSObject {
     // Keychain Options
     // Required
     public var service: String = LocksmithDefaultService
