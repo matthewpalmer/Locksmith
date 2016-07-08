@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: Locksmith Error
-public enum LocksmithError: String, ErrorType {
+public enum LocksmithError: String, ErrorProtocol {
     case Allocate = "Failed to allocate memory."
     case AuthFailed = "Authorization/Authentication failed."
     case Decode = "Unable to decode the provided data."
