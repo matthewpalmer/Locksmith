@@ -1,6 +1,6 @@
 import Foundation
 
-public let LocksmithDefaultService = Bundle.main().infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
+public let LocksmithDefaultService = Bundle.main.infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
 
 public typealias PerformRequestClosureType = (requestReference: CFDictionary, inout result: AnyObject?) -> (OSStatus)
 
