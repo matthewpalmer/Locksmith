@@ -50,6 +50,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     @available(watchOSApplicationExtension 2.2, *)
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: NSError?) {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 }
