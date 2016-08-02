@@ -8,17 +8,17 @@ public enum LocksmithSecurityClass: RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecClassGenericPassword):
-            self = GenericPassword
+            self = .GenericPassword
         case String(kSecClassInternetPassword):
-            self = InternetPassword
+            self = .InternetPassword
         case String(kSecClassCertificate):
-            self = Certificate
+            self = .Certificate
         case String(kSecClassKey):
-            self = Key
+            self = .Key
         case String(kSecClassIdentity):
-            self = Identity
+            self = .Identity
         default:
-            self = GenericPassword
+            self = .GenericPassword
         }
     }
     

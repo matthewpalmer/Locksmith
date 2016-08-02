@@ -6,69 +6,69 @@ public enum LocksmithInternetProtocol: RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecAttrProtocolFTP):
-            self = FTP
+            self = .FTP
         case String(kSecAttrProtocolFTPAccount):
-            self = FTPAccount
+            self = .FTPAccount
         case String(kSecAttrProtocolHTTP):
-            self = HTTP
+            self = .HTTP
         case String(kSecAttrProtocolIRC):
-            self = IRC
+            self = .IRC
         case String(kSecAttrProtocolNNTP):
-            self = NNTP
+            self = .NNTP
         case String(kSecAttrProtocolPOP3):
-            self = POP3
+            self = .POP3
         case String(kSecAttrProtocolSMTP):
-            self = SMTP
+            self = .SMTP
         case String(kSecAttrProtocolSOCKS):
-            self = SOCKS
+            self = .SOCKS
         case String(kSecAttrProtocolIMAP):
-            self = IMAP
+            self = .IMAP
         case String(kSecAttrProtocolLDAP):
-            self = LDAP
+            self = .LDAP
         case String(kSecAttrProtocolAppleTalk):
-            self = AppleTalk
+            self = .AppleTalk
         case String(kSecAttrProtocolAFP):
-            self = AFP
+            self = .AFP
         case String(kSecAttrProtocolTelnet):
-            self = Telnet
+            self = .Telnet
         case String(kSecAttrProtocolSSH):
-            self = SSH
+            self = .SSH
         case String(kSecAttrProtocolFTPS):
-            self = FTPS
+            self = .FTPS
         case String(kSecAttrProtocolHTTPS):
-            self = HTTPS
+            self = .HTTPS
         case String(kSecAttrProtocolHTTPProxy):
-            self = HTTPProxy
+            self = .HTTPProxy
         case String(kSecAttrProtocolHTTPSProxy):
-            self = HTTPSProxy
+            self = .HTTPSProxy
         case String(kSecAttrProtocolFTPProxy):
-            self = FTPProxy
+            self = .FTPProxy
         case String(kSecAttrProtocolSMB):
-            self = SMB
+            self = .SMB
         case String(kSecAttrProtocolRTSP):
-            self = RTSP
+            self = .RTSP
         case String(kSecAttrProtocolRTSPProxy):
-            self = RTSPProxy
+            self = .RTSPProxy
         case String(kSecAttrProtocolDAAP):
-            self = DAAP
+            self = .DAAP
         case String(kSecAttrProtocolEPPC):
-            self = EPPC
+            self = .EPPC
         case String(kSecAttrProtocolIPP):
-            self = IPP
+            self = .IPP
         case String(kSecAttrProtocolNNTPS):
-            self = NNTPS
+            self = .NNTPS
         case String(kSecAttrProtocolLDAPS):
-            self = LDAPS
+            self = .LDAPS
         case String(kSecAttrProtocolTelnetS):
-            self = TelnetS
+            self = .TelnetS
         case String(kSecAttrProtocolIMAPS):
-            self = IMAPS
+            self = .IMAPS
         case String(kSecAttrProtocolIRCS):
-            self = IRCS
+            self = .IRCS
         case String(kSecAttrProtocolPOP3S):
-            self = POP3S
+            self = .POP3S
         default:
-            self = HTTP
+            self = .HTTP
         }
     }
     
