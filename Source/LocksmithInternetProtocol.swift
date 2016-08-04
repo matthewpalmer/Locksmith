@@ -6,69 +6,69 @@ public enum LocksmithInternetProtocol: RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecAttrProtocolFTP):
-            self = FTP
+            self = LocksmithInternetProtocol.FTP
         case String(kSecAttrProtocolFTPAccount):
-            self = FTPAccount
+            self = LocksmithInternetProtocol.FTPAccount
         case String(kSecAttrProtocolHTTP):
-            self = HTTP
+            self = LocksmithInternetProtocol.HTTP
         case String(kSecAttrProtocolIRC):
-            self = IRC
+            self = LocksmithInternetProtocol.IRC
         case String(kSecAttrProtocolNNTP):
-            self = NNTP
+            self = LocksmithInternetProtocol.NNTP
         case String(kSecAttrProtocolPOP3):
-            self = POP3
+            self = LocksmithInternetProtocol.POP3
         case String(kSecAttrProtocolSMTP):
-            self = SMTP
+            self = LocksmithInternetProtocol.SMTP
         case String(kSecAttrProtocolSOCKS):
-            self = SOCKS
+            self = LocksmithInternetProtocol.SOCKS
         case String(kSecAttrProtocolIMAP):
-            self = IMAP
+            self = LocksmithInternetProtocol.IMAP
         case String(kSecAttrProtocolLDAP):
-            self = LDAP
+            self = LocksmithInternetProtocol.LDAP
         case String(kSecAttrProtocolAppleTalk):
-            self = AppleTalk
+            self = LocksmithInternetProtocol.AppleTalk
         case String(kSecAttrProtocolAFP):
-            self = AFP
+            self = LocksmithInternetProtocol.AFP
         case String(kSecAttrProtocolTelnet):
-            self = Telnet
+            self = LocksmithInternetProtocol.Telnet
         case String(kSecAttrProtocolSSH):
-            self = SSH
+            self = LocksmithInternetProtocol.SSH
         case String(kSecAttrProtocolFTPS):
-            self = FTPS
+            self = LocksmithInternetProtocol.FTPS
         case String(kSecAttrProtocolHTTPS):
-            self = HTTPS
+            self = LocksmithInternetProtocol.HTTPS
         case String(kSecAttrProtocolHTTPProxy):
-            self = HTTPProxy
+            self = LocksmithInternetProtocol.HTTPProxy
         case String(kSecAttrProtocolHTTPSProxy):
-            self = HTTPSProxy
+            self = LocksmithInternetProtocol.HTTPSProxy
         case String(kSecAttrProtocolFTPProxy):
-            self = FTPProxy
+            self = LocksmithInternetProtocol.FTPProxy
         case String(kSecAttrProtocolSMB):
-            self = SMB
+            self = LocksmithInternetProtocol.SMB
         case String(kSecAttrProtocolRTSP):
-            self = RTSP
+            self = LocksmithInternetProtocol.RTSP
         case String(kSecAttrProtocolRTSPProxy):
-            self = RTSPProxy
+            self = LocksmithInternetProtocol.RTSPProxy
         case String(kSecAttrProtocolDAAP):
-            self = DAAP
+            self = LocksmithInternetProtocol.DAAP
         case String(kSecAttrProtocolEPPC):
-            self = EPPC
+            self = LocksmithInternetProtocol.EPPC
         case String(kSecAttrProtocolIPP):
-            self = IPP
+            self = LocksmithInternetProtocol.IPP
         case String(kSecAttrProtocolNNTPS):
-            self = NNTPS
+            self = LocksmithInternetProtocol.NNTPS
         case String(kSecAttrProtocolLDAPS):
-            self = LDAPS
+            self = LocksmithInternetProtocol.LDAPS
         case String(kSecAttrProtocolTelnetS):
-            self = TelnetS
+            self = LocksmithInternetProtocol.TelnetS
         case String(kSecAttrProtocolIMAPS):
-            self = IMAPS
+            self = LocksmithInternetProtocol.IMAPS
         case String(kSecAttrProtocolIRCS):
-            self = IRCS
+            self = LocksmithInternetProtocol.IRCS
         case String(kSecAttrProtocolPOP3S):
-            self = POP3S
+            self = LocksmithInternetProtocol.POP3S
         default:
-            self = HTTP
+            self = LocksmithInternetProtocol.HTTP
         }
     }
     
