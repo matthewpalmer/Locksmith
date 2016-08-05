@@ -362,7 +362,7 @@ class LocksmithTests: XCTestCase {
         let data = ["some": "data"]
         let server = "server"
         
-        let expect = expectation(withDescription: "Must enter the closure")
+        let expect = expectation(description: "Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -389,7 +389,7 @@ class LocksmithTests: XCTestCase {
         do { try create.deleteFromSecureStore() } catch {}
         try! create.createInSecureStore()
         
-        waitForExpectations(withTimeout: 0.1, handler: nil)
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
     
     func testGenericPasswordOptionalAttributesAreAppliedForConformingTypes() {
@@ -422,7 +422,7 @@ class LocksmithTests: XCTestCase {
         let isNegative: Bool = false
         let generic: Data = Data()
         
-        let expect = expectation(withDescription: "Must enter the closure")
+        let expect = expectation(description: "Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -461,6 +461,6 @@ class LocksmithTests: XCTestCase {
         
         try! create.createInSecureStore()
 
-        waitForExpectations(withTimeout: 0.1, handler: nil)
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 }
