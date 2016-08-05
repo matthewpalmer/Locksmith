@@ -7,21 +7,21 @@ public enum LocksmithAccessibleOption: RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecAttrAccessibleWhenUnlocked):
-            self = WhenUnlocked
+            self = LocksmithAccessibleOption.WhenUnlocked
         case String(kSecAttrAccessibleAfterFirstUnlock):
-            self = AfterFirstUnlock
+            self = LocksmithAccessibleOption.AfterFirstUnlock
         case String(kSecAttrAccessibleAlways):
-            self = Always
+            self = LocksmithAccessibleOption.Always
         case String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly):
-            self = WhenUnlockedThisDeviceOnly
+            self = LocksmithAccessibleOption.WhenUnlockedThisDeviceOnly
         case String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly):
-            self = AfterFirstUnlockThisDeviceOnly
+            self = LocksmithAccessibleOption.AfterFirstUnlockThisDeviceOnly
         case String(kSecAttrAccessibleAlwaysThisDeviceOnly):
-            self = AlwaysThisDeviceOnly
+            self = LocksmithAccessibleOption.AlwaysThisDeviceOnly
         case String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly):
-            self = WhenPasscodeSetThisDeviceOnly
+            self = LocksmithAccessibleOption.WhenPasscodeSetThisDeviceOnly
         default:
-            self = WhenUnlocked
+            self = LocksmithAccessibleOption.WhenUnlocked
         }
     }
     

@@ -20,23 +20,23 @@ public enum LocksmithError: String, Error {
     init?(fromStatusCode code: Int) {
         switch code {
         case Int(errSecAllocate):
-            self = Allocate
+            self = LocksmithError.Allocate
         case Int(errSecAuthFailed):
-            self = AuthFailed
+            self = LocksmithError.AuthFailed
         case Int(errSecDecode):
-            self = Decode
+            self = LocksmithError.Decode
         case Int(errSecDuplicateItem):
-            self = Duplicate
+            self = LocksmithError.Duplicate
         case Int(errSecInteractionNotAllowed):
-            self = InteractionNotAllowed
+            self = LocksmithError.InteractionNotAllowed
         case Int(errSecItemNotFound):
-            self = NotFound
+            self = LocksmithError.NotFound
         case Int(errSecNotAvailable):
-            self = NotAvailable
+            self = LocksmithError.NotAvailable
         case Int(errSecParam):
-            self = Param
+            self = LocksmithError.Param
         case Int(errSecUnimplemented):
-            self = Unimplemented
+            self = LocksmithError.Unimplemented
         default:
             return nil
         }
