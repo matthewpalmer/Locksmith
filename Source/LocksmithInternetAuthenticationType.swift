@@ -6,23 +6,23 @@ public enum LocksmithInternetAuthenticationType: RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecAttrAuthenticationTypeNTLM):
-            self = NTLM
+            self = .NTLM
         case String(kSecAttrAuthenticationTypeMSN):
-            self = MSN
+            self = .MSN
         case String(kSecAttrAuthenticationTypeDPA):
-            self = DPA
+            self = .DPA
         case String(kSecAttrAuthenticationTypeRPA):
-            self = RPA
+            self = .RPA
         case String(kSecAttrAuthenticationTypeHTTPBasic):
-            self = HTTPBasic
+            self = .HTTPBasic
         case String(kSecAttrAuthenticationTypeHTTPDigest):
-            self = HTTPDigest
+            self = .HTTPDigest
         case String(kSecAttrAuthenticationTypeHTMLForm):
-            self = HTMLForm
+            self = .HTMLForm
         case String(kSecAttrAuthenticationTypeDefault):
-            self = Default
+            self = .Default
         default:
-            self = Default
+            self = .Default
         }
     }
     

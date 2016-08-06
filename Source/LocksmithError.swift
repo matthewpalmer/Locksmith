@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: Locksmith Error
-public enum LocksmithError: String, ErrorProtocol {
+public enum LocksmithError: String, Error {
     case Allocate = "Failed to allocate memory."
     case AuthFailed = "Authorization/Authentication failed."
     case Decode = "Unable to decode the provided data."
@@ -20,23 +20,23 @@ public enum LocksmithError: String, ErrorProtocol {
     init?(fromStatusCode code: Int) {
         switch code {
         case Int(errSecAllocate):
-            self = Allocate
+            self = .Allocate
         case Int(errSecAuthFailed):
-            self = AuthFailed
+            self = .AuthFailed
         case Int(errSecDecode):
-            self = Decode
+            self = .Decode
         case Int(errSecDuplicateItem):
-            self = Duplicate
+            self = .Duplicate
         case Int(errSecInteractionNotAllowed):
-            self = InteractionNotAllowed
+            self = .InteractionNotAllowed
         case Int(errSecItemNotFound):
-            self = NotFound
+            self = .NotFound
         case Int(errSecNotAvailable):
-            self = NotAvailable
+            self = .NotAvailable
         case Int(errSecParam):
-            self = Param
+            self = .Param
         case Int(errSecUnimplemented):
-            self = Unimplemented
+            self = .Unimplemented
         default:
             return nil
         }
