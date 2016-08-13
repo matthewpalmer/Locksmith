@@ -9,8 +9,13 @@ A powerful, protocol-oriented library for working with the keychain in Swift.
 
 ## Something you might like
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I made Rocket, an app that gives you Slack-style emoji everywhere on your Mac. <a href="https://t.co/kNfHNxSZcb">https://t.co/kNfHNxSZcb</a> <a href="https://t.co/i8ry8nNAkI">pic.twitter.com/i8ry8nNAkI</a></p>&mdash; Matthew Palmer (@_matthewpalmer) <a href="https://twitter.com/_matthewpalmer/status/753343252573462528">July 13, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p align="center">
+  I make <a href="http://matthewpalmer.net/rocket" alt="Download Rocket for free" title="Rocket home page">Rocket</a>, an app that gives you Slack-style emoji everywhere on your Mac.
+
+  <br />
+
+  <img alt="Demo image of Rocket" title="Rocket provides better emoji on Macs" src="http://matthewpalmer.net/rocket/screenshot.gif" />
+</p>
 
 ## Details
 
