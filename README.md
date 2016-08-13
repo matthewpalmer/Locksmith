@@ -16,17 +16,14 @@ A powerful, protocol-oriented library for working with the keychain in Swift.
   <br/>
   <br/>
 
-  I make <a href="http://matthewpalmer.net/rocket" alt="Download Rocket for free" title="Rocket home page">Rocket</a>, an app that gives you Slack-style emoji everywhere on your Mac.
+  I also make <a href="http://matthewpalmer.net/rocket" alt="Download Rocket for free" title="Rocket home page">Rocket</a>, an app that gives you Slack-style emoji everywhere on your Mac.
 
   <br />
 
   <img alt="Demo image of Rocket" title="Rocket provides better emoji on Macs" src="http://matthewpalmer.net/rocket/screenshot.gif" />
-
-  <br/>
-  <br/>
-  🚀
 </p>
 
+<br/>
 <br />
 <br />
 <br />
