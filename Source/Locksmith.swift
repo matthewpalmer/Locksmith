@@ -2,7 +2,7 @@ import Foundation
 
 public let LocksmithDefaultService = Bundle.main.infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
 
-public typealias PerformRequestClosureType = (requestReference: CFDictionary, result: inout AnyObject?) -> (OSStatus)
+public typealias PerformRequestClosureType = (_ requestReference: CFDictionary, _ result: inout AnyObject?) -> (OSStatus)
 
 
 // MARK: - Locksmith
@@ -76,7 +76,7 @@ public extension SecureStorable {
         let request = secureStoragePropertyDictionary
         let requestReference = request as CFDictionary
         
-        let status = closure(requestReference: requestReference, result: &result)
+        let status = closure(requestReference, &result)
         
         let statusCode = Int(status)
         
@@ -106,13 +106,13 @@ public extension SecureStorable where Self : InternetPasswordSecureStorable {
         var dictionary = [String: AnyObject]()
         
         // add in whatever turns out to be required...
-        dictionary[String(kSecAttrServer)] = server
-        dictionary[String(kSecAttrPort)] = port
-        dictionary[String(kSecAttrProtocol)] = internetProtocol.rawValue
-        dictionary[String(kSecAttrAuthenticationType)] = authenticationType.rawValue
-        dictionary[String(kSecAttrSecurityDomain)] = securityDomain
-        dictionary[String(kSecAttrPath)] = path
-        dictionary[String(kSecClass)] = LocksmithSecurityClass.InternetPassword.rawValue
+        dictionary[String(kSecAttrServer)] = server as AnyObject
+        dictionary[String(kSecAttrPort)] = port as AnyObject
+        dictionary[String(kSecAttrProtocol)] = internetProtocol.rawValue as AnyObject
+        dictionary[String(kSecAttrAuthenticationType)] = authenticationType.rawValue as AnyObject
+        dictionary[String(kSecAttrSecurityDomain)] = securityDomain as AnyObject
+        dictionary[String(kSecAttrPath)] = path as AnyObject
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.InternetPassword.rawValue as AnyObject
         
         let toMergeWith = [
             accountSecureStoragePropertyDictionary,
@@ -139,7 +139,7 @@ public protocol AccountBasedSecureStorable {
 
 public extension AccountBasedSecureStorable {
     private var accountSecureStoragePropertyDictionary: [String: AnyObject] {
-        return [String(kSecAttrAccount): account]
+        return [String(kSecAttrAccount): account as AnyObject]
     }
 }
 
@@ -335,9 +335,9 @@ public extension SecureStorable where Self : GenericPasswordSecureStorable {
     private var genericPasswordBaseStoragePropertyDictionary: [String: AnyObject] {
         var dictionary = [String: AnyObject?]()
         
-        dictionary[String(kSecAttrService)] = service
+        dictionary[String(kSecAttrService)] = service as AnyObject
         dictionary[String(kSecAttrGeneric)] = generic
-        dictionary[String(kSecClass)] = LocksmithSecurityClass.GenericPassword.rawValue
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.GenericPassword.rawValue as AnyObject
         
         dictionary = Dictionary(initial: dictionary, toMerge: describableSecureStoragePropertyDictionary)
         
@@ -437,7 +437,7 @@ public protocol ReadableSecureStorable: SecureStorable {
 public extension ReadableSecureStorable {
     var performReadRequestClosure: PerformRequestClosureType {
         return { (requestReference: CFDictionary, result: inout AnyObject?) in
-            return withUnsafeMutablePointer(&result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
+            return withUnsafeMutablePointer(to: &result) { SecItemCopyMatching(requestReference, UnsafeMutablePointer($0)) }
         }
     }
     
@@ -515,7 +515,7 @@ extension CreateableSecureStorable {
         var attributesToUpdate = query
         attributesToUpdate[String(kSecClass)] = nil
 
-        let status = SecItemUpdate(query, attributesToUpdate)
+        let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
 
         if let error = LocksmithError(fromStatusCode: Int(status)) {
             if error == .NotFound || error == .NotAvailable {
@@ -559,7 +559,7 @@ public extension CreateableSecureStorable where Self : InternetPasswordSecureSto
 public extension CreateableSecureStorable {
     var performCreateRequestClosure: PerformRequestClosureType {
         return { (requestReference: CFDictionary, result: inout AnyObject?) in
-            return withUnsafeMutablePointer(&result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
+            return withUnsafeMutablePointer(to: &result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
         }
     }
 }
