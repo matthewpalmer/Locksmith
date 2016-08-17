@@ -112,7 +112,7 @@ public extension SecureStorable where Self : InternetPasswordSecureStorable {
         dictionary[String(kSecAttrAuthenticationType)] = authenticationType.rawValue as AnyObject
         dictionary[String(kSecAttrSecurityDomain)] = securityDomain as AnyObject
         dictionary[String(kSecAttrPath)] = path as AnyObject
-        dictionary[String(kSecClass)] = LocksmithSecurityClass.InternetPassword.rawValue as AnyObject
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.internetPassword.rawValue as AnyObject
         
         let toMergeWith = [
             accountSecureStoragePropertyDictionary,
@@ -337,7 +337,7 @@ public extension SecureStorable where Self : GenericPasswordSecureStorable {
         
         dictionary[String(kSecAttrService)] = service as AnyObject
         dictionary[String(kSecAttrGeneric)] = generic
-        dictionary[String(kSecClass)] = LocksmithSecurityClass.GenericPassword.rawValue as AnyObject
+        dictionary[String(kSecClass)] = LocksmithSecurityClass.genericPassword.rawValue as AnyObject
         
         dictionary = Dictionary(initial: dictionary, toMerge: describableSecureStoragePropertyDictionary)
         
