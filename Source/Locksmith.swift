@@ -67,7 +67,7 @@ public extension SecureStorable {
             String(kSecAttrAccessible): accessible?.rawValue
         ]
         
-        return Dictionary(withoutOptionalValues: dictionary)
+        return Dictionary(withoutOptionalValues: dictionary) as [String : AnyObject]
     }
     
     @discardableResult
@@ -162,7 +162,7 @@ public extension DescribableSecureStorable {
     fileprivate var describableSecureStoragePropertyDictionary: [String: AnyObject] {
         return Dictionary(withoutOptionalValues: [
             String(kSecAttrDescription): description
-            ])
+            ]) as [String : AnyObject]
     }
 }
 
@@ -185,7 +185,7 @@ public extension CommentableSecureStorable {
     fileprivate var commentableSecureStoragePropertyDictionary: [String: AnyObject] {
         return Dictionary(withoutOptionalValues: [
             String(kSecAttrComment): comment
-            ])
+            ]) as [String : AnyObject]
     }
 }
 
@@ -206,7 +206,7 @@ public extension CreatorDesignatableSecureStorable {
     var creator: UInt? { return nil }
     
     fileprivate var creatorDesignatableSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [String(kSecAttrCreator): creator])
+        return Dictionary(withoutOptionalValues: [String(kSecAttrCreator): creator]) as [String : AnyObject]
     }
 }
 
@@ -227,7 +227,7 @@ public extension LabellableSecureStorable {
     var label: String? { return nil }
     
     fileprivate var labellableSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [String(kSecAttrLabel): label])
+        return Dictionary(withoutOptionalValues: [String(kSecAttrLabel): label]) as [String : AnyObject]
     }
 }
 
@@ -248,7 +248,7 @@ public extension TypeDesignatableSecureStorable {
     var type: UInt? { return nil }
     
     fileprivate var typeDesignatableSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [String(kSecAttrType): type])
+        return Dictionary(withoutOptionalValues: [String(kSecAttrType): type]) as [String : AnyObject]
     }
 }
 
@@ -268,7 +268,7 @@ public extension IsInvisibleAssignableSecureStorable {
     var isInvisible: Bool? { return nil }
     
     fileprivate var isInvisibleSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [String(kSecAttrIsInvisible): isInvisible])
+        return Dictionary(withoutOptionalValues: [String(kSecAttrIsInvisible): isInvisible]) as [String : AnyObject]
     }
 }
 
@@ -288,7 +288,7 @@ public extension IsNegativeAssignableSecureStorable {
     var isNegative: Bool? { return nil }
     
     fileprivate var isNegativeSecureStoragePropertyDictionary: [String: AnyObject] {
-        return Dictionary(withoutOptionalValues: [String(kSecAttrIsNegative): isNegative])
+        return Dictionary(withoutOptionalValues: [String(kSecAttrIsNegative): isNegative]) as [String : AnyObject]
     }
 }
 
