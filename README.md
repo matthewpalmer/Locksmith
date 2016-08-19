@@ -9,9 +9,9 @@ A powerful, protocol-oriented library for working with the keychain in Swift.
 
 <br />
 <br />
->
-> I make [Rocket](matthewpalmer.net/rocket?utm_source=locksmith&utm_medium=readme&utm_campaign=open_source), an app that gives you Slack-style emoji everywhere on your Mac.
->
+<pre>
+I make [Rocket](matthewpalmer.net/rocket?utm_source=locksmith&utm_medium=readme&utm_campaign=open_source), an app that gives you Slack-style emoji everywhere on your Mac.
+</pre>
 <br />
 <br />
 
