@@ -518,14 +518,14 @@ extension CreateableSecureStorable {
         let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
 
         if let error = LocksmithError(fromStatusCode: Int(status)) {
-            if error == .NotFound || error == .NotAvailable {
+            if error == .notFound || error == .notAvailable {
                 try self.createInSecureStore()
             } else {
                 throw error
             }
         } else {
             if status != errSecSuccess {
-                throw LocksmithError.Undefined
+                throw LocksmithError.undefined
             }
         }
     }
