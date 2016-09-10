@@ -450,7 +450,7 @@ public extension ReadableSecureStorable {
 public extension ReadableSecureStorable where Self : GenericPasswordSecureStorable {
     var asReadableSecureStoragePropertyDictionary: [String: Any] {
         var old = genericPasswordBaseStoragePropertyDictionary
-        old[String(kSecReturnData)] = true
+        old[String(kSecReturnData)] = kCFBooleanTrue
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
         old[String(kSecReturnAttributes)] = kCFBooleanTrue
         
@@ -461,7 +461,7 @@ public extension ReadableSecureStorable where Self : GenericPasswordSecureStorab
 public extension ReadableSecureStorable where Self : InternetPasswordSecureStorable {
     var asReadableSecureStoragePropertyDictionary: [String: Any] {
         var old = internetPasswordBaseStoragePropertyDictionary
-        old[String(kSecReturnData)] = true
+        old[String(kSecReturnData)] = kCFBooleanTrue
         old[String(kSecMatchLimit)] = kSecMatchLimitOne
         old[String(kSecReturnAttributes)] = kCFBooleanTrue
         return old
