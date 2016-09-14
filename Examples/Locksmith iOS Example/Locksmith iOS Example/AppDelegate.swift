@@ -12,8 +12,8 @@ import Locksmith
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
             let username: String
             let password: String
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             var account: String { return username }
             
-            var data: [String: AnyObject] {
+            var data: [String: Any] {
                 return ["password": password]
             }
         }

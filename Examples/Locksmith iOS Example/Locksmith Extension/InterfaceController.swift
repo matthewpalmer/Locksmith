@@ -30,7 +30,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             var account: String { return username }
             
-            var data: [String: AnyObject] {
+            var data: [String: Any] {
                 return ["password": password]
             }
         }
@@ -50,6 +50,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     @available(watchOSApplicationExtension 2.2, *)
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: NSError?) {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 }

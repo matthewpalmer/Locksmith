@@ -35,6 +35,11 @@
 		DF6BD4B91BB0524500A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF6BD4BC1BB054CB00A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF6BD4BD1BB054D400A3EB64 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3DD3B371D84356600A59312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD3B361D84356500A59312 /* AppDelegate.swift */; };
+		E3DD3B391D84356600A59312 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD3B381D84356600A59312 /* ViewController.swift */; };
+		E3DD3B3C1D84356600A59312 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DD3B3A1D84356600A59312 /* Main.storyboard */; };
+		E3DD3B3E1D84356600A59312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3DD3B3D1D84356600A59312 /* Assets.xcassets */; };
+		E3DD3B411D84356600A59312 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DD3B3F1D84356600A59312 /* LaunchScreen.storyboard */; };
 		FBD0C9511C18693200291F2A /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C401BA38539004191AF /* Dictionary_Initializers.swift */; };
 		FBD0C9521C18693900291F2A /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FBD0C9531C18694100291F2A /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC25C421BA38539004191AF /* Locksmith.swift */; };
@@ -60,6 +65,13 @@
 			remoteGlobalIDString = 0EC25C741BA385F6004191AF;
 			remoteInfo = "Locksmith OS X";
 		};
+		E3DD3B471D84360300A59312 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFFB19C71A4870A300CCFFC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3DD3B331D84356500A59312;
+			remoteInfo = "Test Host";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +91,14 @@
 		0EC25C9E1BA389CB004191AF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC25CA71BA39C9F004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6BD4B61BB051ED00A3EB64 /* Locksmith.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locksmith.h; sourceTree = "<group>"; };
+		E3DD3B341D84356500A59312 /* Test Host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test Host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3DD3B361D84356500A59312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E3DD3B381D84356600A59312 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3DD3B3B1D84356600A59312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E3DD3B3D1D84356600A59312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3DD3B401D84356600A59312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E3DD3B421D84356600A59312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3DD3B461D84358100A59312 /* Test Host.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Test Host.entitlements"; sourceTree = "<group>"; };
 		FBD0C9491C1866BE00291F2A /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,6 +134,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0EC25CA31BA39C9F004191AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3DD3B311D84356500A59312 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -176,6 +203,7 @@
 			children = (
 				0EC25C481BA38539004191AF /* Source */,
 				0EC25C4A1BA38539004191AF /* Tests */,
+				E3DD3B351D84356500A59312 /* Test Host */,
 				BFFB19D11A4870A300CCFFC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,8 +217,23 @@
 				0EC25C7E1BA385F6004191AF /* Locksmith OS X Tests.xctest */,
 				0EC25CA71BA39C9F004191AF /* Locksmith.framework */,
 				FBD0C9491C1866BE00291F2A /* Locksmith.framework */,
+				E3DD3B341D84356500A59312 /* Test Host.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E3DD3B351D84356500A59312 /* Test Host */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD3B461D84358100A59312 /* Test Host.entitlements */,
+				E3DD3B361D84356500A59312 /* AppDelegate.swift */,
+				E3DD3B381D84356600A59312 /* ViewController.swift */,
+				E3DD3B3A1D84356600A59312 /* Main.storyboard */,
+				E3DD3B3D1D84356600A59312 /* Assets.xcassets */,
+				E3DD3B3F1D84356600A59312 /* LaunchScreen.storyboard */,
+				E3DD3B421D84356600A59312 /* Info.plist */,
+			);
+			path = "Test Host";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +304,7 @@
 			);
 			dependencies = (
 				0EC25C651BA385AB004191AF /* PBXTargetDependency */,
+				E3DD3B481D84360300A59312 /* PBXTargetDependency */,
 			);
 			name = "Locksmith iOS Tests";
 			productName = "Locksmith iOSTests";
@@ -321,6 +365,23 @@
 			productReference = 0EC25CA71BA39C9F004191AF /* Locksmith.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		E3DD3B331D84356500A59312 /* Test Host */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3DD3B451D84356600A59312 /* Build configuration list for PBXNativeTarget "Test Host" */;
+			buildPhases = (
+				E3DD3B301D84356500A59312 /* Sources */,
+				E3DD3B311D84356500A59312 /* Frameworks */,
+				E3DD3B321D84356500A59312 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Host";
+			productName = "Test Host";
+			productReference = E3DD3B341D84356500A59312 /* Test Host.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FBD0C9481C1866BE00291F2A /* Locksmith tvOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBD0C9501C1866BE00291F2A /* Build configuration list for PBXNativeTarget "Locksmith tvOS" */;
@@ -345,7 +406,7 @@
 		BFFB19C71A4870A300CCFFC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Mathew Palmer";
 				TargetAttributes = {
@@ -356,6 +417,7 @@
 					0EC25C611BA385AB004191AF = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 0800;
+						TestTargetID = E3DD3B331D84356500A59312;
 					};
 					0EC25C741BA385F6004191AF = {
 						CreatedOnToolsVersion = 7.0;
@@ -365,6 +427,15 @@
 					};
 					0EC25CA61BA39C9F004191AF = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					E3DD3B331D84356500A59312 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					FBD0C9481C1866BE00291F2A = {
 						CreatedOnToolsVersion = 7.2;
@@ -377,6 +448,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = BFFB19C61A4870A300CCFFC3;
 			productRefGroup = BFFB19D11A4870A300CCFFC3 /* Products */;
@@ -389,6 +461,7 @@
 				0EC25C7D1BA385F6004191AF /* Locksmith OS X Tests */,
 				0EC25CA61BA39C9F004191AF /* Locksmith watchOS */,
 				FBD0C9481C1866BE00291F2A /* Locksmith tvOS */,
+				E3DD3B331D84356500A59312 /* Test Host */,
 			);
 		};
 /* End PBXProject section */
@@ -426,6 +499,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3DD3B321D84356500A59312 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3DD3B411D84356600A59312 /* LaunchScreen.storyboard in Resources */,
+				E3DD3B3E1D84356600A59312 /* Assets.xcassets in Resources */,
+				E3DD3B3C1D84356600A59312 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +580,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E3DD3B301D84356500A59312 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3DD3B391D84356600A59312 /* ViewController.swift in Sources */,
+				E3DD3B371D84356600A59312 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBD0C9441C1866BE00291F2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,7 +616,31 @@
 			target = 0EC25C741BA385F6004191AF /* Locksmith OS X */;
 			targetProxy = 0EC25C801BA385F6004191AF /* PBXContainerItemProxy */;
 		};
+		E3DD3B481D84360300A59312 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3DD3B331D84356500A59312 /* Test Host */;
+			targetProxy = E3DD3B471D84360300A59312 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E3DD3B3A1D84356600A59312 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3DD3B3B1D84356600A59312 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E3DD3B3F1D84356600A59312 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3DD3B401D84356600A59312 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0EC25C6B1BA385AB004191AF /* Debug */ = {
@@ -582,6 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test Host.app/Test Host";
 			};
 			name = Debug;
 		};
@@ -598,6 +715,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test Host.app/Test Host";
 			};
 			name = Release;
 		};
@@ -621,6 +739,7 @@
 				PRODUCT_NAME = Locksmith;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -645,6 +764,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -661,6 +781,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-OS-XTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -678,6 +799,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -697,6 +819,7 @@
 				PRODUCT_NAME = Locksmith;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -720,6 +843,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -817,6 +941,49 @@
 			};
 			name = Release;
 		};
+		E3DD3B431D84356600A59312 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Test Host/Test Host.entitlements";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Test Host/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Test-Host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E3DD3B441D84356600A59312 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Test Host/Test Host.entitlements";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Test Host/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Test-Host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		FBD0C94E1C1866BE00291F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -835,6 +1002,7 @@
 				PRODUCT_NAME = Locksmith;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -860,6 +1028,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -918,6 +1087,15 @@
 			buildConfigurations = (
 				BFFB19E41A4870A300CCFFC3 /* Debug */,
 				BFFB19E51A4870A300CCFFC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3DD3B451D84356600A59312 /* Build configuration list for PBXNativeTarget "Test Host" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3DD3B431D84356600A59312 /* Debug */,
+				E3DD3B441D84356600A59312 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

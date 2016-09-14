@@ -2,41 +2,41 @@ import Foundation
 
 // MARK: Locksmith Error
 public enum LocksmithError: String, Error {
-    case Allocate = "Failed to allocate memory."
-    case AuthFailed = "Authorization/Authentication failed."
-    case Decode = "Unable to decode the provided data."
-    case Duplicate = "The item already exists."
-    case InteractionNotAllowed = "Interaction with the Security Server is not allowed."
-    case NoError = "No error."
-    case NotAvailable = "No trust results are available."
-    case NotFound = "The item cannot be found."
-    case Param = "One or more parameters passed to the function were not valid."
-    case RequestNotSet = "The request was not set"
-    case TypeNotFound = "The type was not found"
-    case UnableToClear = "Unable to clear the keychain"
-    case Undefined = "An undefined error occurred"
-    case Unimplemented = "Function or operation not implemented."
+    case allocate = "Failed to allocate memory."
+    case authFailed = "Authorization/Authentication failed."
+    case decode = "Unable to decode the provided data."
+    case duplicate = "The item already exists."
+    case interactionNotAllowed = "Interaction with the Security Server is not allowed."
+    case noError = "No error."
+    case notAvailable = "No trust results are available."
+    case notFound = "The item cannot be found."
+    case param = "One or more parameters passed to the function were not valid."
+    case requestNotSet = "The request was not set"
+    case typeNotFound = "The type was not found"
+    case unableToClear = "Unable to clear the keychain"
+    case undefined = "An undefined error occurred"
+    case unimplemented = "Function or operation not implemented."
     
     init?(fromStatusCode code: Int) {
         switch code {
         case Int(errSecAllocate):
-            self = .Allocate
+            self = .allocate
         case Int(errSecAuthFailed):
-            self = .AuthFailed
+            self = .authFailed
         case Int(errSecDecode):
-            self = .Decode
+            self = .decode
         case Int(errSecDuplicateItem):
-            self = .Duplicate
+            self = .duplicate
         case Int(errSecInteractionNotAllowed):
-            self = .InteractionNotAllowed
+            self = .interactionNotAllowed
         case Int(errSecItemNotFound):
-            self = .NotFound
+            self = .notFound
         case Int(errSecNotAvailable):
-            self = .NotAvailable
+            self = .notAvailable
         case Int(errSecParam):
-            self = .Param
+            self = .param
         case Int(errSecUnimplemented):
-            self = .Unimplemented
+            self = .unimplemented
         default:
             return nil
         }
