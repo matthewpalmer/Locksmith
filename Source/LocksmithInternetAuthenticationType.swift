@@ -1,48 +1,48 @@
 import Foundation
 
 public enum LocksmithInternetAuthenticationType: RawRepresentable {
-    case NTLM, MSN, DPA, RPA, HTTPBasic, HTTPDigest, HTMLForm, Default
+    case ntlm, msn, dpa, rpa, httpBasic, httpDigest, htmlForm, `default`
     
     public init?(rawValue: String) {
         switch rawValue {
         case String(kSecAttrAuthenticationTypeNTLM):
-            self = NTLM
+            self = .ntlm
         case String(kSecAttrAuthenticationTypeMSN):
-            self = MSN
+            self = .msn
         case String(kSecAttrAuthenticationTypeDPA):
-            self = DPA
+            self = .dpa
         case String(kSecAttrAuthenticationTypeRPA):
-            self = RPA
+            self = .rpa
         case String(kSecAttrAuthenticationTypeHTTPBasic):
-            self = HTTPBasic
+            self = .httpBasic
         case String(kSecAttrAuthenticationTypeHTTPDigest):
-            self = HTTPDigest
+            self = .httpDigest
         case String(kSecAttrAuthenticationTypeHTMLForm):
-            self = HTMLForm
+            self = .htmlForm
         case String(kSecAttrAuthenticationTypeDefault):
-            self = Default
+            self = .default
         default:
-            self = Default
+            self = .default
         }
     }
     
     public var rawValue: String {
         switch self {
-        case .NTLM:
+        case .ntlm:
             return String(kSecAttrAuthenticationTypeNTLM)
-        case .MSN:
+        case .msn:
             return String(kSecAttrAuthenticationTypeMSN)
-        case .DPA:
+        case .dpa:
             return String(kSecAttrAuthenticationTypeDPA)
-        case .RPA:
+        case .rpa:
             return String(kSecAttrAuthenticationTypeRPA)
-        case .HTTPBasic:
+        case .httpBasic:
             return String(kSecAttrAuthenticationTypeHTTPBasic)
-        case .HTTPDigest:
+        case .httpDigest:
             return String(kSecAttrAuthenticationTypeHTTPDigest)
-        case .HTMLForm:
+        case .htmlForm:
             return String(kSecAttrAuthenticationTypeHTMLForm)
-        case .Default:
+        case .default:
             return String(kSecAttrAuthenticationTypeDefault)
         }
     }

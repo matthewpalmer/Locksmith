@@ -17,9 +17,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         super.willActivate()
         
         if (WCSession.isSupported()) {
-            let session = WCSession.defaultSession()
+            let session = WCSession.default()
             session.delegate = self
-            session.activateSession()
+            session.activate()
         }
         
         struct TwitterAccount: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
@@ -30,7 +30,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             var account: String { return username }
             
-            var data: [String: AnyObject] {
+            var data: [String: Any] {
                 return ["password": password]
             }
         }
@@ -47,5 +47,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         // DeleteableSecureStorable lets us delete the account from the keychain
         try! account.deleteFromSecureStore()
+    }
+    
+    @available(watchOSApplicationExtension 2.2, *)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 }

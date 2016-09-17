@@ -17,8 +17,8 @@ class LocksmithTests: XCTestCase {
     
     func clear() {
         do {
-            try Locksmith.deleteDataForUserAccount(userAccount, inService: service)
-            try Locksmith.deleteDataForUserAccount(userAccount)
+            try Locksmith.deleteDataForUserAccount(userAccount: userAccount, inService: service)
+            try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
         } catch {
             // no-op
         }
@@ -34,59 +34,59 @@ class LocksmithTests: XCTestCase {
     
     func testStaticMethods() {
         let data = ["some": "data"]
-        try! Locksmith.saveData(data, forUserAccount: userAccount, inService: service)
+        try! Locksmith.saveData(data: data, forUserAccount: userAccount, inService: service)
         
-        let loaded = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! TestingDictionaryType
+        let loaded = Locksmith.loadDataForUserAccount(userAccount: userAccount, inService: service)! as! TestingDictionaryType
         XCTAssertEqual(loaded, data)
         
-        try! Locksmith.deleteDataForUserAccount(userAccount, inService: service)
+        try! Locksmith.deleteDataForUserAccount(userAccount: userAccount, inService: service)
         
         let otherData: TestingDictionaryType = ["something": "way different"]
-        try! Locksmith.saveData(otherData, forUserAccount: userAccount, inService: service)
+        try! Locksmith.saveData(data: otherData, forUserAccount: userAccount, inService: service)
         
-        let loadedAgain = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! TestingDictionaryType
+        let loadedAgain = Locksmith.loadDataForUserAccount(userAccount: userAccount, inService: service)! as! TestingDictionaryType
         XCTAssertEqual(loadedAgain, otherData)
         
         let updatedData = ["this update": "brings the ruckus"]
-        try! Locksmith.updateData(updatedData, forUserAccount: userAccount, inService: service)
+        try! Locksmith.updateData(data: updatedData, forUserAccount: userAccount, inService: service)
         
-        let loaded3 = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! TestingDictionaryType
+        let loaded3 = Locksmith.loadDataForUserAccount(userAccount: userAccount, inService: service)! as! TestingDictionaryType
         
         XCTAssertEqual(loaded3, updatedData)
         
-        try! Locksmith.deleteDataForUserAccount(userAccount, inService: service)
+        try! Locksmith.deleteDataForUserAccount(userAccount: userAccount, inService: service)
         
-        try! Locksmith.updateData(["some update": "data"], forUserAccount: userAccount, inService: service)
-        let updateResult = Locksmith.loadDataForUserAccount(userAccount, inService: service)! as! [String: String]
+        try! Locksmith.updateData(data: ["some update": "data"], forUserAccount: userAccount, inService: service)
+        let updateResult = Locksmith.loadDataForUserAccount(userAccount: userAccount, inService: service)! as! [String: String]
         XCTAssertEqual(updateResult, ["some update": "data"])
     }
     
     func testStaticMethodsForDefaultService() {
         let data = ["some": "data"]
-        try! Locksmith.saveData(data, forUserAccount: userAccount)
+        try! Locksmith.saveData(data: data, forUserAccount: userAccount)
         
-        let loaded = Locksmith.loadDataForUserAccount(userAccount)! as! TestingDictionaryType
+        let loaded = Locksmith.loadDataForUserAccount(userAccount: userAccount)! as! TestingDictionaryType
         XCTAssertEqual(loaded, data)
         
-        try! Locksmith.deleteDataForUserAccount(userAccount)
+        try! Locksmith.deleteDataForUserAccount(userAccount: userAccount)
         
         let otherData: TestingDictionaryType = ["something": "way different"]
-        try! Locksmith.saveData(otherData, forUserAccount: userAccount)
+        try! Locksmith.saveData(data: otherData, forUserAccount: userAccount)
         
-        let loadedAgain = Locksmith.loadDataForUserAccount(userAccount)! as! TestingDictionaryType
+        let loadedAgain = Locksmith.loadDataForUserAccount(userAccount: userAccount)! as! TestingDictionaryType
         XCTAssertEqual(loadedAgain, otherData)
         
         let updatedData = ["this update": "brings the ruckus"]
-        try! Locksmith.updateData(updatedData, forUserAccount: userAccount)
+        try! Locksmith.updateData(data: updatedData, forUserAccount: userAccount)
         
-        let loaded3 = Locksmith.loadDataForUserAccount(userAccount)! as! TestingDictionaryType
+        let loaded3 = Locksmith.loadDataForUserAccount(userAccount: userAccount)! as! TestingDictionaryType
         
         XCTAssertEqual(loaded3, updatedData)
     }
     
-    func createGenericPasswordWithData(data: [String: AnyObject]) {
+    func createGenericPasswordWithData(_ data: [String: Any]) {
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable {
-            let data: [String: AnyObject]
+            let data: [String: Any]
             let account: String
             let service: String
         }
@@ -104,7 +104,7 @@ class LocksmithTests: XCTestCase {
         let data = ["some": "data"]
         
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable, ReadableSecureStorable {
-            var data: [String: AnyObject]
+            var data: [String: Any]
             let account: String
             let service: String
         }
@@ -120,7 +120,7 @@ class LocksmithTests: XCTestCase {
         let data = ["some": "data"]
         
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable, ReadableSecureStorable {
-            var data: [String: AnyObject]
+            var data: [String: Any]
             let account: String
             let service: String
         }
@@ -161,7 +161,7 @@ class LocksmithTests: XCTestCase {
         let delete = DeleteGenericPassword(account: userAccount, service: service)
         try! delete.deleteFromSecureStore()
         
-        let d = Locksmith.loadDataForUserAccount(userAccount, inService: service)
+        let d = Locksmith.loadDataForUserAccount(userAccount: userAccount, inService: service)
         XCTAssertNil(d)
     }
     
@@ -169,7 +169,7 @@ class LocksmithTests: XCTestCase {
         struct Omnivore: ReadableSecureStorable, CreateableSecureStorable, DeleteableSecureStorable, GenericPasswordSecureStorable {
             let account: String
             let service: String
-            let data: [String: AnyObject]
+            let data: [String: Any]
         }
         
         let data: [String: String] = ["something": "else"]
@@ -199,7 +199,7 @@ class LocksmithTests: XCTestCase {
         struct Create : CreateableSecureStorable, InternetPasswordSecureStorable {
             let account: String
             let server: String
-            let data: [String: AnyObject]
+            let data: [String: Any]
             let port: Int
             let internetProtocol: LocksmithInternetProtocol
             let authenticationType: LocksmithInternetAuthenticationType
@@ -208,8 +208,8 @@ class LocksmithTests: XCTestCase {
         let server = "server"
         let initialData = ["one": "two"]
         let port = 8080
-        let internetProtocol = LocksmithInternetProtocol.HTTPS
-        let authenticationType = LocksmithInternetAuthenticationType.DPA
+        let internetProtocol = LocksmithInternetProtocol.https
+        let authenticationType = LocksmithInternetAuthenticationType.dpa
         
         struct Delete: DeleteableSecureStorable, InternetPasswordSecureStorable {
             let account: String
@@ -247,7 +247,7 @@ class LocksmithTests: XCTestCase {
             let comment: String?
             let description: String?
             let creator: UInt?
-            let data: [String: AnyObject]
+            let data: [String: Any]
         }
         
         let initialData = ["one": "two"]
@@ -279,7 +279,7 @@ class LocksmithTests: XCTestCase {
     func testInternetPasswordMetaAttributesAreCreatedAndReturned() {
         struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable {
             let account: String
-            var data: [String: AnyObject]
+            var data: [String: Any]
             let server: String
             let port: Int
             let internetProtocol: LocksmithInternetProtocol
@@ -288,12 +288,12 @@ class LocksmithTests: XCTestCase {
             let securityDomain: String?
         }
         
-        let userAccount = "user \(NSDate())"
+        let userAccount = "user \(Date())"
         let initialData = ["internet": "data"]
         let server = "net.matthewpalmer"
         let port = 8080
-        let internetProtocol = LocksmithInternetProtocol.FTP
-        let authenticationType = LocksmithInternetAuthenticationType.HTTPBasic
+        let internetProtocol = LocksmithInternetProtocol.ftp
+        let authenticationType = LocksmithInternetAuthenticationType.httpBasic
         let path = "somePath"
         let securityDomain = "someDomain"
         
@@ -308,7 +308,7 @@ class LocksmithTests: XCTestCase {
         var c = CreateInternetPassword(account: userAccount, data: initialData, server: server, port: port, internetProtocol: internetProtocol, authenticationType: authenticationType, path: path, securityDomain: securityDomain)
         try! c.createInSecureStore()
 
-        func assertResultMetadataIsOk(result: InternetPasswordSecureStorableResultType?) {
+        func assertResultMetadataIsOk(_ result: InternetPasswordSecureStorableResultType?) {
             XCTAssertEqual(result?.account, userAccount)
             XCTAssertEqual(result?.server, server)
             XCTAssertEqual(result?.port, port)
@@ -332,9 +332,9 @@ class LocksmithTests: XCTestCase {
         assertResultMetadataIsOk(result2)
     }
     
-    func assertStringPairsMatchInDictionary(dictionary: NSDictionary, pairs: [(key: CFString, expectedOutput: String)]) {
+    func assertStringPairsMatchInDictionary(_ dictionary: NSDictionary, pairs: [(key: CFString, expectedOutput: String)]) {
         for pair in pairs {
-            let a = dictionary[String(pair.0)] as! CFStringRef
+            let a = dictionary[String(pair.0)] as! CFString
             XCTAssertEqual(a as String, pair.1)
         }
     }
@@ -343,7 +343,7 @@ class LocksmithTests: XCTestCase {
         struct CreateInternetPassword: CreateableSecureStorable, InternetPasswordSecureStorable, DeleteableSecureStorable {
             let account: String
             let service: String
-            let data: [String: AnyObject]
+            let data: [String: Any]
             let server: String
             let port: Int
             let internetProtocol: LocksmithInternetProtocol
@@ -355,14 +355,14 @@ class LocksmithTests: XCTestCase {
         
         let account = "myUser"
         let port = 8080
-        let internetProtocol = LocksmithInternetProtocol.HTTP
-        let authenticationType = LocksmithInternetAuthenticationType.HTTPBasic
+        let internetProtocol = LocksmithInternetProtocol.http
+        let authenticationType = LocksmithInternetAuthenticationType.httpBasic
         let path = "some_path"
         let securityDomain = "secdomain"
         let data = ["some": "data"]
         let server = "server"
         
-        let expect = expectationWithDescription("Must enter the closure")
+        let expect = expectation(description: "Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -377,7 +377,7 @@ class LocksmithTests: XCTestCase {
                 (kSecClass, String(kSecClassInternetPassword))
                 ])
             
-            let p = dict[String(kSecAttrPort)] as! CFNumberRef
+            let p = dict[String(kSecAttrPort)] as! CFNumber
             XCTAssertEqual(p as Int, port)
             
             expect.fulfill()
@@ -389,12 +389,12 @@ class LocksmithTests: XCTestCase {
         do { try create.deleteFromSecureStore() } catch {}
         try! create.createInSecureStore()
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
     
     func testGenericPasswordOptionalAttributesAreAppliedForConformingTypes() {
         struct CreateGenericPassword: CreateableSecureStorable, GenericPasswordSecureStorable {
-            let data: [String: AnyObject]
+            let data: [String: Any]
             let account: String
             let service: String
             let accessGroup: String?
@@ -406,23 +406,23 @@ class LocksmithTests: XCTestCase {
             let type: UInt?
             let isInvisible: Bool?
             let isNegative: Bool?
-            let generic: NSData?
+            let generic: Data?
         }
         
-        let data: [String: AnyObject] = ["some": "data"]
+        let data: [String: Any] = ["some": "data"]
         let account: String = "myUser"
         let service: String = "myService"
         let accessGroup: String = "myAccessGroup"
         let description: String = "myDescription"
         let creator: UInt = 5
-        let accessible: LocksmithAccessibleOption = LocksmithAccessibleOption.Always
+        let accessible: LocksmithAccessibleOption = LocksmithAccessibleOption.always
         let comment: String = "myComment"
         let type: UInt = 10
         let isInvisible: Bool = false
         let isNegative: Bool = false
-        let generic: NSData = NSData()
+        let generic: Data = Data()
         
-        let expect = expectationWithDescription("Must enter the closure")
+        let expect = expectation(description: "Must enter the closure")
         
         let performRequestClosure: PerformRequestClosureType = { (requestReference, result) in
             let dict = requestReference as NSDictionary
@@ -437,20 +437,20 @@ class LocksmithTests: XCTestCase {
                 (kSecClass, String(kSecClassGenericPassword))
                 ])
             
-            let cr = dict[String(kSecAttrCreator)] as! CFNumberRef
+            let cr = dict[String(kSecAttrCreator)] as! CFNumber
             XCTAssertEqual(cr as UInt, creator)
             
-            let ty = dict[String(kSecAttrType)] as! CFNumberRef
+            let ty = dict[String(kSecAttrType)] as! CFNumber
             XCTAssertEqual(ty as UInt, type)
             
-            let inv = dict[String(kSecAttrIsInvisible)] as! CFBooleanRef
+            let inv = dict[String(kSecAttrIsInvisible)] as! CFBoolean
             XCTAssertEqual(inv as Bool, isInvisible)
             
-            let neg = dict[String(kSecAttrIsNegative)] as! CFBooleanRef
+            let neg = dict[String(kSecAttrIsNegative)] as! CFBoolean
             XCTAssertEqual(neg as Bool, isNegative)
             
-            let gen = dict[String(kSecAttrGeneric)] as! CFDataRef
-            XCTAssertEqual(gen, generic)
+            let gen = dict[String(kSecAttrGeneric)]
+            XCTAssertNil(gen)
             
             expect.fulfill()
             
@@ -461,6 +461,6 @@ class LocksmithTests: XCTestCase {
         
         try! create.createInSecureStore()
 
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 }
