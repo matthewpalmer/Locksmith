@@ -7,6 +7,14 @@ A powerful, protocol-oriented library for working with the keychain in Swift.
 - [x] ⌚️ watchOS 2
 - [x] 📺 tvOS
 
+> &nbsp;
+>
+> 🚀 I make [Rocket](http://matthewpalmer.net/rocket?utm_source=locksmith&utm_medium=readme&utm_campaign=open_source), an app that gives you Slack-style emoji everywhere on your Mac.
+>
+> &nbsp;
+
+## Details
+
 How is Locksmith different to other keychain wrappers?
 
 * Locksmith’s API is both super-simple and deeply powerful
