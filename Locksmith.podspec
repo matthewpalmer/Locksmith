@@ -21,4 +21,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/*.{m,h,swift}'
 
   s.frameworks = 'Foundation', 'Security'
+
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '2.3' }
 end
