@@ -30,6 +30,8 @@ How is Locksmith different to other keychain wrappers?
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/matthewpalmer/Locksmith.svg?branch=master)](https://travis-ci.org/matthewpalmer/Locksmith)
 
+* Locksmith 3.0 and greater is Swift 3 compatible. See the `swift-2.3` branch for compatibility with older versions of Swift.
+
 ### CocoaPods
 
 Locksmith is available through [CocoaPods](http://cocoapods.org).
