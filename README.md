@@ -46,6 +46,13 @@ Locksmith is available through [Carthage](https://github.com/Carthage/Carthage).
 
 ## Quick start
 
+### **Setup**
+1. Choose your target project
+2. Select Capabilties
+3. Enable Keychain Sharing
+
+Xcode then automatically creates a .entitlements file and you are ready to use Locksmith!
+
 **Save data**
 
 ```swift
@@ -117,7 +124,7 @@ Creating, reading, and deleting each have their own protocols: `CreateableSecure
 **You can conform to all three protocols on the same type!**
 
 ```swift
-struct TwitterAccount: ReadableSecureStorable, 
+struct TwitterAccount: ReadableSecureStorable,
                        CreateableSecureStorable,
                        DeleteableSecureStorable,
                        GenericPasswordSecureStorable {
@@ -286,7 +293,7 @@ By adopting a protocol-oriented design from the ground up, Locksmith can provide
 Let’s start with an example: the Twitter account from before, except it’s now an `InternetPasswordSecureStorable`, which lets us store a bit more metadata.
 
 ```swift
-struct TwitterAccount: InternetPasswordSecureStorable, 
+struct TwitterAccount: InternetPasswordSecureStorable,
                        ReadableSecureStorable,
                        CreateableSecureStorable {
   let username: String
@@ -404,7 +411,7 @@ public enum LocksmithError: ErrorType {
 
 #### `LocksmithInternetAuthenticationType`
 
-`LocksmithInternetAuthenticationType` lets you pick out the type of authentication you want to store alongside your `.InternetPassword`s—anything from `.MSN` to `.HTTPDigest`. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Authentication_Type_Values) provides more information on these values. 
+`LocksmithInternetAuthenticationType` lets you pick out the type of authentication you want to store alongside your `.InternetPassword`s—anything from `.MSN` to `.HTTPDigest`. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Authentication_Type_Values) provides more information on these values.
 
 ```swift
 public enum LocksmithInternetAuthenticationType {
@@ -421,7 +428,7 @@ public enum LocksmithInternetAuthenticationType {
 
 #### `LocksmithInternetProtocol`
 
-`LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Protocol_Values) provides more information on these values. 
+`LocksmithInternetProtocol` is used with `.InternetPassword` to choose which protocol was used for the interaction with the web service, including `.HTTP`, `.SMB`, and a whole bunch more. [Apple’s documentation](https://developer.apple.com/library/ios/documentation/Security/Reference/keychainservices/#//apple_ref/doc/constant_group/Protocol_Values) provides more information on these values.
 
 ```swift
 public enum {
