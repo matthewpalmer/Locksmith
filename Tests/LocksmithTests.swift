@@ -463,4 +463,49 @@ class LocksmithTests: XCTestCase {
 
         waitForExpectations(timeout: 0.1, handler: nil)
     }
+
+    func testStorage() {
+        // We start off with an empty user.
+        let notFoundUser = User().fetch()
+        XCTAssertNil(notFoundUser, "Nothing to fetch at first")
+        
+        // We can store a user.
+        let newUser = User()
+        newUser.username = "sample user"
+        newUser.password = "damnsecure"
+        XCTAssertTrue(newUser.store(), "We stored a user")
+        
+        // We can now fetch it again.
+        let fetchedUser = User().fetch()
+        XCTAssertNotNil(fetchedUser, "We can fetch something now")
+        XCTAssertEqual(fetchedUser!.username!, newUser.username, "Same username as we just stored")
+        
+        // We can delete it.
+        XCTAssertTrue(newUser.delete(), "We can delete the user we first created")
+        let fetchedAgainUser = User().fetch()
+        XCTAssertNil(fetchedAgainUser, "We can no longer fetch the user")
+        
+        // We can create a new user.
+        let secondUser = User(username: "second user", password: "123456 like my luggage")
+        XCTAssertTrue(secondUser.store(), "We can create a second user")
+        
+        // We can update it and its username changes.
+        secondUser.username = "second user with a haircut"
+        XCTAssertTrue(secondUser.store(), "We can store a second user again")
+        let refetchedSecondUser = User().fetch()
+        XCTAssertNotNil(refetchedSecondUser, "We can fetch the second user again")
+        XCTAssertEqual(refetchedSecondUser!.username!, secondUser.username, "Its details have updated")
+        
+        
+        // We can create a third user, which replaces the second user.
+        let thirdUser = User(username: "third user", password: "Take a wild guess")
+        XCTAssertTrue(thirdUser.store(), "We can create a third user")
+        let hopefullyThirdFetchedUser = User().fetch()
+        XCTAssertNotNil(hopefullyThirdFetchedUser, "We can fetch a user")
+        XCTAssertEqual(hopefullyThirdFetchedUser!.username!, thirdUser.username, "It has the third user's details")
+        
+        // Delete it for tidiness
+        secondUser.delete()
+    }
+
 }
