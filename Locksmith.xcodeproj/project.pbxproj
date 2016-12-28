@@ -82,7 +82,7 @@
 		0EC25C451BA38539004191AF /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetAuthenticationType.swift; sourceTree = "<group>"; };
 		0EC25C461BA38539004191AF /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
 		0EC25C471BA38539004191AF /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithSecurityClass.swift; sourceTree = "<group>"; };
-		0EC25C491BA38539004191AF /* LocksmithTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithTests.swift; sourceTree = "<group>"; };
+		0EC25C491BA38539004191AF /* LocksmithTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithTests.swift; path = LocksmithTests/LocksmithTests.swift; sourceTree = "<group>"; };
 		0EC25C591BA385AA004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC25C621BA385AB004191AF /* Locksmith iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Locksmith iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC25C751BA385F6004191AF /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
