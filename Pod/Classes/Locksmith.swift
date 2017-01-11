@@ -5,8 +5,7 @@
 //  Copyright (c) 2014 Colour Coding. All rights reserved.
 //
 
-import CoreFoundation
-import UIKit
+import Foundation
 import Security
 
 public let LocksmithDefaultService = NSBundle.mainBundle().infoDictionary![String(kCFBundleIdentifierKey)] as? String ?? "com.locksmith.defaultService"
