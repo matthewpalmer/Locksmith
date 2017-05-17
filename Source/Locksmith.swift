@@ -7,45 +7,49 @@ public typealias PerformRequestClosureType = (_ requestReference: CFDictionary, 
 
 // MARK: - Locksmith
 public struct Locksmith {
-    public static func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) -> [String: Any]? {
+    public static func loadDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService, accessGroup: String? = nil) -> [String: Any]? {
         struct ReadRequest: GenericPasswordSecureStorable, ReadableSecureStorable {
             let service: String
             let account: String
+            let accessGroup: String?
         }
         
-        let request = ReadRequest(service: service, account: userAccount)
+        let request = ReadRequest(service: service, account: userAccount, accessGroup: accessGroup)
         return request.readFromSecureStore()?.data
     }
     
-    public static func saveData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public static func saveData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService, accessGroup: String? = nil) throws {
         struct CreateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
             let service: String
             let account: String
             let data: [String: Any]
+            let accessGroup: String?
         }
         
-        let request = CreateRequest(service: service, account: userAccount, data: data)
+        let request = CreateRequest(service: service, account: userAccount, data: data, accessGroup: accessGroup)
         return try request.createInSecureStore()
     }
     
-    public static func deleteDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public static func deleteDataForUserAccount(userAccount: String, inService service: String = LocksmithDefaultService, accessGroup: String? = nil) throws {
         struct DeleteRequest: GenericPasswordSecureStorable, DeleteableSecureStorable {
             let service: String
             let account: String
+            let accessGroup: String?
         }
         
-        let request = DeleteRequest(service: service, account: userAccount)
+        let request = DeleteRequest(service: service, account: userAccount, accessGroup: accessGroup)
         return try request.deleteFromSecureStore()
     }
     
-    public static func updateData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
+    public static func updateData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService, accessGroup: String? = nil) throws {
         struct UpdateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
             let service: String
             let account: String
             let data: [String: Any]
+            let accessGroup: String?
         }
 
-        let request = UpdateRequest(service: service, account: userAccount, data: data)
+        let request = UpdateRequest(service: service, account: userAccount, data: data, accessGroup: accessGroup)
         try request.updateInSecureStore()
     }
 }
