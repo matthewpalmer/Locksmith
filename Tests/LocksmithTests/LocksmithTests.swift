@@ -378,7 +378,7 @@ class LocksmithTests: XCTestCase {
                 ])
             
             let p = dict[String(kSecAttrPort)] as! CFNumber
-            XCTAssertEqual(p as Int, port)
+            XCTAssertEqual(p as! Int, port)
             
             expect.fulfill()
             
@@ -438,16 +438,16 @@ class LocksmithTests: XCTestCase {
                 ])
             
             let cr = dict[String(kSecAttrCreator)] as! CFNumber
-            XCTAssertEqual(cr as UInt, creator)
+            XCTAssertEqual(cr as! UInt, creator)
             
             let ty = dict[String(kSecAttrType)] as! CFNumber
-            XCTAssertEqual(ty as UInt, type)
+            XCTAssertEqual(ty as! UInt, type)
             
             let inv = dict[String(kSecAttrIsInvisible)] as! CFBoolean
-            XCTAssertEqual(inv as Bool, isInvisible)
+            XCTAssertEqual(inv as! Bool, isInvisible)
             
             let neg = dict[String(kSecAttrIsNegative)] as! CFBoolean
-            XCTAssertEqual(neg as Bool, isNegative)
+            XCTAssertEqual(neg as! Bool, isNegative)
             
             let gen = dict[String(kSecAttrGeneric)]
             XCTAssertNil(gen)
