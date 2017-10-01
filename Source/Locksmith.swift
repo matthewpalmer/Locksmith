@@ -559,7 +559,9 @@ public extension CreateableSecureStorable where Self : InternetPasswordSecureSto
 public extension CreateableSecureStorable {
     var performCreateRequestClosure: PerformRequestClosureType {
         return { (requestReference: CFDictionary, result: inout AnyObject?) in
-            return withUnsafeMutablePointer(to: &result) { SecItemAdd(requestReference, UnsafeMutablePointer($0)) }
+            return withUnsafeMutablePointer(to: &result) { mutablePointer in
+                SecItemAdd(requestReference, mutablePointer)
+            }
         }
     }
 }
