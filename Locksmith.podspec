@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Locksmith"
-  s.version          = "3.0.0"
+  s.version          = "4.0.0"
   s.summary          = "Locksmith is a powerful, protocol-oriented library for working with the keychain in Swift."
   s.description      = <<-DESC
                        Locksmith is a powerful, protocol-oriented library for working with the iOS, Mac OS X, watchOS, and tvOS keychain in Swift. It provides extensive support for a lot of different keychain requests, and extensively uses Swift-native concepts.
