@@ -17,7 +17,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         super.willActivate()
         
         if (WCSession.isSupported()) {
-            let session = WCSession.default()
+            let session = WCSession.default
             session.delegate = self
             session.activate()
         }
@@ -43,7 +43,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // ReadableSecureStorable lets us read the account from the keychain
         let result = account.readFromSecureStore()
         
-        print("Watch app: \(result), \(result?.data)")
+        print("Watch app: \(String(describing: result)), \(String(describing: result?.data))")
         
         // DeleteableSecureStorable lets us delete the account from the keychain
         try! account.deleteFromSecureStore()
