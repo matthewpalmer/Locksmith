@@ -534,7 +534,11 @@ extension CreateableSecureStorable {
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
     var asCreateableSecureStoragePropertyDictionary: [String: Any] {
         var old = genericPasswordBaseStoragePropertyDictionary
-        old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
+        if #available(OSXApplicationExtension 10.11, *) {
+            old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
+        } else {
+            // Fallback on earlier versions
+        }
         return old
     }
 }
@@ -551,7 +555,11 @@ public extension CreateableSecureStorable where Self : GenericPasswordSecureStor
 public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
     var asCreateableSecureStoragePropertyDictionary: [String: Any] {
         var old = internetPasswordBaseStoragePropertyDictionary
-        old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
+        if #available(OSXApplicationExtension 10.11, *) {
+            old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
+        } else {
+            // Fallback on earlier versions
+        }
         return old
     }
 }
