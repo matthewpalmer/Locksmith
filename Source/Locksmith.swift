@@ -14,7 +14,7 @@ public struct Locksmith {
         }
         
         let request = ReadRequest(service: service, account: userAccount)
-        return request.readFromSecureStore()?.data
+        return (request.readFromSecureStore() as? GenericPasswordResult)?.data
     }
     
     public static func saveData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
