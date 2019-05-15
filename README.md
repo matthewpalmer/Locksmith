@@ -48,7 +48,7 @@ Locksmith is available through [Carthage](https://github.com/Carthage/Carthage).
 
 ### **Setup**
 1. Choose your target project
-2. Select Capabilties
+2. Select Capabilities
 3. Enable Keychain Sharing
 
 Xcode then automatically creates a .entitlements file and you are ready to use Locksmith!
