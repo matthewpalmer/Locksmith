@@ -93,18 +93,12 @@
 		0E13A9AA1BA3EE8700A06FF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E13A9AD1BA3EE8700A06FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E13A9AF1BA3EE8700A06FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15FCF62F6935D11C671F41FF /* Pods_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D62CFE6D2814693AE03CF5C /* Pods_watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		379DD1E5C8CDE5ABD6E50A38 /* Pods-watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-watch/Pods-watch.release.xcconfig"; sourceTree = "<group>"; };
-		74E67F961D2CBE4F8D171223 /* Pods-watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watch/Pods-watch.debug.xcconfig"; sourceTree = "<group>"; };
-		8D5C601685F38F2EA6AA2CA0 /* Pods-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-app/Pods-app.release.xcconfig"; sourceTree = "<group>"; };
 		E3DD3B201D84354F00A59312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3DD3B221D84354F00A59312 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3DD3B251D84354F00A59312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3DD3B271D84354F00A59312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3DD3B2A1D84354F00A59312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3DD3B2C1D84354F00A59312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFB6EBF2507E751B53E55514 /* Pods-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app/Pods-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +150,6 @@
 				056F2A7F1BA42E3C00B24B65 /* Locksmith Extension */,
 				E3DD3B1F1D84354F00A59312 /* Test Host */,
 				0E13A9A11BA3EE8700A06FF9 /* Products */,
-				74B88A8534E794C2027D6B3D /* Pods */,
 				D1E3110F9ED1A0EE737E7A37 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -184,24 +177,11 @@
 			path = "Locksmith iOS Example";
 			sourceTree = "<group>";
 		};
-		74B88A8534E794C2027D6B3D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FFB6EBF2507E751B53E55514 /* Pods-app.debug.xcconfig */,
-				8D5C601685F38F2EA6AA2CA0 /* Pods-app.release.xcconfig */,
-				74E67F961D2CBE4F8D171223 /* Pods-watch.debug.xcconfig */,
-				379DD1E5C8CDE5ABD6E50A38 /* Pods-watch.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		D1E3110F9ED1A0EE737E7A37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				056F2A951BA4300700B24B65 /* Locksmith.framework */,
 				056F2A931BA42FFC00B24B65 /* Locksmith.framework */,
-				15FCF62F6935D11C671F41FF /* Pods_app.framework */,
-				1D62CFE6D2814693AE03CF5C /* Pods_watch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -283,7 +263,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Matthew Palmer";
 				TargetAttributes = {
 					056F2A6E1BA42E3C00B24B65 = {
@@ -291,15 +271,17 @@
 					};
 					056F2A7A1BA42E3C00B24B65 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 1020;
 					};
 					0E13A99F1BA3EE8700A06FF9 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
 			buildConfigurationList = 0E13A99B1BA3EE8600A06FF9 /* Build configuration list for PBXProject "Locksmith iOS Example" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -459,7 +441,6 @@
 		};
 		056F2A8C1BA42E3C00B24B65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74E67F961D2CBE4F8D171223 /* Pods-watch.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Locksmith Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -467,7 +448,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -475,7 +456,6 @@
 		};
 		056F2A8D1BA42E3C00B24B65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 379DD1E5C8CDE5ABD6E50A38 /* Pods-watch.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Locksmith Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -484,7 +464,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -494,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -502,12 +483,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -547,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -555,12 +539,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -592,7 +578,6 @@
 		};
 		0E13A9B31BA3EE8700A06FF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFB6EBF2507E751B53E55514 /* Pods-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Locksmith iOS Example/Info.plist";
@@ -600,13 +585,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		0E13A9B41BA3EE8700A06FF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D5C601685F38F2EA6AA2CA0 /* Pods-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Locksmith iOS Example/Info.plist";
@@ -615,7 +599,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.matthewpalmer.Locksmith-iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

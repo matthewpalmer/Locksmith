@@ -17,6 +17,7 @@ public struct Locksmith {
         return request.readFromSecureStore()?.data
     }
     
+    @available(OSX 10.11, *)
     public static func saveData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         struct CreateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
             let service: String
@@ -38,6 +39,7 @@ public struct Locksmith {
         return try request.deleteFromSecureStore()
     }
     
+    @available(OSX 10.11, *)
     public static func updateData(data: [String: Any], forUserAccount userAccount: String, inService service: String = LocksmithDefaultService) throws {
         struct UpdateRequest: GenericPasswordSecureStorable, CreateableSecureStorable {
             let service: String
@@ -532,6 +534,7 @@ extension CreateableSecureStorable {
 }
 
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
+    @available(OSX 10.11, *)
     var asCreateableSecureStoragePropertyDictionary: [String: Any] {
         var old = genericPasswordBaseStoragePropertyDictionary
         old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
@@ -540,15 +543,18 @@ public extension CreateableSecureStorable where Self : GenericPasswordSecureStor
 }
 
 public extension CreateableSecureStorable where Self : GenericPasswordSecureStorable {
+    @available(OSX 10.11, *)
     func createInSecureStore() throws {
         try performSecureStorageAction(closure: performCreateRequestClosure, secureStoragePropertyDictionary: asCreateableSecureStoragePropertyDictionary)
     }
+    @available(OSX 10.11, *)
     func updateInSecureStore() throws {
         try self.updateInSecureStore(query: self.asCreateableSecureStoragePropertyDictionary)
     }
 }
 
 public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
+    @available(OSX 10.11, *)
     var asCreateableSecureStoragePropertyDictionary: [String: Any] {
         var old = internetPasswordBaseStoragePropertyDictionary
         old[String(kSecValueData)] = NSKeyedArchiver.archivedData(withRootObject: data)
@@ -567,9 +573,11 @@ public extension CreateableSecureStorable {
 }
 
 public extension CreateableSecureStorable where Self : InternetPasswordSecureStorable {
+    @available(OSX 10.11, *)
     func createInSecureStore() throws {
         try performSecureStorageAction(closure: performCreateRequestClosure, secureStoragePropertyDictionary: asCreateableSecureStoragePropertyDictionary)
     }
+    @available(OSX 10.11, *)
     func updateInSecureStore() throws {
         try self.updateInSecureStore(query: self.asCreateableSecureStoragePropertyDictionary)
     }
