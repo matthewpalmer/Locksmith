@@ -12,9 +12,6 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:Locksmith.podspec">
-   </FileRef>
-   <FileRef
       location = "group:Locksmith.xcodeproj">
    </FileRef>
    <FileRef
